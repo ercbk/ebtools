@@ -26,7 +26,9 @@
 #' - the influential time-series is called the "input" time-series
 #' - the affected time-series is called the "output" time-series
 #'
-#' Sometimes only correlations between leads of the input series (or lags of the input series) and the output series make theoretical sense, or only positive or negative correlations make theoretical sense. The "keep_input" argument specifies whether you want to only output CCF values involving leads of the input series, lags of the input series, or both. The "keep_ccf" argument specifies whether you want to only output positive, negative, or both CCF values
+#' The cross-correlation function calculates correlation values between lags and leads of the input series and the output series. Sometimes only correlations between the leads or lags of the input series and the output series make theoretical sense, or only positive or negative correlations make theoretical sense.
+#' - The "keep_input" argument specifies whether you want to keep only output CCF values involving leads or lags of the input series or both.
+#' - The "keep_ccf" argument specifies whether you want to keep only output positive, negative, or both CCF values.
 #'
 #' The prewhitening method that is used is from Cryer and Chan (2008, Chapter 11) Time Series Analysis. `prewhitened_ccf` differences the series if it's needed and outputs either statistically significant values of the CCF or the top non-statistically significant value if no statistically significant values are found.
 #'

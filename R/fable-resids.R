@@ -20,10 +20,12 @@
 #'
 #' library(dplyr)
 #' library(fable)
+#' library(furrr)
+#' plan(multisession)
 #'
-#' head(ohio_covid)
+#' head(ohio_covid)[,1:6]
 #'
-#' models_dyn <- ohio_covid %>%
+#' models_dyn <- ohio_covid[ ,1:7] %>%
 #'   tidyr::pivot_longer(
 #'     cols = contains("lead"),
 #'     names_to = "lead",
@@ -35,16 +37,16 @@
 #'   tidyr::drop_na() %>%
 #'   tidyr::nest(data = c(date, cases, lead_deaths)) %>%
 #'   # Run a regression on lagged cases and date vs deaths
-#'   mutate(model = purrr::map(data, function(df) {
+#'   mutate(model = furrr::future_map(data, function(df) {
 #'     model(.data = df,
 #'           dyn_reg = ARIMA(lead_deaths ~ 1 + cases),
 #'           dyn_reg_trend = ARIMA(lead_deaths ~ 1 + cases + trend()),
-#'           dyn_quad_st = ARIMA(lead_deaths ~ 1 + cases + poly(date, 2)),
-#'           dyn_log_trend = ARIMA(log(lead_deaths) ~ 1 + log(cases) + trend()),
-#'           dyn_log_quad = ARIMA(log(lead_deaths) ~ 1 + log(cases) + poly(date, 2))
+#'           dyn_reg_quad = ARIMA(lead_deaths ~ 1 + cases + poly(date, 2))
 #'     )
 #'   }
 #'   ))
+#' # shut down workers
+#' plan(sequential)
 #'
 #' dyn_mod_tbl <- select(models_dyn, -data)
 #'

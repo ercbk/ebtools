@@ -11,9 +11,12 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 indiana_pos_rate
 }
 \description{
-Contains historic, weekly, COVID-19 positivity rates for Indiana from April 4th, 2020 to January 30th, 2021.
+Contains weekly COVID-19 positivity rates for metropolitan statistical areas in Indiana from April 4th, 2020 to January 30th, 2021.
+}
+\details{
+Data collected from state health departments and curated in my \href{https://github.com/ercbk/Indiana-COVIDcast-Dashboard/tree/master/data}{Indiana COVIDcast Dashboard} repository.
 }
 \examples{
-indiana_pos_rate
+head(indiana_pos_rate)
 }
 \keyword{datasets}

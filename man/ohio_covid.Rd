@@ -11,9 +11,12 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 ohio_covid
 }
 \description{
-Contains historic, rolling 7-day averages of positive COVID-19 cases and leads of COVID-19 deaths for Ohio from March 22nd, 2020 to December 1st, 2020.
+Contains rolling 7-day averages of positive COVID-19 cases and leads of COVID-19 deaths for Ohio from March 22nd, 2020 to December 1st, 2020.
+}
+\details{
+Data collected from the New York Times COVID-19 data \href{https://github.com/nytimes/covid-19-data}{repository}
 }
 \examples{
-ohio_covid
+head(ohio_covid)[,1:6]
 }
 \keyword{datasets}

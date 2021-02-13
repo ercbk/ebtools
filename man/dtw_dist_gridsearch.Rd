@@ -43,7 +43,7 @@ The distance algorithms currently supported are:
 
 library(dtwclust)
 
-head(ohio_covid)
+head(ohio_covid)[,1:6]
 
 ref_series <- ohio_covid[["cases"]]
 query_tbl <- dplyr::select(ohio_covid, -cases, -date)
