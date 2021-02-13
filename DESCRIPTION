@@ -18,6 +18,7 @@ Imports:
     magrittr,
     rlang (>= 0.1.2),
     tibble,
+    dplyr,
     purrr,
     fable,
     fabletools,
