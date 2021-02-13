@@ -10,7 +10,7 @@ Eric’s Data Science Toolbox
 
 ## Installation
 
-And the development version from [GitHub](https://github.com/) with:
+Install from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
