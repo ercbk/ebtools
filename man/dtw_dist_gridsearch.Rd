@@ -2,7 +2,7 @@
 % Please edit documentation in R/dtw-dist-gridsearch.R
 \name{dtw_dist_gridsearch}
 \alias{dtw_dist_gridsearch}
-\title{Grid Search dtw distance functions}
+\title{Perform a grid search of parameters on \code{dtw} distance functions}
 \usage{
 dtw_dist_gridsearch(
   query_tbl,
@@ -13,7 +13,7 @@ dtw_dist_gridsearch(
 )
 }
 \arguments{
-\item{query_tbl}{Data.frame or tibble containing columns of numeric vectors for each query time series that are to compared to the reference time series.}
+\item{query_tbl}{Data.frame or tibble containing columns of numeric vectors for each query time series that are to be compared to the reference time series.}
 
 \item{ref_series}{Numeric vector; the reference time series which is the series that all query series will compared to.}
 

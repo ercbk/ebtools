@@ -2,7 +2,7 @@
 % Please edit documentation in R/create-dtw-grids.R
 \name{create_dtw_grids}
 \alias{create_dtw_grids}
-\title{Create a parameter grid list for dtwclust and dtw distance functions}
+\title{Create a parameter grid list for \code{dtwclust} and \code{dtw} distance functions}
 \usage{
 create_dtw_grids(params)
 }

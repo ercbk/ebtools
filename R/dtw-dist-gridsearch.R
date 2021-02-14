@@ -1,9 +1,9 @@
-#' Grid Search dtw distance functions
+#' Perform a grid search of parameters on `dtw` distance functions
 #'
 #' @description
 #' [dtw_dist_gridsearch()] performs a gridsearch using a list of parameter grids and a list of distance functions from the dtwclust package.
 #'
-#' @param query_tbl Data.frame or tibble containing columns of numeric vectors for each query time series that are to compared to the reference time series.
+#' @param query_tbl Data.frame or tibble containing columns of numeric vectors for each query time series that are to be compared to the reference time series.
 #' @param ref_series Numeric vector; the reference time series which is the series that all query series will compared to.
 #' @param dtw_funs Named list of dtwclust distance functions. Names need to match those in dtw_grids
 #' @param dtw_grids Object created by [create_dtw_grids()] or named nested list of parameter name-value pairs that correspond to the distance functions. Names need to match those in dtw_funs.

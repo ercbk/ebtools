@@ -1,4 +1,4 @@
-#' Create a parameter grid list for dtwclust and dtw distance functions
+#' Create a parameter grid list for `dtwclust` and `dtw` distance functions
 #'
 #' @description
 #' [create_dtw_grids()] creates a nested, parameter grid list for dtwclust and dtw distance functions to be used in [dtw_dist_gridsearch()].
