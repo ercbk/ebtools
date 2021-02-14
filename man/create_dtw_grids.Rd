@@ -30,7 +30,7 @@ params_ls_lg <- list(dtw_basic = list(window.size = 5:10,
                      gak = list(normalize = TRUE, window.size = 5:10))
 
 dtw_grids_lg <- create_dtw_grids(params_ls_lg)
-head(dtw_grids_lg)
+head(dtw_grids_lg, n = 2)
 
 
 # Can still be ran with a minimal "grid"

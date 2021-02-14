@@ -27,7 +27,7 @@
 #'
 #' @examples
 #'
-#' library(dtwclust)
+#' library(dtwclust, warn.conflicts = F, verbose = F)
 #'
 #' head(ohio_covid)[,1:6]
 #'

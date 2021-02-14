@@ -17,7 +17,7 @@ test_fable_resids(mod_tbl, grp_col, mod_col)
 An unnested tibble with columns for the grouping variable, model names, and p-values from the Ljung-Box test.
 }
 \description{
-\code{\link[=test_fable_resids]{test_fable_resids()}} takes a nested tibble and checks \code{fable} model residuals for autocorrelation using the Ljung-Box test
+\code{\link[=test_fable_resids]{test_fable_resids()}} takes a nested tibble and checks \code{fable} model residuals for autocorrelation using the Ljung-Box test.
 }
 \details{
 P-values less than 0.05 indicate autocorrelation is present. If all p-values round to less than 0.000, then a single "0" will be returned.

@@ -19,7 +19,7 @@
 #'
 #' library(dplyr)
 #'
-#' head(ohio_covid)
+#' head(ohio_covid)[ ,1:6]
 #'
 #' models_lm <- ohio_covid %>%
 #'   tidyr::pivot_longer(

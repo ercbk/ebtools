@@ -1,0 +1,23 @@
+reference:
+  - title: Time Series
+    contents:
+    - create_dtw_grids
+    - dtw_dist_gridsearch
+    - test_fable_resids
+    - test_lm_resids
+    - prewhitened_ccf
+  - title: Visualization
+    contents:
+    - to_js_array
+  - title: Data
+    contents:
+    - indiana_pos_rate
+    - ohio_covid
+
+
+navbar:
+  left:
+  - text: Reference
+    href: reference/index.html
+  - text: Changelog
+    href: news/index.html

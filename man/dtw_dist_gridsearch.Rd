@@ -27,7 +27,7 @@ dtw_dist_gridsearch(
 A tibble with columns for the names of the query series, names of the distance functions, parameter values, and calculated distances.
 }
 \description{
-\code{\link[=dtw_dist_gridsearch]{dtw_dist_gridsearch()}} performs a gridsearch using a list of parameter grids and a list of distance functions from the dtwclust package
+\code{\link[=dtw_dist_gridsearch]{dtw_dist_gridsearch()}} performs a gridsearch using a list of parameter grids and a list of distance functions from the dtwclust package.
 }
 \details{
 The distance algorithms currently supported are:
@@ -41,7 +41,7 @@ The distance algorithms currently supported are:
 }
 \examples{
 
-library(dtwclust)
+library(dtwclust, warn.conflicts = F, verbose = F)
 
 head(ohio_covid)[,1:6]
 

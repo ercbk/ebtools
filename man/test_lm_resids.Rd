@@ -17,7 +17,7 @@ test_lm_resids(mod_tbl, grp_col, mod_col)
 An unnested tibble with the columns for the grouping variable, model names, and p-values for both tests.
 }
 \description{
-\code{\link[=test_lm_resids]{test_lm_resids()}} takes a nested tibble and checks \code{lm} model residuals for autocorrelation using Breusch-Godfrey and Durbin-Watson tests
+\code{\link[=test_lm_resids]{test_lm_resids()}} takes a nested tibble and checks \code{lm} model residuals for autocorrelation using Breusch-Godfrey and Durbin-Watson tests.
 }
 \details{
 P-values less than 0.05 indicate autocorrelation is present. If all p-values round to less than 0.000, then a single "0" will be returned.
@@ -26,7 +26,7 @@ P-values less than 0.05 indicate autocorrelation is present. If all p-values rou
 
 library(dplyr)
 
-head(ohio_covid)
+head(ohio_covid)[ ,1:6]
 
 models_lm <- ohio_covid \%>\%
   tidyr::pivot_longer(

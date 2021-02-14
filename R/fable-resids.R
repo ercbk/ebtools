@@ -18,9 +18,9 @@
 #'
 #' @examples
 #'
-#' library(dplyr)
-#' library(fable)
-#' library(furrr)
+#' library(dplyr, warn.conflicts = F)
+#' library(fable, quietly = T)
+#' library(furrr, quietly = T)
 #' plan(multisession)
 #'
 #' head(ohio_covid)[,1:6]

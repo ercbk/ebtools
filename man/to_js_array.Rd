@@ -19,7 +19,7 @@ to_js_array(.data, .grp_var, ..., array_name)
 tibble with grouping column and js array column
 }
 \description{
-\code{\link[=to_js_array]{to_js_array()}} takes a tibble with a grouping column and columns that are to be combined into a js array
+\code{\link[=to_js_array]{to_js_array()}} takes a tibble with a grouping column and columns that are to be combined into a js array.
 }
 \details{
 The js array column that's created is list column of form <array_name> = list(list(array_var1=var1val1, array_var2 = var2val1, ...), list(array_var1=var1val2, array_var2=var2val2, ...), ...) for each grouping variable category.
