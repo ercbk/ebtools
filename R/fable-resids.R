@@ -2,7 +2,7 @@
 #' Autocorrelation test of the residuals of dynamic regression `fable` models with various specifications that have been fitted for a grouping variable
 #'
 #' @description
-#' [test_fable_resids()] takes a nested tibble and checks `fable` model residuals for autocorrelation using the Ljung-Box test
+#' [test_fable_resids()] takes a nested tibble and checks `fable` model residuals for autocorrelation using the Ljung-Box test.
 #'
 #' @param mod_tbl tibble with a grouping variable and a nested list column with a list of model objects for each grouping variable value
 #' @param grp_col name of the grouping variable column

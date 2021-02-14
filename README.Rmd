@@ -16,39 +16,39 @@ knitr::opts_chunk$set(
 # ebtools
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/ercbk/ebtools/workflows/R-CMD-check/badge.svg)](https://github.com/ercbk/ebtools/actions)
 <!-- badges: end -->
 
 Eric's Data Science Toolbox
 
 ## Installation
 
-And the development version from [GitHub](https://github.com/) with:
+Install from [GitHub](https://github.com/ercbk/ebtools) with:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("ercbk/ebtools")
 ```
-## Example
+## What's in it
 
-This is a basic example which shows you how to solve a common problem:
+```{r gt, echo=FALSE}
+library(dplyr, warn.conflicts = F)
+library(gt)
 
-```{r example}
-library(ebtools)
-## basic example code
+pkg_tbl <- tibble::tibble(
+  Type = c("Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Visualization"),
+  Function = c("create_dtw_grids", "dtw_dist_gridsearch", "test_fable_resids", "test_lm_resids", "prewhitened_ccf", "to_js_array"),
+  Description = c("Creates a nested, parameter grid list.",
+                  "Performs a gridsearch using a list of parameter grids and a list of distance functions",
+                  "Checks residuals of multiple fable models for autocorrelation using the Ljung-Box test",
+                  "Checks residuals of multiple lm models for autocorrelation using Breusch-Godfrey and Durbin-Watson tests.",
+                  "Prewhitens time series, calculates cross-correlation coefficients, and returns statistically significant values.",
+                  "Creates js array column."),
+  comp_pkgs = c("dtw, dtwclust", "dtw, dtwclust", "fable", "", "", "dataui")
+)
+pkg_tbl %>%
+  group_by(Type) %>% 
+  gt() %>% 
+  cols_label(comp_pkgs = "Complementary Packages")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

@@ -1,7 +1,7 @@
 #' Autocorrelation tests of the residuals of `lm` models with various specifications that have been fitted for a grouping variable
 #'
 #' @description
-#' [test_lm_resids()] takes a nested tibble and checks `lm` model residuals for autocorrelation using Breusch-Godfrey and Durbin-Watson tests
+#' [test_lm_resids()] takes a nested tibble and checks `lm` model residuals for autocorrelation using Breusch-Godfrey and Durbin-Watson tests.
 #'
 #' @param mod_tbl tibble with a grouping variable and a nested list column with a list of model objects for each grouping variable value
 #' @param grp_col name of the grouping variable column

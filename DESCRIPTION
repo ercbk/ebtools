@@ -35,6 +35,7 @@ Imports:
 Suggests: 
     roxygen2,
     furrr,
-    dtwclust
+    dtwclust,
+    gt
 Depends: 
     R (>= 2.10)
