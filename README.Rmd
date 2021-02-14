@@ -31,7 +31,7 @@ remotes::install_github("ercbk/ebtools")
 ```
 ## What's in it
 
-```{r gt, echo=FALSE}
+```{r gt, echo=FALSE, asis=TRUE}
 library(dplyr, warn.conflicts = F)
 library(gt)
 
@@ -49,6 +49,7 @@ pkg_tbl <- tibble::tibble(
 pkg_tbl %>%
   group_by(Type) %>% 
   gt() %>% 
-  cols_label(comp_pkgs = "Complementary Packages")
+  cols_label(comp_pkgs = "Complementary Packages") %>% 
+  as_raw_html()
 ```
 
