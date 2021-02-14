@@ -2,7 +2,7 @@
 #' Converts data columns to a js array
 #'
 #' @description
-#' [to_js_array()] takes a tibble with a grouping column and columns that are to be combined into a js array
+#' [to_js_array()] takes a tibble with a grouping column and columns that are to be combined into a js array.
 #'
 #' @param .data tibble; data with grouping column and columns to be used to create the js array column
 #' @param .grp_var grouping column
