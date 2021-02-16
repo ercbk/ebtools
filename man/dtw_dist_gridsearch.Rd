@@ -41,7 +41,7 @@ The distance algorithms currently supported are:
 }
 \examples{
 
-library(dtwclust, warn.conflicts = FALSE, verbose = FALSE)
+suppressPackageStartupMessages(library(dtwclust))
 
 head(ohio_covid)[,1:6]
 

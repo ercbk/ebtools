@@ -14,7 +14,7 @@ us_regional_deaths
 Contains rolling 7-day average COVID-19 deaths for US regional areas in Indiana from April 1st, 2020 to February 13th, 2021.
 }
 \details{
-Data collected by the \href{https://github.com/cmu-delphi/covidcast}{Delphi Research Group} repository.
+Data collected by the \href{https://github.com/cmu-delphi/covidcast}{Delphi Research Group}.
 }
 \examples{
 head(us_regional_deaths)

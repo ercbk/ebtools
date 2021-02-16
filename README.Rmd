@@ -32,10 +32,11 @@ remotes::install_github("ercbk/ebtools")
 ## What's in it
 
 ```{r gt, echo=FALSE, asis=TRUE}
-library(dplyr, warn.conflicts = F)
+library(dplyr, warn.conflicts = FALSE)
 library(gt)
 
-# <a href='https://blog.rstudio.com/2020/09/15/announcing-the-2020-rstudio-table-contest/'> 2020 RStudio Table Contest Submission </a> by A. Calatroni, S. Lussier & R. Krouse <a href='https://github.com/agstn/RStudio_table_contest_2020'> <i class='fa fa-github'></i> Repo </a>"
+dtw_html <- gt::html(as.character(htmltools::a(href = "https://dynamictimewarping.github.io/", "dtw")))
+
 
 pkg_tbl <- tibble::tibble(
   Type = c("Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Visualization"),
@@ -59,17 +60,23 @@ pkg_tbl <- tibble::tibble(
                NA, NA,
                "https://timelyportfolio.github.io/dataui/")
 ) %>% 
-  mutate(fun_url = purrr::map2(function_urls, Function, ~htmltools::a(href = .x, .y)),
-         fun_url = purrr::map(fun_url, ~gt::html(as.character(.x))),
-         pkg_url = purrr::map2(package_urls, comp_pkgs, ~htmltools::a(href = .x, .y)),
-         pkg_url = purrr::map(pkg_url, ~gt::html(as.character(.x)))) %>% 
+  mutate(fun_html = purrr::map2(function_urls, Function, ~htmltools::a(href = .x, .y)),
+         fun_url = purrr::map(fun_html, ~gt::html(as.character(.x))),
+         pkg_html = purrr::map2(package_urls, comp_pkgs, ~htmltools::a(href = .x, .y)),
+         pkg_url = purrr::map(pkg_html, ~gt::html(as.character(.x))),
+         dtw_url = list(dtw_html, dtw_html, "", "", "", "")) %>% 
   relocate(fun_url, .before = "Function") %>% 
-  select(Type, Function = fun_url, Description, comp_pkgs = pkg_url)
+  select(Type, Function = fun_url, Description, comp_pkgs = pkg_url, dtw_url)
 
 pkg_tbl %>%
   group_by(Type) %>% 
   gt() %>% 
   cols_label(comp_pkgs = "Complementary Packages") %>% 
+  cols_merge(
+    vars(comp_pkgs, dtw_url),
+    hide_columns = vars(dtw_url),
+    pattern = "{1}<br>{2}"
+    ) %>%
   as_raw_html()
 ```
 
