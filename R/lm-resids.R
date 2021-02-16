@@ -17,7 +17,7 @@
 #'
 #' @examples
 #'
-#' library(dplyr)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' head(ohio_covid)[ ,1:6]
 #'

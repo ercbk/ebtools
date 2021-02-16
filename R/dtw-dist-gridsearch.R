@@ -1,4 +1,4 @@
-#' Perform a grid search of parameters on `dtw` distance functions
+#' Perform a grid search of parameters on `dtwclust` distance functions
 #'
 #' @description
 #' [dtw_dist_gridsearch()] performs a gridsearch using a list of parameter grids and a list of distance functions from the dtwclust package.
@@ -27,7 +27,7 @@
 #'
 #' @examples
 #'
-#' library(dtwclust, warn.conflicts = F, verbose = F)
+#' library(dtwclust, warn.conflicts = FALSE, verbose = FALSE)
 #'
 #' head(ohio_covid)[,1:6]
 #'

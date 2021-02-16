@@ -24,7 +24,7 @@ P-values less than 0.05 indicate autocorrelation is present. If all p-values rou
 }
 \examples{
 
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 
 head(ohio_covid)[ ,1:6]
 

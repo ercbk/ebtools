@@ -13,6 +13,8 @@ reference:
     contents:
     - indiana_pos_rate
     - ohio_covid
+    - us_regional_cases
+    - us_regional_deaths
 
 
 navbar:

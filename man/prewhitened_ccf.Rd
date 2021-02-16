@@ -76,6 +76,37 @@ oh_ccf_tbl <- prewhitened_ccf(input = oh_cases,
                               keep_ccf = "positive")
 
 oh_ccf_tbl
+
+
+library(dplyr, warn.conflicts = FALSE)
+
+reg_cases_tsb <- us_regional_cases \%>\%
+  tsibble::as_tsibble(index = date, key = region) \%>\%
+  tsibble::group_by_key() \%>\%
+  tidyr::nest() \%>\%
+  arrange(region) \%>\%
+  ungroup() \%>\%
+  mutate(id = as.character(row_number()))
+
+reg_deaths_tsb <- us_regional_deaths \%>\%
+  tsibble::as_tsibble(index = date, key = region) \%>\%
+  tsibble::group_by_key() \%>\%
+  tidyr::nest() \%>\%
+  arrange(region) \%>\%
+  ungroup() \%>\%
+  mutate(id = as.character(row_number()))
+
+reg_ccf_vals <- purrr::map2_dfr(reg_cases_tsb$data,
+                                reg_deaths_tsb$data,
+                                prewhitened_ccf,
+                                input_col = "reg_sev_day_cases",
+                                output_col = "reg_sev_day_deaths",
+                                max.order = 40,
+                                .id = "id") \%>\%
+  left_join(reg_cases_tsb \%>\%
+             select(id, region), by = "id")
+
+head(reg_ccf_vals)
 }
 \references{
 Cryer, D., Chan, K. (2008) Time Series Analysis, Springer Science+Business Media, LLC

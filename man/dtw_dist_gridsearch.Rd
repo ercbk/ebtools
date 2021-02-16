@@ -2,7 +2,7 @@
 % Please edit documentation in R/dtw-dist-gridsearch.R
 \name{dtw_dist_gridsearch}
 \alias{dtw_dist_gridsearch}
-\title{Perform a grid search of parameters on \code{dtw} distance functions}
+\title{Perform a grid search of parameters on \code{dtwclust} distance functions}
 \usage{
 dtw_dist_gridsearch(
   query_tbl,
@@ -41,7 +41,7 @@ The distance algorithms currently supported are:
 }
 \examples{
 
-library(dtwclust, warn.conflicts = F, verbose = F)
+library(dtwclust, warn.conflicts = FALSE, verbose = FALSE)
 
 head(ohio_covid)[,1:6]
 

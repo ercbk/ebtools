@@ -17,3 +17,23 @@
 #' @examples
 #' head(indiana_pos_rate)
 "indiana_pos_rate"
+
+#' US Regional COVID-19 Positive Cases Data Set
+#'
+#' Contains rolling 7-day average COVID-19 cases for US regional areas in Indiana from April 1st, 2020 to February 13th, 2021.
+#'
+#' @details Data collected by the [Delphi Research Group](https://github.com/cmu-delphi/covidcast).
+#'
+#' @examples
+#' head(us_regional_cases)
+"us_regional_cases"
+
+#' US Regional COVID-19 Deaths Data Set
+#'
+#' Contains rolling 7-day average COVID-19 deaths for US regional areas in Indiana from April 1st, 2020 to February 13th, 2021.
+#'
+#' @details Data collected by the [Delphi Research Group](https://github.com/cmu-delphi/covidcast).
+#'
+#' @examples
+#' head(us_regional_deaths)
+"us_regional_deaths"

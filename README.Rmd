@@ -35,6 +35,8 @@ remotes::install_github("ercbk/ebtools")
 library(dplyr, warn.conflicts = F)
 library(gt)
 
+# <a href='https://blog.rstudio.com/2020/09/15/announcing-the-2020-rstudio-table-contest/'> 2020 RStudio Table Contest Submission </a> by A. Calatroni, S. Lussier & R. Krouse <a href='https://github.com/agstn/RStudio_table_contest_2020'> <i class='fa fa-github'></i> Repo </a>"
+
 pkg_tbl <- tibble::tibble(
   Type = c("Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Visualization"),
   Function = c("create_dtw_grids", "dtw_dist_gridsearch", "test_fable_resids", "test_lm_resids", "prewhitened_ccf", "to_js_array"),
@@ -44,8 +46,26 @@ pkg_tbl <- tibble::tibble(
                   "Checks residuals of multiple lm models for autocorrelation using Breusch-Godfrey and Durbin-Watson tests.",
                   "Prewhitens time series, calculates cross-correlation coefficients, and returns statistically significant values.",
                   "Creates js array column."),
-  comp_pkgs = c("dtw, dtwclust", "dtw, dtwclust", "fable", "", "", "dataui")
-)
+  comp_pkgs = c("dtwclust", "dtwclust", "fable", "", "", "dataui"),
+  function_urls = c("https://ercbk.github.io/ebtools/reference/create_dtw_grids.html",
+                    "https://ercbk.github.io/ebtools/reference/dtw_dist_gridsearch.html",
+                    "https://ercbk.github.io/ebtools/reference/test_fable_resids.html",
+                    "https://ercbk.github.io/ebtools/reference/test_lm_resids.html",
+                    "https://ercbk.github.io/ebtools/reference/prewhitened_ccf.html",
+                    "https://ercbk.github.io/ebtools/reference/to_js_array.html"),
+  package_urls = c("https://github.com/asardaes/dtwclust",
+               "https://github.com/asardaes/dtwclust",
+               "https://fable.tidyverts.org/",
+               NA, NA,
+               "https://timelyportfolio.github.io/dataui/")
+) %>% 
+  mutate(fun_url = purrr::map2(function_urls, Function, ~htmltools::a(href = .x, .y)),
+         fun_url = purrr::map(fun_url, ~gt::html(as.character(.x))),
+         pkg_url = purrr::map2(package_urls, comp_pkgs, ~htmltools::a(href = .x, .y)),
+         pkg_url = purrr::map(pkg_url, ~gt::html(as.character(.x)))) %>% 
+  relocate(fun_url, .before = "Function") %>% 
+  select(Type, Function = fun_url, Description, comp_pkgs = pkg_url)
+
 pkg_tbl %>%
   group_by(Type) %>% 
   gt() %>% 
