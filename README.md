@@ -1,16 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# ebtools
-
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ercbk/ebtools/workflows/R-CMD-check/badge.svg)](https://github.com/ercbk/ebtools/actions)
 <!-- badges: end -->
 
-Eric’s Data Science Toolbox
+### Eric’s Data Science Toolbox
 
-## Installation
+A personal R package of miscellaneous data science functions
+
+### Installation
 
 Install from [GitHub](https://github.com/ercbk/ebtools) with:
 
@@ -19,7 +18,7 @@ Install from [GitHub](https://github.com/ercbk/ebtools) with:
 remotes::install_github("ercbk/ebtools")
 ```
 
-## What’s in it
+### What’s in it
 
 <table style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif; display: table; border-collapse: collapse; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;">
   

@@ -13,15 +13,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ebtools
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/ercbk/ebtools/workflows/R-CMD-check/badge.svg)](https://github.com/ercbk/ebtools/actions)
 <!-- badges: end -->
 
-Eric's Data Science Toolbox
+### Eric's Data Science Toolbox
+A personal R package of miscellaneous data science functions
 
-## Installation
+### Installation
 
 Install from [GitHub](https://github.com/ercbk/ebtools) with:
 
@@ -29,7 +29,7 @@ Install from [GitHub](https://github.com/ercbk/ebtools) with:
 # install.packages("remotes")
 remotes::install_github("ercbk/ebtools")
 ```
-## What's in it
+### What's in it
 
 ```{r gt, echo=FALSE, asis=TRUE}
 library(dplyr, warn.conflicts = FALSE)

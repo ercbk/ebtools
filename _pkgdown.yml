@@ -1,3 +1,12 @@
+url: https://ercbk.github.io/ebtools/
+
+template:
+  opengraph:
+    twitter:
+      creator: "@erc_bk"
+  params:
+    bootswatch: paper
+
 reference:
   - title: Time Series
     contents:
@@ -18,8 +27,10 @@ reference:
 
 
 navbar:
-  left:
-  - text: Reference
-    href: reference/index.html
-  - text: Changelog
-    href: news/index.html
+  structure:
+    right: [reference, news, github]
+  components:
+    - text: Reference
+      href: reference/index.html
+    - text: Changelog
+      href: news/index.html    -
