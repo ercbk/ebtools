@@ -2,16 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
 
 
-/* right-side icons and tab text
-.navbar-default .navbar-nav>li>a {
-    color: #990000;
-} */
-
 
 pre, code {
   font-family: "Fira Code Retina", Consolas, Inconsolata, monospace;
 }
-
 
 h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
   font-family: 'Titillium Web Bold', sans-serif;
@@ -24,18 +18,28 @@ h2 {
   font-size: 24px;
 }
 
+/* This makes the version label in the navbar d*/
 .label-default {
   background-color: transparent;
 }
 
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-  border-bottom-color: #990000;
+/* changes thickness and color of the bottom border of the navbar  */
+.navbar {
+  border-bottom: 2px solid #990000;
+  font-family: 'Titillium Web Bold', sans-serif !important;
 }
 
+/* changes color of home icon in navbar */
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    color: #990000;
+}
 
+/* changes color of github icon. its part font awesome id */
+.fab {
+  color: #990000;
+}
 
-/* homepage: table */
+/* homepage: gt table links */
 td a { color: #990000; }
 td a:hover { color: #990000; }
 td a:visited { color: #990000; }
