@@ -1,9 +1,6 @@
 url: https://ercbk.github.io/ebtools/
 
 template:
-  opengraph:
-    twitter:
-      creator: "@erc_bk"
   params:
     bootswatch: paper
 
@@ -28,7 +25,7 @@ reference:
 
 navbar:
   structure:
-    right: [reference, news, github]
+    right: [home, reference, news, github]
   components:
     - text: Reference
       href: reference/index.html

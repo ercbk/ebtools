@@ -1,0 +1,41 @@
+@import url("https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/fira_code.css");
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
+
+
+/* right-side icons and tab text
+.navbar-default .navbar-nav>li>a {
+    color: #990000;
+} */
+
+
+pre, code {
+  font-family: "Fira Code Retina", Consolas, Inconsolata, monospace;
+}
+
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+  font-family: 'Titillium Web Bold', sans-serif;
+}
+
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 24px;
+}
+
+.label-default {
+  background-color: transparent;
+}
+
+/*
+a:link {
+  color: #990000;
+  text-decoration: none;
+}
+*/
+
+.navbar-default {
+  color: #990000;
+  /*background-color: transparent;*/
+}
