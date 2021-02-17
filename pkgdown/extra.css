@@ -18,28 +18,39 @@ h2 {
   font-size: 24px;
 }
 
-/* This makes the version label in the navbar d*/
+/* This makes the version label in the navbar disappear */
 .label-default {
   background-color: transparent;
 }
 
 /* changes thickness and color of the bottom border of the navbar  */
+/* using a 20% lighter color than #990000 (clr_lighten) */
 .navbar {
-  border-bottom: 2px solid #990000;
+  border-bottom: 2px solid #C13939FF;
   font-family: 'Titillium Web Bold', sans-serif !important;
 }
+
+/* styles package title on the left side of navbar */
+.navbar-brand {
+  font-size: 32px;
+  font-weight: bold;
+}
+.navbar-default .navbar-link {
+  color: #990000;
+}
+
 
 /* changes color of home icon in navbar */
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
     color: #990000;
 }
 
-/* changes color of github icon. its part font awesome id */
+/* changes color of github icon. .fab is of part the font awesome id */
 .fab {
   color: #990000;
 }
 
-/* homepage: gt table links */
+/* home page: gt table links */
 td a { color: #990000; }
 td a:hover { color: #990000; }
 td a:visited { color: #990000; }

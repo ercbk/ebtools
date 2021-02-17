@@ -2,7 +2,7 @@
 % Please edit documentation in R/dtw-dist-gridsearch.R
 \name{dtw_dist_gridsearch}
 \alias{dtw_dist_gridsearch}
-\title{Perform a grid search of parameters on \code{dtwclust} distance functions}
+\title{Perform a grid search of parameters and \code{dtwclust} distance functions}
 \usage{
 dtw_dist_gridsearch(
   query_tbl,

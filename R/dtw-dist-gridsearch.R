@@ -1,4 +1,4 @@
-#' Perform a grid search of parameters on `dtwclust` distance functions
+#' Perform a grid search of parameters and `dtwclust` distance functions
 #'
 #' @description
 #' [dtw_dist_gridsearch()] performs a gridsearch using a list of parameter grids and a list of distance functions from the dtwclust package.

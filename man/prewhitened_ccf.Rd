@@ -55,7 +55,7 @@ The cross-correlation function calculates correlation values between lags and le
 \item The "keep_ccf" argument specifies whether you want to keep only output positive, negative, or both CCF values.
 }
 
-The prewhitening method that is used is from Cryer and Chan (2008, Chapter 11) Time Series Analysis. \code{prewhitened_ccf} differences the series if it's needed and outputs either statistically significant values of the CCF or the top non-statistically significant value if no statistically significant values are found.
+\code{prewhitened_ccf} differences the series if it's needed, prewhitens, and outputs either statistically significant values of the CCF or the top non-statistically significant value if no statistically significant values are found. The prewhitening method that is used is from Cryer and Chan (2008, Chapter 11).
 }
 \examples{
 
