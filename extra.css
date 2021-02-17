@@ -28,14 +28,28 @@ h2 {
   background-color: transparent;
 }
 
-/*
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-bottom-color: #990000;
+}
+
+
+
+/* homepage: table */
+td a { color: #990000; }
+td a:hover { color: #990000; }
+td a:visited { color: #990000; }
+td a:active { color: #990000; }
+
+/* home page: installation github link */
+p a { color: #990000}
+
+/* home page, sidebar: "Browse source code"" link */
+li a { color: #990000 }
+
+/* home page: other links in the sidebar */
 a:link {
   color: #990000;
   text-decoration: none;
 }
-*/
 
-.navbar-default {
-  color: #990000;
-  /*background-color: transparent;*/
-}
