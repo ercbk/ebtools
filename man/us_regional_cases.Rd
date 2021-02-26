@@ -11,7 +11,7 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 us_regional_cases
 }
 \description{
-Contains rolling 7-day average COVID-19 cases for US regional areas in Indiana from April 1st, 2020 to February 13th, 2021.
+Contains rolling 7-day average COVID-19 cases for US regional areas from April 1st, 2020 to February 13th, 2021.
 }
 \details{
 Data collected by the \href{https://github.com/cmu-delphi/covidcast}{Delphi Research Group}.
