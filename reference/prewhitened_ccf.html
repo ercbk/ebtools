@@ -222,10 +222,10 @@
                               keep_ccf <span class='op'>=</span> <span class='st'>"positive"</span><span class='op'>)</span>
 
 <span class='va'>oh_ccf_tbl</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 5</span>
 #&gt;   input_type input_series signif_type                   signif_thresh    ccf
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> lag                  10 Not Statistically Significant         0.123 0.098</span><span style='text-decoration: underline;'>5</span><span></div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                 <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> lag                  10 Not Statistically Significant         0.123 0.098<span style='text-decoration: underline;'>5</span></div><div class='input'>
 
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>, warn.conflicts <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
@@ -256,15 +256,15 @@
              <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>region</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='st'>"id"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>reg_ccf_vals</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 7</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 7</span>
 #&gt;   id    input_type input_series signif_type          signif_thresh    ccf region
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 1     lag                  39 Statistically Signi…        -</span><span style='color: #BB0000;'>0.110</span><span> -</span><span style='color: #BB0000;'>0.124</span><span> midwe…
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 1     lag                  38 Statistically Signi…        -</span><span style='color: #BB0000;'>0.110</span><span> -</span><span style='color: #BB0000;'>0.170</span><span> midwe…
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 1     lag                  36 Statistically Signi…         0.110  0.189 midwe…
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 1     lag                  35 Statistically Signi…         0.110  0.249 midwe…
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 1     lag                  32 Statistically Signi…        -</span><span style='color: #BB0000;'>0.110</span><span> -</span><span style='color: #BB0000;'>0.156</span><span> midwe…
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 1     lag                  30 Statistically Signi…        -</span><span style='color: #BB0000;'>0.110</span><span> -</span><span style='color: #BB0000;'>0.212</span><span> midwe…</div></span></pre>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>1</span> 1     lag                  39 Statistically Signi…        -<span style='color: #BB0000;'>0.110</span> -<span style='color: #BB0000;'>0.124</span> midwe…
+#&gt; <span style='color: #BCBCBC;'>2</span> 1     lag                  38 Statistically Signi…        -<span style='color: #BB0000;'>0.110</span> -<span style='color: #BB0000;'>0.170</span> midwe…
+#&gt; <span style='color: #BCBCBC;'>3</span> 1     lag                  36 Statistically Signi…         0.110  0.189 midwe…
+#&gt; <span style='color: #BCBCBC;'>4</span> 1     lag                  35 Statistically Signi…         0.110  0.249 midwe…
+#&gt; <span style='color: #BCBCBC;'>5</span> 1     lag                  32 Statistically Signi…        -<span style='color: #BB0000;'>0.110</span> -<span style='color: #BB0000;'>0.156</span> midwe…
+#&gt; <span style='color: #BCBCBC;'>6</span> 1     lag                  30 Statistically Signi…        -<span style='color: #BB0000;'>0.110</span> -<span style='color: #BB0000;'>0.212</span> midwe…</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

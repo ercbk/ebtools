@@ -188,15 +188,15 @@
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/asardaes/dtwclust'>dtwclust</a></span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ohio_covid</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span>
 #&gt;   date       cases deaths_lead60 deaths_lead59 deaths_lead58 deaths_lead57
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 2020-03-22  44.9          43.1          42.6          40.6          42.9
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 2020-03-23  56.3          41.6          43.1          42.6          40.6
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 2020-03-24  71            49.4          41.6          43.1          42.6
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 2020-03-25  88.1          49.1          49.4          41.6          43.1
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 2020-03-26 107.           47.1          49.1          49.4          41.6
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 2020-03-27 139.           40.3          47.1          49.1          49.4</div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> 2020-03-22  44.9          43.1          42.6          40.6          42.9
+#&gt; <span style='color: #BCBCBC;'>2</span> 2020-03-23  56.3          41.6          43.1          42.6          40.6
+#&gt; <span style='color: #BCBCBC;'>3</span> 2020-03-24  71            49.4          41.6          43.1          42.6
+#&gt; <span style='color: #BCBCBC;'>4</span> 2020-03-25  88.1          49.1          49.4          41.6          43.1
+#&gt; <span style='color: #BCBCBC;'>5</span> 2020-03-26 107.           47.1          49.1          49.4          41.6
+#&gt; <span style='color: #BCBCBC;'>6</span> 2020-03-27 139.           40.3          47.1          49.1          49.4</div><div class='input'>
 <span class='va'>ref_series</span> <span class='op'>&lt;-</span> <span class='va'>ohio_covid</span><span class='op'>[[</span><span class='st'>"cases"</span><span class='op'>]</span><span class='op'>]</span>
 <span class='va'>query_tbl</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>ohio_covid</span>, <span class='op'>-</span><span class='va'>cases</span>, <span class='op'>-</span><span class='va'>date</span><span class='op'>)</span>
 
@@ -228,16 +228,16 @@
                                      num_best <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>search_res_lg</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 10</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 10</span>
 #&gt;   query  algorithm distance window.size norm  step_pattern_id dtw.func normalize
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> death… dtw_basic  </span><span style='text-decoration: underline;'>395</span><span>797.           5 L1    symmetric1      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> death… dtw_basic  </span><span style='text-decoration: underline;'>395</span><span>818.           5 L1    symmetric1      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> death… dtw_basic  </span><span style='text-decoration: underline;'>732</span><span>527.           5 L1    symmetric2      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> death… dtw_basic  </span><span style='text-decoration: underline;'>732</span><span>537.           5 L1    symmetric2      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> death… dtw_basic   </span><span style='text-decoration: underline;'>40</span><span>059.           5 L2    symmetric1      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>       
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> death… dtw_basic   </span><span style='text-decoration: underline;'>40</span><span>059.           5 L2    symmetric1      </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>       
-#&gt; </span><span style='color: #949494;'># … with 2 more variables: znorm &lt;lgl&gt;, return.shifted &lt;lgl&gt;</span><span></div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> death… dtw_basic  <span style='text-decoration: underline;'>395</span>797.           5 L1    symmetric1      <span style='color: #BB0000;'>NA</span>       <span style='color: #BB0000;'>NA</span>       
+#&gt; <span style='color: #BCBCBC;'>2</span> death… dtw_basic  <span style='text-decoration: underline;'>395</span>818            5 L1    symmetric1      <span style='color: #BB0000;'>NA</span>       <span style='color: #BB0000;'>NA</span>       
+#&gt; <span style='color: #BCBCBC;'>3</span> death… dtw_basic  <span style='text-decoration: underline;'>732</span>527.           5 L1    symmetric2      <span style='color: #BB0000;'>NA</span>       <span style='color: #BB0000;'>NA</span>       
+#&gt; <span style='color: #BCBCBC;'>4</span> death… dtw_basic  <span style='text-decoration: underline;'>732</span>537.           5 L1    symmetric2      <span style='color: #BB0000;'>NA</span>       <span style='color: #BB0000;'>NA</span>       
+#&gt; <span style='color: #BCBCBC;'>5</span> death… dtw_basic   <span style='text-decoration: underline;'>40</span>059.           5 L2    symmetric1      <span style='color: #BB0000;'>NA</span>       <span style='color: #BB0000;'>NA</span>       
+#&gt; <span style='color: #BCBCBC;'>6</span> death… dtw_basic   <span style='text-decoration: underline;'>40</span>059.           5 L2    symmetric1      <span style='color: #BB0000;'>NA</span>       <span style='color: #BB0000;'>NA</span>       
+#&gt; <span style='color: #949494;'># … with 2 more variables: znorm &lt;lgl&gt;, return.shifted &lt;lgl&gt;</span></div><div class='input'>
 
 <span class='co'># Can still be ran with a minimal "grid"</span>
 <span class='va'>params_ls_sm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>dtw2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>step.pattern <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>symmetric1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
@@ -253,16 +253,16 @@
                                      num_best <span class='op'>=</span> <span class='st'>"all"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>search_res_sm</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span>
 #&gt;   query         algorithm distance step_pattern_id
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> deaths_lead60 dtw2        </span><span style='text-decoration: underline;'>39</span><span>838. symmetric1     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> deaths_lead59 dtw2        </span><span style='text-decoration: underline;'>39</span><span>834. symmetric1     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> deaths_lead58 dtw2        </span><span style='text-decoration: underline;'>39</span><span>831. symmetric1     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> deaths_lead57 dtw2        </span><span style='text-decoration: underline;'>39</span><span>828. symmetric1     
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> deaths_lead56 dtw2        </span><span style='text-decoration: underline;'>39</span><span>827. symmetric1     
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> deaths_lead55 dtw2        </span><span style='text-decoration: underline;'>39</span><span>825. symmetric1     </div><div class='input'>
-</div></span></pre>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
+#&gt; <span style='color: #BCBCBC;'>1</span> deaths_lead60 dtw2        <span style='text-decoration: underline;'>39</span>838. symmetric1     
+#&gt; <span style='color: #BCBCBC;'>2</span> deaths_lead59 dtw2        <span style='text-decoration: underline;'>39</span>834. symmetric1     
+#&gt; <span style='color: #BCBCBC;'>3</span> deaths_lead58 dtw2        <span style='text-decoration: underline;'>39</span>831. symmetric1     
+#&gt; <span style='color: #BCBCBC;'>4</span> deaths_lead57 dtw2        <span style='text-decoration: underline;'>39</span>828. symmetric1     
+#&gt; <span style='color: #BCBCBC;'>5</span> deaths_lead56 dtw2        <span style='text-decoration: underline;'>39</span>827. symmetric1     
+#&gt; <span style='color: #BCBCBC;'>6</span> deaths_lead55 dtw2        <span style='text-decoration: underline;'>39</span>825. symmetric1     </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
