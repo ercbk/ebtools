@@ -33,6 +33,21 @@
 
 add_tsfeatures <- function(.tbl, ..., standardize = TRUE, parallel = FALSE) {
 
+  ### checks ###
+  # making ... into obj that can be tested
+  dots <- rlang::enquos(..., .named = TRUE)
+  # group column(s) required
+  chk::chk_not_empty(dots, x_name = "... (group columns)")
+
+  # check types
+  grps <- .tbl %>% dplyr::select(...)
+
+  purrr::walk(grps, ~chk::chk_character_or_factor(.x, x_name = "... (group columns)"))
+  chk::chk_is(.tbl, class = "tbl")
+  chk::chk_logical(standardize, x_name = "standardize")
+  chk::chk_logical(parallel, x_name = "parallel")
+
+
   grp_tbl <- .tbl %>% dplyr::group_by(...)
 
   grp_names <- names(dplyr::group_keys(grp_tbl))
