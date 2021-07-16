@@ -17,10 +17,10 @@ add_mase_scale_feat(.tbl, .value, ...)
 The original tibble with an additional column, "scale."
 }
 \description{
-\code{\link[=add_mase_scale_feat]{add_mase_scale_feat()}} calculates a MASE scale factor and multiplies it times the original series to produce aa scale feature.
+\code{\link[=add_mase_scale_feat]{add_mase_scale_feat()}} calculates a MASE scale factor and divides this factor by the group average scale factor to produce a scale feature.
 }
 \details{
-Designed to use with a global forecasting method. It's recommended to standardize the stacked series that's used as input for this method. Standardizing the stacked series removes some scale information about each series in the stack that might be useful in generating the forecast. Adding a scale feature helps to reintroduce this information back to the model.
+Designed to use with a global forecasting method. It's recommended to standardize the stacked series that is used as input for this method. Standardizing the stacked series removes the scale information about each series in the stack which might be useful in generating the forecast. Adding a scale feature reintroduces this information back into the model.
 }
 \examples{
 

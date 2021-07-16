@@ -1,7 +1,7 @@
 #' Add a scale feature by using a factor derived from the MASE error function
 #'
 #' @description
-#' [add_mase_scale_feat()] calculates a MASE scale factor and multiplies it times the original series to produce aa scale feature.
+#' [add_mase_scale_feat()] calculates a MASE scale factor and divides this factor by the group average scale factor to produce a scale feature.
 #'
 #' @param .tbl tibble; data with grouping column and value column
 #' @param .value numeric; unquoted column name that contains the numeric values of the time series
@@ -9,7 +9,7 @@
 #'
 #' @return The original tibble with an additional column, "scale."
 #'
-#' @details Designed to use with a global forecasting method. It's recommended to standardize the stacked series that's used as input for this method. Standardizing the stacked series removes some scale information about each series in the stack that might be useful in generating the forecast. Adding a scale feature helps to reintroduce this information back to the model.
+#' @details Designed to use with a global forecasting method. It's recommended to standardize the stacked series that is used as input for this method. Standardizing the stacked series removes the scale information about each series in the stack which might be useful in generating the forecast. Adding a scale feature reintroduces this information back into the model.
 #'
 #' @references Pablo Montero-Manso, Rob J. Hyndman, Principles and algorithms for forecasting groups of time series: Locality and globality, International Journal of Forecasting, 2021 [link](https://robjhyndman.com/publications/global-forecasting/)
 #'
@@ -38,8 +38,8 @@ add_mase_scale_feat <- function(.tbl, .value, ...) {
   chk::chk_not_empty(dots, x_name = "... (group columns)")
 
   # check types
-  ts_value <- .tbl %>% pull({{.value}})
-  grps <- .tbl %>% select(...)
+  ts_value <- .tbl %>% dplyr::pull({{.value}})
+  grps <- .tbl %>% dplyr::select(...)
 
   purrr::walk(grps, ~chk::chk_character_or_factor(.x, x_name = "... (group columns)"))
   chk::chk_is(.tbl, class = "tbl")
@@ -58,7 +58,7 @@ add_mase_scale_feat <- function(.tbl, .value, ...) {
     }
 
     # part of the denominator of scaled error equation in MASE
-    tibble::tibble(scale = mean(abs(utils::head(as.vector(x), -frq) - utils::tail(as.vector(x), -frq))))
+    tibble::tibble(scale_factor = mean(abs(utils::head(as.vector(x), -frq) - utils::tail(as.vector(x), -frq))))
 
   }
 
@@ -72,7 +72,7 @@ add_mase_scale_feat <- function(.tbl, .value, ...) {
     dplyr::bind_rows() %>%
     dplyr::bind_cols(dplyr::group_keys(grp_tbl)) %>%
     # the other parts of the scaled error equation in MASE
-    dplyr::mutate(scale = scale / mean(scale))
+    dplyr::mutate(scale = scale_factor / mean(scale_factor))
 
   # add scale column to original tbl
   ts_scale_tbl <- grp_tbl %>%
