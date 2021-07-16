@@ -3,6 +3,7 @@
 export("%>%")
 export(":=")
 export(.data)
+export(add_mase_scale_feat)
 export(as_label)
 export(as_name)
 export(create_dtw_grids)
