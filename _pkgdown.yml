@@ -8,11 +8,13 @@ template:
 reference:
   - title: Time Series
     contents:
+    - add_mase_scale_feat
     - create_dtw_grids
     - dtw_dist_gridsearch
+    - prewhitened_ccf
     - test_fable_resids
     - test_lm_resids
-    - prewhitened_ccf
+
   - title: Visualization
     contents:
     - to_js_array

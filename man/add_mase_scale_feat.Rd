@@ -24,7 +24,7 @@ Designed to use with a global forecasting method. It's recommended to standardiz
 }
 \examples{
 
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 
 group_ts_tbl <- tsbox::ts_tbl(fpp2::arrivals)
 

@@ -17,7 +17,7 @@
 #'
 #' @examples
 #'
-#' library(dplyr)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' group_ts_tbl <- tsbox::ts_tbl(fpp2::arrivals)
 #'
@@ -72,7 +72,8 @@ add_mase_scale_feat <- function(.tbl, .value, ...) {
     dplyr::bind_rows() %>%
     dplyr::bind_cols(dplyr::group_keys(grp_tbl)) %>%
     # the other parts of the scaled error equation in MASE
-    dplyr::mutate(scale = scale_factor / mean(scale_factor))
+    dplyr::mutate(scale = scale_factor / mean(scale_factor)) %>%
+    dplyr::select(-scale_factor)
 
   # add scale column to original tbl
   ts_scale_tbl <- grp_tbl %>%
