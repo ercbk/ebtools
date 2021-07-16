@@ -9,6 +9,7 @@ reference:
   - title: Time Series
     contents:
     - add_mase_scale_feat
+    - add_tsfeatures
     - create_dtw_grids
     - dtw_dist_gridsearch
     - prewhitened_ccf

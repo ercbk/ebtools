@@ -32,7 +32,8 @@ Imports:
     dtw,
     tidyselect,
     stats,
-    tsbox
+    tsbox,
+    tsfeatures
 Suggests: 
     roxygen2,
     furrr,
