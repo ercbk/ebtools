@@ -42,7 +42,7 @@
   
 
 <meta property="og:title" content="Add a scale feature by using a factor derived from the MASE error function — add_mase_scale_feat" />
-<meta property="og:description" content="add_mase_scale_feat() calculates a MASE scale factor and multiplies it times the original series to produce aa scale feature." />
+<meta property="og:description" content="add_mase_scale_feat() calculates a MASE scale factor and divides this factor by the group average scale factor to produce a scale feature." />
 
 
 
@@ -130,7 +130,7 @@
     </div>
 
     <div class="ref-description">
-    <p><code>add_mase_scale_feat()</code> calculates a MASE scale factor and multiplies it times the original series to produce aa scale feature.</p>
+    <p><code>add_mase_scale_feat()</code> calculates a MASE scale factor and divides this factor by the group average scale factor to produce a scale feature.</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_mase_scale_feat</span><span class='op'>(</span><span class='va'>.tbl</span>, <span class='va'>.value</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -157,7 +157,7 @@
     <p>The original tibble with an additional column, "scale."</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Designed to use with a global forecasting method. It's recommended to standardize the stacked series that's used as input for this method. Standardizing the stacked series removes some scale information about each series in the stack that might be useful in generating the forecast. Adding a scale feature helps to reintroduce this information back to the model.</p>
+    <p>Designed to use with a global forecasting method. It's recommended to standardize the stacked series that is used as input for this method. Standardizing the stacked series removes the scale information about each series in the stack which might be useful in generating the forecast. Adding a scale feature reintroduces this information back into the model.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Pablo Montero-Manso, Rob J. Hyndman, Principles and algorithms for forecasting groups of time series: Locality and globality, International Journal of Forecasting, 2021 <a href='https://robjhyndman.com/publications/global-forecasting/'>link</a></p>
@@ -188,15 +188,15 @@
 <span class='va'>new_tbl</span> <span class='op'>&lt;-</span> <span class='fu'>add_mase_scale_feat</span><span class='op'>(</span><span class='va'>group_ts_tbl</span>, .value <span class='op'>=</span> <span class='va'>value</span>, <span class='va'>id</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>new_tbl</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span>
-#&gt;   id    time       value scale
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> Japan 1981-01-01 14.8  0.812
-#&gt; <span style='color: #BCBCBC;'>2</span> Japan 1981-04-01  9.32 0.812
-#&gt; <span style='color: #BCBCBC;'>3</span> Japan 1981-07-01 10.2  0.812
-#&gt; <span style='color: #BCBCBC;'>4</span> Japan 1981-10-01 19.5  0.812
-#&gt; <span style='color: #BCBCBC;'>5</span> Japan 1982-01-01 17.1  0.812
-#&gt; <span style='color: #BCBCBC;'>6</span> Japan 1982-04-01 10.6  0.812</div></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span>
+#&gt;   id    time       value scale_factor scale
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> Japan 1981-01-01 14.8          20.4 0.812
+#&gt; <span style='color: #BCBCBC;'>2</span> Japan 1981-04-01  9.32         20.4 0.812
+#&gt; <span style='color: #BCBCBC;'>3</span> Japan 1981-07-01 10.2          20.4 0.812
+#&gt; <span style='color: #BCBCBC;'>4</span> Japan 1981-10-01 19.5          20.4 0.812
+#&gt; <span style='color: #BCBCBC;'>5</span> Japan 1982-01-01 17.1          20.4 0.812
+#&gt; <span style='color: #BCBCBC;'>6</span> Japan 1982-04-01 10.6          20.4 0.812</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
