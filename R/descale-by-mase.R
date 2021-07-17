@@ -9,7 +9,7 @@
 #'
 #' @return The original tibble with the `.value` column back-transformed to the orginal scale.
 #'
-#' @details Scaling a grouped time series can be helpful for global forecasting methods when using for machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.
+#' @details Scaling a grouped time series can be helpful for global forecasting methods when using machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.
 #'
 #' The `scale_factors` tibble can be extracted by `scale_factors <- attributes(mase_scaled_tbl)$scale_factors` where `mase_scaled_tbl` is the output of [scale_by_mase()].
 #'

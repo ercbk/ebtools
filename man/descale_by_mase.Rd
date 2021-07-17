@@ -22,7 +22,7 @@ The original tibble with the \code{.value} column back-transformed to the orgina
 \code{\link[=descale_by_mase]{descale_by_mase()}} back-transforms a group time series that has been scaled by a factor derived from the MASE error function.
 }
 \details{
-Scaling a grouped time series can be helpful for global forecasting methods when using for machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.
+Scaling a grouped time series can be helpful for global forecasting methods when using machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.
 
 The \code{scale_factors} tibble can be extracted by \code{scale_factors <- attributes(mase_scaled_tbl)$scale_factors} where \code{mase_scaled_tbl} is the output of \code{\link[=scale_by_mase]{scale_by_mase()}}.
 }

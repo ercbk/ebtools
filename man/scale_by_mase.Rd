@@ -9,7 +9,7 @@ scale_by_mase(.tbl, .value, ...)
 \arguments{
 \item{.tbl}{tibble; data with a value (class: numeric) column and group (class: character) column(s)}
 
-\item{.value}{numeric; unquoted name of the column that contains the scaled numeric values}
+\item{.value}{numeric; unquoted name of the column that contains the numeric values}
 
 \item{...}{character; one or more unquoted grouping columns}
 }
@@ -20,7 +20,7 @@ The original tibble with the \code{.value} column back-transformed to the orgina
 \code{\link[=scale_by_mase]{scale_by_mase()}} scales a group time series by using a factor derived from the MASE error function.
 }
 \details{
-Scaling a grouped time series can be helpful for global forecasting methods when using for machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.
+Scaling a grouped time series can be helpful for global forecasting methods when using machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.
 
 For each series, a MASE scale factor is calculated using the denominator of the MASE scaled error equation. Then, the series is divided by this factor.
 }
