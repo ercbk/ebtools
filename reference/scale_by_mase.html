@@ -144,7 +144,7 @@
     </tr>
     <tr>
       <th>.value</th>
-      <td><p>numeric; unquoted name of the column that contains the scaled numeric values</p></td>
+      <td><p>numeric; unquoted name of the column that contains the numeric values</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -157,7 +157,7 @@
     <p>The original tibble with the <code>.value</code> column back-transformed to the orginal scale.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Scaling a grouped time series can be helpful for global forecasting methods when using for machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.</p>
+    <p>Scaling a grouped time series can be helpful for global forecasting methods when using machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.</p>
 <p>For each series, a MASE scale factor is calculated using the denominator of the MASE scaled error equation. Then, the series is divided by this factor.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
