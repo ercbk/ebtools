@@ -40,37 +40,43 @@ dtw_html <- gt::html(as.character(htmltools::a(href = "https://dynamictimewarpin
 
 
 pkg_tbl <- tibble::tibble(
-  Type = c("Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Visualization"),
-  Function = c("add_mase_scale_feat", "add_tsfeatures", "create_dtw_grids", "dtw_dist_gridsearch", "test_fable_resids", "test_lm_resids", "prewhitened_ccf", "to_js_array"),
+  Type = c("Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Visualization"),
+  Function = c("add_mase_scale_feat", "add_tsfeatures", "create_dtw_grids", "descale_by_mase", "dtw_dist_gridsearch", "prewhitened_ccf", "scale_by_mase", "test_fable_resids", "test_lm_resids", "to_js_array"),
   Description = c("Adds a scale feature by using a factor derived from the MASE error function",
                   "Adds 20 time series features from the tsfeatures package",
                   "Creates a nested, parameter grid list.",
+                  "Back-transforms a group time series that has been scaled by a factor derived from the MASE error function.",
                   "Performs a grid search using a list of parameter grids and a list of distance functions",
+                  "Prewhitens time series, calculates cross-correlation coefficients, and returns statistically significant values.",
+                  "Scales a group time series by using a factor derived from the MASE error function.",
                   "Checks residuals of multiple fable models for autocorrelation using the Ljung-Box test",
                   "Checks residuals of multiple lm models for autocorrelation using Breusch-Godfrey and Durbin-Watson tests.",
-                  "Prewhitens time series, calculates cross-correlation coefficients, and returns statistically significant values.",
                   "Creates js array column."),
-  comp_pkgs = c("", "", "dtwclust", "dtwclust", "fable", "", "", "dataui"),
+  comp_pkgs = c("", "", "dtwclust", "", "dtwclust", "", "", "fable", "", "dataui"),
   function_urls = c("https://ercbk.github.io/ebtools/reference/add_mase_scale_feat.html",
                     "https://ercbk.github.io/ebtools/reference/add_tsfeatures.html",
                     "https://ercbk.github.io/ebtools/reference/create_dtw_grids.html",
+                    "https://ercbk.github.io/ebtools/reference/descale_by_mase.html",
                     "https://ercbk.github.io/ebtools/reference/dtw_dist_gridsearch.html",
+                    "https://ercbk.github.io/ebtools/reference/prewhitened_ccf.html",
+                    "https://ercbk.github.io/ebtools/reference/scale_by_mase.html",
                     "https://ercbk.github.io/ebtools/reference/test_fable_resids.html",
                     "https://ercbk.github.io/ebtools/reference/test_lm_resids.html",
-                    "https://ercbk.github.io/ebtools/reference/prewhitened_ccf.html",
                     "https://ercbk.github.io/ebtools/reference/to_js_array.html"),
   package_urls = c(NA, NA,
                    "https://github.com/asardaes/dtwclust",
+                   NA,
                    "https://github.com/asardaes/dtwclust",
-                   "https://fable.tidyverts.org/",
                    NA, NA,
+                   "https://fable.tidyverts.org/",
+                   NA,
                    "https://timelyportfolio.github.io/dataui/")
 ) %>% 
   mutate(fun_html = purrr::map2(function_urls, Function, ~htmltools::a(href = .x, .y)),
          fun_url = purrr::map(fun_html, ~gt::html(as.character(.x))),
          pkg_html = purrr::map2(package_urls, comp_pkgs, ~htmltools::a(href = .x, .y)),
          pkg_url = purrr::map(pkg_html, ~gt::html(as.character(.x))),
-         dtw_url = list("", "", dtw_html, dtw_html, "", "", "", "")) %>% 
+         dtw_url = list("", "", dtw_html, "", dtw_html, "",  "", "", "", "")) %>% 
   relocate(fun_url, .before = "Function") %>% 
   select(Type, Function = fun_url, Description, comp_pkgs = pkg_url, dtw_url)
 

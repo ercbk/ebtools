@@ -9,7 +9,7 @@ add_mase_scale_feat(.tbl, .value, ...)
 \arguments{
 \item{.tbl}{tibble; data with grouping column and value column}
 
-\item{.value}{numeric; unquoted column name that contains the numeric values of the time series}
+\item{.value}{numeric; unquoted name of the column that contains the numeric values of the time series}
 
 \item{...}{character; one or more unquoted grouping columns}
 }

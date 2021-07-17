@@ -4,7 +4,7 @@
 #' [add_mase_scale_feat()] calculates a MASE scale factor and divides this factor by the group average scale factor to produce a scale feature.
 #'
 #' @param .tbl tibble; data with grouping column and value column
-#' @param .value numeric; unquoted column name that contains the numeric values of the time series
+#' @param .value numeric; unquoted name of the column that contains the numeric values of the time series
 #' @param ... character; one or more unquoted grouping columns
 #'
 #' @return The original tibble with an additional column, "scale."

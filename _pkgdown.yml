@@ -11,8 +11,10 @@ reference:
     - add_mase_scale_feat
     - add_tsfeatures
     - create_dtw_grids
+    - descale_by_mase
     - dtw_dist_gridsearch
     - prewhitened_ccf
+    - scale_by_mase
     - test_fable_resids
     - test_lm_resids
 
