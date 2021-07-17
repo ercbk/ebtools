@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a scale feature by using a factor derived from the MASE error function — add_mase_scale_feat • ebtools</title>
+<title>Back-transform a MASE-scaled column — descale_by_mase • ebtools</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Add a scale feature by using a factor derived from the MASE error function — add_mase_scale_feat" />
-<meta property="og:description" content="add_mase_scale_feat() calculates a MASE scale factor and divides this factor by the group average scale factor to produce a scale feature." />
+<meta property="og:title" content="Back-transform a MASE-scaled column — descale_by_mase" />
+<meta property="og:description" content="descale_by_mase() back-transforms a group time series that has been scaled by a factor derived from the MASE error function." />
 
 
 
@@ -124,27 +124,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add a scale feature by using a factor derived from the MASE error function</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ercbk/ebtools/blob/master/R/add-mase-scale-feat.R'><code>R/add-mase-scale-feat.R</code></a></small>
-    <div class="hidden name"><code>add_mase_scale_feat.Rd</code></div>
+    <h1>Back-transform a MASE-scaled column</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ercbk/ebtools/blob/master/R/descale-by-mase.R'><code>R/descale-by-mase.R</code></a></small>
+    <div class="hidden name"><code>descale_by_mase.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>add_mase_scale_feat()</code> calculates a MASE scale factor and divides this factor by the group average scale factor to produce a scale feature.</p>
+    <p><code>descale_by_mase()</code> back-transforms a group time series that has been scaled by a factor derived from the MASE error function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_mase_scale_feat</span><span class='op'>(</span><span class='va'>.tbl</span>, <span class='va'>.value</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>descale_by_mase</span><span class='op'>(</span><span class='va'>.tbl</span>, <span class='va'>.value</span>, <span class='va'>scale_factors</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.tbl</th>
-      <td><p>tibble; data with grouping column and value column</p></td>
+      <td><p>tibble; data with a value (class: numeric) column and group (class: character) column(s)</p></td>
     </tr>
     <tr>
       <th>.value</th>
-      <td><p>numeric; unquoted name of the column that contains the numeric values of the time series</p></td>
+      <td><p>numeric; unquoted name of the column that contains the scaled numeric values</p></td>
+    </tr>
+    <tr>
+      <th>scale_factors</th>
+      <td><p>tibble; tibble extracted from the <code>scale_factors</code> attribute of the output of <code><a href='scale_by_mase.html'>scale_by_mase()</a></code>. Grouping columns should match those in <code>.tbl</code>. (See details)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -154,10 +158,11 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The original tibble with an additional column, "scale."</p>
+    <p>The original tibble with the <code>.value</code> column back-transformed to the orginal scale.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Designed to use with a global forecasting method. It's recommended to standardize the stacked series that is used as input for this method. Standardizing the stacked series removes the scale information about each series in the stack which might be useful in generating the forecast. Adding a scale feature reintroduces this information back into the model.</p>
+    <p>Scaling a grouped time series can be helpful for global forecasting methods when using for machine learning and deep learning algorithms. Scaling by MASE and using MASE as the error function is equivalent to to minimizing the MAE in the preprocessed time series.</p>
+<p>The <code>scale_factors</code> tibble can be extracted by <code>scale_factors &lt;- attributes(mase_scaled_tbl)$scale_factors</code> where <code>mase_scaled_tbl</code> is the output of <code><a href='scale_by_mase.html'>scale_by_mase()</a></code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Pablo Montero-Manso, Rob J. Hyndman, Principles and algorithms for forecasting groups of time series: Locality and globality, International Journal of Forecasting, 2021 <a href='https://robjhyndman.com/publications/global-forecasting/'>link</a></p>
@@ -167,9 +172,7 @@
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>, warn.conflicts <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='va'>group_ts_tbl</span> <span class='op'>&lt;-</span> <span class='fu'>tsbox</span><span class='fu'>::</span><span class='fu'><a href='https://www.tsbox.help/reference/ts_ts.html'>ts_tbl</a></span><span class='op'>(</span><span class='fu'>fpp2</span><span class='fu'>::</span><span class='va'><a href='https://pkg.robjhyndman.com/fpp2-package/reference/arrivals.html'>arrivals</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'quantmod':</span>
-#&gt; <span class='message'>  method            from</span>
-#&gt; <span class='message'>  as.zoo.data.frame zoo </span></div><div class='input'>
+
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>group_ts_tbl</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 3</span>
 #&gt;   id    time       value
@@ -180,18 +183,28 @@
 #&gt; <span style='color: #BCBCBC;'>4</span> Japan 1981-10-01 19.5 
 #&gt; <span style='color: #BCBCBC;'>5</span> Japan 1982-01-01 17.1 
 #&gt; <span style='color: #BCBCBC;'>6</span> Japan 1982-04-01 10.6 </div><div class='input'>
-<span class='va'>new_tbl</span> <span class='op'>&lt;-</span> <span class='fu'>add_mase_scale_feat</span><span class='op'>(</span><span class='va'>group_ts_tbl</span>, .value <span class='op'>=</span> <span class='va'>value</span>, <span class='va'>id</span><span class='op'>)</span>
+<span class='va'>new_tbl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='scale_by_mase.html'>scale_by_mase</a></span><span class='op'>(</span>.tbl <span class='op'>=</span> <span class='va'>group_ts_tbl</span>, .value <span class='op'>=</span> <span class='va'>value</span>, <span class='va'>id</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>new_tbl</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span>
-#&gt;   id    time       value scale
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> Japan 1981-01-01 14.8  0.812
-#&gt; <span style='color: #BCBCBC;'>2</span> Japan 1981-04-01  9.32 0.812
-#&gt; <span style='color: #BCBCBC;'>3</span> Japan 1981-07-01 10.2  0.812
-#&gt; <span style='color: #BCBCBC;'>4</span> Japan 1981-10-01 19.5  0.812
-#&gt; <span style='color: #BCBCBC;'>5</span> Japan 1982-01-01 17.1  0.812
-#&gt; <span style='color: #BCBCBC;'>6</span> Japan 1982-04-01 10.6  0.812</div></pre>
+<span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>new_tbl</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Rows: 508
+#&gt; Columns: 3
+#&gt; $ id    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Japan", "Japan", "Japan", "Japan", "Japan", "Japan", "Japan", "…
+#&gt; $ time  <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span> 1981-01-01, 1981-04-01, 1981-07-01, 1981-10-01, 1982-01-01, 198…
+#&gt; $ value <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 0.7221063, 0.4559204, 0.4972521, 0.9542486, 0.8372481, 0.5193120…</div><div class='input'>
+<span class='va'>scale_factors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>new_tbl</span><span class='op'>)</span><span class='op'>$</span><span class='va'>scale_factors</span>
+
+<span class='va'>orig_tbl</span> <span class='op'>&lt;-</span> <span class='fu'>descale_by_mase</span><span class='op'>(</span><span class='va'>new_tbl</span>, <span class='va'>value</span>, <span class='va'>scale_factors</span>, <span class='va'>id</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>orig_tbl</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 3</span>
+#&gt;   id    time       value
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> Japan 1981-01-01 14.8 
+#&gt; <span style='color: #BCBCBC;'>2</span> Japan 1981-04-01  9.32
+#&gt; <span style='color: #BCBCBC;'>3</span> Japan 1981-07-01 10.2 
+#&gt; <span style='color: #BCBCBC;'>4</span> Japan 1981-10-01 19.5 
+#&gt; <span style='color: #BCBCBC;'>5</span> Japan 1982-01-01 17.1 
+#&gt; <span style='color: #BCBCBC;'>6</span> Japan 1982-04-01 10.6 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

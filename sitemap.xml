@@ -13,6 +13,9 @@
     <loc>https://ercbk.github.io/ebtools//reference/create_dtw_grids.html</loc>
   </url>
   <url>
+    <loc>https://ercbk.github.io/ebtools//reference/descale_by_mase.html</loc>
+  </url>
+  <url>
     <loc>https://ercbk.github.io/ebtools//reference/dtw_dist_gridsearch.html</loc>
   </url>
   <url>
@@ -26,6 +29,9 @@
   </url>
   <url>
     <loc>https://ercbk.github.io/ebtools//reference/prewhitened_ccf.html</loc>
+  </url>
+  <url>
+    <loc>https://ercbk.github.io/ebtools//reference/scale_by_mase.html</loc>
   </url>
   <url>
     <loc>https://ercbk.github.io/ebtools//reference/test_fable_resids.html</loc>
