@@ -3,7 +3,7 @@ url: https://ercbk.github.io/ebtools/
 template:
   params:
     bootswatch: paper
-    ganalytics: UA-115551023-1
+    ganalytics: 263174896
 
 reference:
   - title: Time Series
