@@ -58,13 +58,13 @@
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115551023-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=263174896"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-115551023-1');
+  gtag('config', '263174896');
 </script>
 
 
@@ -176,7 +176,7 @@
 <span class='va'>group_ts_tbl</span> <span class='op'>&lt;-</span> <span class='fu'>tsbox</span><span class='fu'>::</span><span class='fu'><a href='https://www.tsbox.help/reference/ts_ts.html'>ts_tbl</a></span><span class='op'>(</span><span class='fu'>fpp2</span><span class='fu'>::</span><span class='va'><a href='https://pkg.robjhyndman.com/fpp2-package/reference/arrivals.html'>arrivals</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>group_ts_tbl</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 3</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 3</span>
 #&gt;   id    time       value
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'>1</span> Japan 1981-01-01 14.8 
@@ -188,7 +188,7 @@
 <span class='va'>new_tbl</span> <span class='op'>&lt;-</span> <span class='fu'>add_tsfeatures</span><span class='op'>(</span><span class='va'>group_ts_tbl</span>, <span class='va'>id</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>new_tbl</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 23</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 23</span>
 #&gt;   id    time       value frequency nperiods seasonal_period trend  spike
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'>1</span> Japan 1981-01-01 14.8          4        1               4 0.327 0.085<span style='text-decoration: underline;'>3</span>

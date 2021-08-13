@@ -58,13 +58,13 @@
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115551023-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=263174896"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-115551023-1');
+  gtag('config', '263174896');
 </script>
 
 
@@ -188,7 +188,7 @@
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/asardaes/dtwclust'>dtwclust</a></span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ohio_covid</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 6</span>
 #&gt;   date       cases deaths_lead60 deaths_lead59 deaths_lead58 deaths_lead57
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
 #&gt; <span style='color: #BCBCBC;'>1</span> 2020-03-22  44.9          43.1          42.6          40.6          42.9
@@ -228,7 +228,7 @@
                                      num_best <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>search_res_lg</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 10</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 10</span>
 #&gt;   query  algorithm distance window.size norm  step_pattern_id dtw.func normalize
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'>1</span> death… dtw_basic  <span style='text-decoration: underline;'>395</span>797.           5 L1    symmetric1      <span style='color: #BB0000;'>NA</span>       <span style='color: #BB0000;'>NA</span>       
@@ -253,7 +253,7 @@
                                      num_best <span class='op'>=</span> <span class='st'>"all"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>search_res_sm</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 × 4</span>
 #&gt;   query         algorithm distance step_pattern_id
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
 #&gt; <span style='color: #BCBCBC;'>1</span> deaths_lead60 dtw2        <span style='text-decoration: underline;'>39</span>838. symmetric1     
