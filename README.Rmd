@@ -14,24 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-<head>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CG72G9JY1V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CG72G9JY1V');
-</script>
-
-</head>
-
-
-
-
-
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/ercbk/ebtools/workflows/R-CMD-check/badge.svg)](https://github.com/ercbk/ebtools/actions)
