@@ -1,53 +1,72 @@
 @import url("https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/fira_code.css");
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web&display=swap');
 
+
+.navbar {
+    border-bottom: 3px solid #990000 !important;
+}
+/* package title */
+.navbar-brand {
+  font-weight: bold;
+  color: #990000;
+}
+/* menu items */
+.navbar-nav .nav-item>.nav-link {
+  color: #990000;
+}
+
+/* active; color 20% lightened */
+/* menu items */
+.navbar-light .navbar-nav .active>.nav-link {
+    background: transparent;
+    color: #C13939FF;
+}
+/* items in Reference TOC  */
+#toc>.nav a.nav-link.active {
+    background-color: transparent;
+    color: #C13939FF;
+}
+
+
+/* hover; color 20% lightened */
+/* package title */
+.navbar-brand:hover {
+  font-weight: bold;
+  color: #C13939FF;
+}
+/* menu items */
+.navbar-nav .nav-item>.nav-link:hover {
+  color: #C13939FF;
+  background-color: transparent !important;
+  border-color: #D3D3D3;
+
+}
+/* items in Reference TOC  */
+#toc>.nav a.nav-link:hover {
+    background-color: transparent;
+    color: #C13939FF;
+    border-color: #D3D3D3;
+}
+
+/* search bar in navbar */
+input[type="search"] {
+    border-color: #990000;
+    width: 12rem;
+}
+
+
+/* changes color of github icon. .fab is of part the font awesome id */
+.fab {
+  color: #990000;
+}
 
 
 pre, code {
   font-family: "Fira Code Retina", Consolas, Inconsolata, monospace;
 }
-
-h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
-  font-family: 'Titillium Web Bold', sans-serif;
-}
-
-h1 {
-  font-size: 32px;
-}
-h2 {
-  font-size: 24px;
-}
-
-/* This makes the version label in the navbar disappear */
-.label-default {
-  background-color: transparent;
-}
-
-/* changes thickness and color of the bottom border of the navbar  */
-/* using a 20% lighter color than #990000 (clr_lighten) */
-.navbar {
-  border-bottom: 2px solid #C13939FF;
-  font-family: 'Titillium Web Bold', sans-serif !important;
-}
-
-/* styles package title on the left side of navbar */
-.navbar-brand {
-  font-size: 32px;
-  font-weight: bold;
-}
-.navbar-default .navbar-link {
-  color: #990000;
-}
-
-
-/* changes color of home icon in navbar */
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+/* function links */
+code a:any-link {
     color: #990000;
-}
-
-/* changes color of github icon. .fab is of part the font awesome id */
-.fab {
-  color: #990000;
+    text-decoration-color: #990000;
 }
 
 /* home page: gt table links */
@@ -55,16 +74,4 @@ td a { color: #990000; }
 td a:hover { color: #990000; }
 td a:visited { color: #990000; }
 td a:active { color: #990000; }
-
-/* home page: installation github link */
-p a { color: #990000}
-
-/* home page, sidebar: "Browse source code"" link */
-li a { color: #990000 }
-
-/* home page: other links in the sidebar */
-a:link {
-  color: #990000;
-  text-decoration: none;
-}
 

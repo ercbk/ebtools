@@ -1,54 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ercbk.github.io/ebtools//index.html</loc>
+    <loc>https://ercbk.github.io/ebtools/404.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/add_mase_scale_feat.html</loc>
+    <loc>https://ercbk.github.io/ebtools/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/add_tsfeatures.html</loc>
+    <loc>https://ercbk.github.io/ebtools/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/create_dtw_grids.html</loc>
+    <loc>https://ercbk.github.io/ebtools/authors.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/descale_by_mase.html</loc>
+    <loc>https://ercbk.github.io/ebtools/index.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/dtw_dist_gridsearch.html</loc>
+    <loc>https://ercbk.github.io/ebtools/news/index.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/indiana_pos_rate.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/add_mase_scale_feat.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/ohio_covid.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/add_tsfeatures.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/pipe.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/create_dtw_grids.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/prewhitened_ccf.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/descale_by_mase.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/scale_by_mase.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/dtw_dist_gridsearch.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/test_fable_resids.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/test_lm_resids.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/indiana_pos_rate.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/tidyeval.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/ohio_covid.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/to_js_array.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/us_regional_cases.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/prewhitened_ccf.html</loc>
   </url>
   <url>
-    <loc>https://ercbk.github.io/ebtools//reference/us_regional_deaths.html</loc>
+    <loc>https://ercbk.github.io/ebtools/reference/scale_by_mase.html</loc>
+  </url>
+  <url>
+    <loc>https://ercbk.github.io/ebtools/reference/test_fable_resids.html</loc>
+  </url>
+  <url>
+    <loc>https://ercbk.github.io/ebtools/reference/test_lm_resids.html</loc>
+  </url>
+  <url>
+    <loc>https://ercbk.github.io/ebtools/reference/tidyeval.html</loc>
+  </url>
+  <url>
+    <loc>https://ercbk.github.io/ebtools/reference/to_js_array.html</loc>
+  </url>
+  <url>
+    <loc>https://ercbk.github.io/ebtools/reference/us_regional_cases.html</loc>
+  </url>
+  <url>
+    <loc>https://ercbk.github.io/ebtools/reference/us_regional_deaths.html</loc>
   </url>
 </urlset>
