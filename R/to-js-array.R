@@ -28,7 +28,6 @@
 #' head(pos_rate_array)
 
 
-
 to_js_array <- function(.data, .grp_var, ..., array_name) {
 
   # check args
@@ -40,15 +39,13 @@ to_js_array <- function(.data, .grp_var, ..., array_name) {
   dots <- rlang::enquos(..., .named = TRUE)
   chk::chk_not_empty(dots, x_name = "... (array columns)")
 
-  .data %>%
-    dplyr::group_by({{ .grp_var }}) %>%
-    dplyr::summarize({{ array_name }} := purrr::pmap(list(!!!dots), ~list(...)),
-                     .groups = "keep") %>%
-    tidyr::nest() %>%
-    dplyr::mutate(data = purrr::map(data, ~as.list(.x))) %>%
-    dplyr::rename({{ array_name }} := data) %>%
+  .data |>
+    dplyr::reframe({{ array_name }} := purrr::pmap(list(!!!dots), ~list(...)),
+                   .by = {{ .grp_var }}) |>
+    dplyr::group_by({{ .grp_var }}) |>
+    tidyr::nest() |>
+    dplyr::mutate(data = purrr::map(data, ~as.list(.x))) |>
+    dplyr::rename({{ array_name }} := data) |>
     dplyr::ungroup()
 
 }
-
-

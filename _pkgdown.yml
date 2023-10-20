@@ -1,8 +1,18 @@
 url: https://ercbk.github.io/ebtools/
 
 template:
+  bootstrap: 5
+  bootswatch: simplex
+  bslib:
+    bg: "#ffffff"
+    body-bg: "#ffffff"
+    fg: "#444444"
+    primary: "#990000"
+    heading_font: {google: "Titillium Web"}
+    pkgdown-nav-height: 110px
+    navbar-brand-color: "#990000"
+    navbar-brand-font-size: 2.40rem
   params:
-    bootswatch: paper
     ganalytics: G-CG72G9JY1V
 
 reference:
@@ -31,7 +41,8 @@ reference:
 
 navbar:
   structure:
-    right: [home, reference, news, github]
+    left: []
+    right: [reference, news, github]
   components:
     - text: Reference
       href: reference/index.html
