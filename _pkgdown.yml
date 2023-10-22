@@ -28,9 +28,14 @@ reference:
     - test_fable_resids
     - test_lm_resids
 
-  - title: Visualization
+  - title: Preprocessing
     contents:
     - to_js_array
+
+  - title: Statistics
+    contents:
+    - get_boot_ci
+
   - title: Data
     contents:
     - indiana_pos_rate
