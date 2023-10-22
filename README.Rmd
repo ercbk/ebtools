@@ -40,8 +40,8 @@ dtw_html <- gt::html(as.character(htmltools::a(href = "https://dynamictimewarpin
 
 
 pkg_tbl <- tibble::tibble(
-  Type = c("Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Visualization"),
-  Function = c("add_mase_scale_feat", "add_tsfeatures", "create_dtw_grids", "descale_by_mase", "dtw_dist_gridsearch", "prewhitened_ccf", "scale_by_mase", "test_fable_resids", "test_lm_resids", "to_js_array"),
+  Type = c("Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Preprocessing", "Statistics"),
+  Function = c("add_mase_scale_feat", "add_tsfeatures", "create_dtw_grids", "descale_by_mase", "dtw_dist_gridsearch", "prewhitened_ccf", "scale_by_mase", "test_fable_resids", "test_lm_resids", "to_js_array", "get_boot_ci"),
   Description = c("Adds a scale feature by using a factor derived from the MASE error function",
                   "Adds 20 time series features from the tsfeatures package",
                   "Creates a nested, parameter grid list.",
@@ -51,8 +51,9 @@ pkg_tbl <- tibble::tibble(
                   "Scales a group time series by using a factor derived from the MASE error function.",
                   "Checks residuals of multiple fable models for autocorrelation using the Ljung-Box test",
                   "Checks residuals of multiple lm models for autocorrelation using Breusch-Godfrey and Durbin-Watson tests.",
-                  "Creates js array column."),
-  comp_pkgs = c("", "", "dtwclust", "", "dtwclust", "", "", "fable", "", "dataui"),
+                  "Creates js array column.",
+                  "Calculates bootstrapped confidence intervals for a statistic."),
+  comp_pkgs = c("", "", "dtwclust", "", "dtwclust", "", "", "fable", "", "dataui", ""),
   function_urls = c("https://ercbk.github.io/ebtools/reference/add_mase_scale_feat.html",
                     "https://ercbk.github.io/ebtools/reference/add_tsfeatures.html",
                     "https://ercbk.github.io/ebtools/reference/create_dtw_grids.html",
@@ -62,7 +63,8 @@ pkg_tbl <- tibble::tibble(
                     "https://ercbk.github.io/ebtools/reference/scale_by_mase.html",
                     "https://ercbk.github.io/ebtools/reference/test_fable_resids.html",
                     "https://ercbk.github.io/ebtools/reference/test_lm_resids.html",
-                    "https://ercbk.github.io/ebtools/reference/to_js_array.html"),
+                    "https://ercbk.github.io/ebtools/reference/to_js_array.html",
+                    "https://ercbk.github.io/ebtools/reference/get_boot_ci.html"),
   package_urls = c(NA, NA,
                    "https://github.com/asardaes/dtwclust",
                    NA,
@@ -70,25 +72,29 @@ pkg_tbl <- tibble::tibble(
                    NA, NA,
                    "https://fable.tidyverts.org/",
                    NA,
-                   "https://timelyportfolio.github.io/dataui/")
-) %>% 
+                   "https://timelyportfolio.github.io/dataui/",
+                   NA)
+) |> 
   mutate(fun_html = purrr::map2(function_urls, Function, ~htmltools::a(href = .x, .y)),
          fun_url = purrr::map(fun_html, ~gt::html(as.character(.x))),
          pkg_html = purrr::map2(package_urls, comp_pkgs, ~htmltools::a(href = .x, .y)),
          pkg_url = purrr::map(pkg_html, ~gt::html(as.character(.x))),
-         dtw_url = list("", "", dtw_html, "", dtw_html, "",  "", "", "", "")) %>% 
-  relocate(fun_url, .before = "Function") %>% 
-  select(Type, Function = fun_url, Description, comp_pkgs = pkg_url, dtw_url)
+         dtw_url = list("", "", dtw_html, "", dtw_html, "",  "", "", "", "","")) |> 
+  tidyr::unite("pkg_url", pkg_url, dtw_url, sep = " <br> ") |> # newly added b/c gt::col_merge error
+  mutate(pkg_url = purrr::map(pkg_url, ~gt::html(.x))) |> # newly added b/c gt::col_merge error
+  relocate(fun_url, .before = "Function") |> 
+  select(Type, Function = fun_url, Description, comp_pkgs = pkg_url)
 
 pkg_tbl %>%
-  group_by(Type) %>% 
-  gt() %>% 
-  cols_label(comp_pkgs = "Complementary Packages") %>% 
-  cols_merge(
-    vars(comp_pkgs, dtw_url),
-    hide_columns = vars(dtw_url),
-    pattern = "{1}<br>{2}"
-    ) %>%
+  group_by(Type) |> 
+  gt() |> 
+  cols_label(comp_pkgs = "Complementary Packages") |> 
+  # errored because (I guess) target column was a list column. Think its a bug. Used new code above to do this manually. Might be fixed in the future.
+  # cols_merge(
+  #   c(comp_pkgs, dtw_url),
+  #   hide_columns = c(dtw_url),
+  #   pattern = "{1}<br>{2}"
+  #   ) %>%
   as_raw_html()
 ```
 
