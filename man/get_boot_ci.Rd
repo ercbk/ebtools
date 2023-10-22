@@ -64,6 +64,29 @@ I also recommend including \code{set.seed} in the statistical function ('stat_fu
 }
 \examples{
 
+# weights resampling option, d is the data, w is the weight
+data(city, package = "boot")
+ratio <- function(d, w) sum(d$x * w)/sum(d$u * w)
+get_boot_ci(
+  data = city,
+  stat_fun = ratio,
+  add_boot = list(stype = "w")
+)
+
+# indices used on variable example, d is data, i is index
+data(aircondit, package = "boot")
+mean.fun <- function(d, i)
+  {    m <- mean(d$hours[i])
+  n <- length(i)
+  v <- (n-1)*var(d$hours[i])/n^2
+  c(m, v)
+  }
+get_boot_ci(
+  data = aircondit,
+  stat_fun = mean.fun,
+)
+
+# indices used on data object example
 movie_dat <- dplyr::tibble(
   movie1 = c(9.00, 7.00, 8.00, 9.00, 8.00, 9.00, 9.00, 10.00, 9.00, 9.00),
   movie2 = c(9.00, 6.00, 7.00, 8.00, 7.00, 9.00, 8.00, 8.00, 8.00, 7.00)
@@ -106,17 +129,19 @@ cles_boot <- function(data, ind, variable, group, baseline) {
   return(prob_norm)
 }
 
-get_boot_ci(
-   data = movie_dat_long,
-   stat_fun = cles_boot,
-   type = c("perc", "bca"),
-   conf = c(0.80, 0.95),
-   parallel = "no",
-   variable = "ratings",
-   group = "movies",
-   baseline = "movie1"
-)
-
+results <-
+   get_boot_ci(
+     data = movie_dat_long,
+     stat_fun = cles_boot,
+     type = c("perc", "bca"),
+     conf = c(0.80, 0.95),
+     parallel = "no",
+     variable = "ratings",
+     group = "movies",
+     baseline = "movie1"
+   )
+results
+attributes(results)$estimate
 }
 \references{
 Canty A, Ripley BD (2022). boot: Bootstrap R (S-Plus) Functions. R package version 1.3-28.1.
