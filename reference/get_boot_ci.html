@@ -97,7 +97,7 @@
 
 
 <dt>add_boot</dt>
-<dd><p>list A list of additional argument and value pair(s) to be included in the <code>boot</code> set of arguments. See the <a href="https://cran.r-project.org/web/packages/boot/index.html" class="external-link">boot</a> package documentation for details.</p></dd>
+<dd><p>list; A list of additional argument and value pair(s) to be included in the <code>boot</code> set of arguments. See the <a href="https://cran.r-project.org/web/packages/boot/index.html" class="external-link">boot</a> package documentation for details.</p></dd>
 
 
 <dt>add_boot_ci</dt>
@@ -121,15 +121,15 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The <code>boot</code> and <code>boot.ci</code> functions from the boot package have a large number of options (together), and it can be a bit overwhelming when you just want some bootstrap CIs quickly. I've tried to simplify the choices with this function while also maintaining flexibility to add options for more complex cases.</p>
-<p>The user must adapt the function they're using to calculate the statistic of interest 'stat_fun' to include the necessary argument according the chosen resampling option. The default resampling option is "indices" ('stype = "i"'), and it's the only one I'm going to elaborate on (See examples for "weights" option. See <a href="https://cran.r-project.org/web/packages/boot/index.html" class="external-link">boot</a> package documentation for details on the "frequency" option). In order to use this option, the user must:</p><ol><li><p>Include a index argument in their statistic function, and it must be the second argument (data argument is the first).</p></li>
+<p>The user must adapt the function they're using to calculate the statistic of interest ('stat_fun') to include the necessary argument according the chosen resampling option. The default resampling option is "indices" ('stype = "i"'), and it's the only one I'm going to elaborate on (See examples for "weights" option. See <a href="https://cran.r-project.org/web/packages/boot/index.html" class="external-link">boot</a> package documentation for details on the "frequency" option). In order to use this option, the user must:</p><ol><li><p>Include a index argument in their statistic function, and it must be the second argument (data argument is the first).</p></li>
 <li><p>Use that argument to either subset the rows of the data or variable(s) in the body of the function.</p></li>
 </ol><p>Examples below will illustrate this procedure.</p>
-<p>I also recommend including <code>set.seed</code> in the statistical function ('stat_fun']) to ensure reproducibility. I've used <code>do.call</code> in get_boot_ci, and I couldn't get reproducible results unless I included <code>set.seed</code> inside of 'stat_fun'.</p>
+<p>I also recommend including <code>set.seed</code> in the statistical function ('stat_fun') to ensure reproducibility. I've used <code>do.call</code> in get_boot_ci, and I couldn't get reproducible results unless I included <code>set.seed</code> inside of 'stat_fun'.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Canty A, Ripley BD (2022). boot: Bootstrap R (S-Plus) Functions. R package version 1.3-28.1.
-Davison AC, Hinkley DV (1997). Bootstrap Methods and Their Applications. Cambridge University Press, Cambridge. ISBN 0-521-57391-2, http://statwww.epfl.ch/davison/BMA/.</p>
+    <p>Canty A, Ripley BD (2022). boot: Bootstrap R (S-Plus) Functions. R package version 1.3-28.1.</p>
+<p>Davison AC, Hinkley DV (1997). Bootstrap Methods and Their Applications. Cambridge University Press, Cambridge. ISBN 0-521-57391-2, <a href="http://statwww.epfl.ch/davison/BMA/" class="external-link">http://statwww.epfl.ch/davison/BMA/</a>.</p>
     </div>
 
     <div class="section level2">
@@ -143,23 +143,23 @@ Davison AC, Hinkley DV (1997). Bootstrap Methods and Their Applications. Cambrid
 <span class="r-in"><span>  stat_fun <span class="op">=</span> <span class="va">ratio</span>,</span></span>
 <span class="r-in"><span>  add_boot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>stype <span class="op">=</span> <span class="st">"w"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf .lower .upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.95 1.2588 2.1934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   type conf .lower .upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  bca 0.95 1.2588 2.1934</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># indices used on variable example, d is data, i is index</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">aircondit</span>, package <span class="op">=</span> <span class="st">"boot"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mean.fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span>, <span class="va">i</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">{</span>    <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">hours</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mean.fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span>, <span class="va">i</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">hours</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">v</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">hours</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="va">n</span><span class="op">^</span><span class="fl">2</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">v</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="fu">get_boot_ci</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">aircondit</span>,</span></span>
 <span class="r-in"><span>  stat_fun <span class="op">=</span> <span class="va">mean.fun</span>,</span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf  .lower  .upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.95 55.8018 222.526</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   type conf  .lower  .upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  bca 0.95 55.8018 222.526</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># indices used on data object example</span></span></span>
 <span class="r-in"><span><span class="va">movie_dat</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
@@ -216,11 +216,11 @@ Davison AC, Hinkley DV (1997). Bootstrap Methods and Their Applications. Cambrid
 <span class="r-in"><span>     baseline <span class="op">=</span> <span class="st">"movie1"</span></span></span>
 <span class="r-in"><span>   <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">results</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf .lower .upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.80 0.6527 0.9083</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.95 0.5609 0.9605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.80 0.6115 0.8879</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.95 0.5256 0.9330</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      type conf .lower .upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 percent 0.80 0.6527 0.9083</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 percent 0.95 0.5609 0.9605</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     bca 0.80 0.6115 0.8879</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     bca 0.95 0.5256 0.9330</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7870181</span>
 </code></pre></div>
