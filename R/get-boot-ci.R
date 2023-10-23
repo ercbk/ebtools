@@ -9,7 +9,7 @@
 #' @param type string or character vector; A vector of character strings representing the type of intervals required. The value should be any subset of the values c("norm","basic", "stud", "perc", "bca") or simply "all" which will compute all five types of intervals. Default is "bca".
 #' @param R scalar; The number of bootstrap replicates on which the intervals are based. 1000 is the default.
 #' @param parallel string; The value that's either "windows", "other", or "no". The type of operating system determines the method of parallelization. "windows" is the default and indicates Microsoft Windows. For Mac or Linux, "other" should be used. "no" indicates calculations should not be parallelized.
-#' @param add_boot list A list of additional argument and value pair(s) to be included in the `boot` set of arguments. See the [{boot}](https://cran.r-project.org/web/packages/boot/index.html) package documentation for details.
+#' @param add_boot list; A list of additional argument and value pair(s) to be included in the `boot` set of arguments. See the [{boot}](https://cran.r-project.org/web/packages/boot/index.html) package documentation for details.
 #' @param add_boot_ci list; A list of additional argument and value pair(s) to be included in the `boot.ci` set of arguments. See the [{boot}](https://cran.r-project.org/web/packages/boot/index.html) package documentation for details.
 #' @param ... Arguments and values required by 'stat_fun'
 #'
@@ -26,17 +26,18 @@
 #' @details
 #' The `boot` and `boot.ci` functions from the {boot} package have a large number of options (together), and it can be a bit overwhelming when you just want some bootstrap CIs quickly. I've tried to simplify the choices with this function while also maintaining flexibility to add options for more complex cases.
 #'
-#' The user must adapt the function they're using to calculate the statistic of interest 'stat_fun' to include the necessary argument according the chosen resampling option. The default resampling option is "indices" ('stype = "i"'), and it's the only one I'm going to elaborate on (See examples for "weights" option. See [{boot}](https://cran.r-project.org/web/packages/boot/index.html) package documentation for details on the "frequency" option). In order to use this option, the user must:
+#' The user must adapt the function they're using to calculate the statistic of interest ('stat_fun') to include the necessary argument according the chosen resampling option. The default resampling option is "indices" ('stype = "i"'), and it's the only one I'm going to elaborate on (See examples for "weights" option. See [{boot}](https://cran.r-project.org/web/packages/boot/index.html) package documentation for details on the "frequency" option). In order to use this option, the user must:
 #' 1. Include a index argument in their statistic function, and it must be the second argument (data argument is the first).
 #' 2. Use that argument to either subset the rows of the data or variable(s) in the body of the function.
 #'
 #' Examples below will illustrate this procedure.
 #'
-#' I also recommend including `set.seed` in the statistical function ('stat_fun']) to ensure reproducibility. I've used `do.call` in [get_boot_ci], and I couldn't get reproducible results unless I included `set.seed` inside of 'stat_fun'.
+#' I also recommend including `set.seed` in the statistical function ('stat_fun') to ensure reproducibility. I've used `do.call` in [get_boot_ci], and I couldn't get reproducible results unless I included `set.seed` inside of 'stat_fun'.
 #'
 #' @references
 #' Canty A, Ripley BD (2022). boot: Bootstrap R (S-Plus) Functions. R package version 1.3-28.1.
-#' Davison AC, Hinkley DV (1997). Bootstrap Methods and Their Applications. Cambridge University Press, Cambridge. ISBN 0-521-57391-2, http://statwww.epfl.ch/davison/BMA/.
+#'
+#' Davison AC, Hinkley DV (1997). Bootstrap Methods and Their Applications. Cambridge University Press, Cambridge. ISBN 0-521-57391-2, <http://statwww.epfl.ch/davison/BMA/>.
 #'
 #' @export
 #'
@@ -53,12 +54,12 @@
 #'
 #' # indices used on variable example, d is data, i is index
 #' data(aircondit, package = "boot")
-#' mean.fun <- function(d, i)
-#'   {    m <- mean(d$hours[i])
+#' mean.fun <- function(d, i) {
+#'   m <- mean(d$hours[i])
 #'   n <- length(i)
 #'   v <- (n-1)*var(d$hours[i])/n^2
 #'   c(m, v)
-#'   }
+#' }
 #' get_boot_ci(
 #'   data = aircondit,
 #'   stat_fun = mean.fun,
@@ -215,7 +216,7 @@ get_boot_ci <- function(data,
                  colnames(cis) <- c("conf", ".lower", ".upper")
                  return(cis)
                }) |>
-    purrr::list_rbind()
+    purrr::list_rbind(names_to = "type")
 
   # attaching the point estimate to the df
   attr(results, "estimate") <-  BCI$t0
