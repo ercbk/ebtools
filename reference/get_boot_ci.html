@@ -124,7 +124,6 @@
 <p>The user must adapt the function they're using to calculate the statistic of interest ('stat_fun') to include the necessary argument according the chosen resampling option. The default resampling option is "indices" ('stype = "i"'), and it's the only one I'm going to elaborate on (See examples for "weights" option. See <a href="https://cran.r-project.org/web/packages/boot/index.html" class="external-link">boot</a> package documentation for details on the "frequency" option). In order to use this option, the user must:</p><ol><li><p>Include a index argument in their statistic function, and it must be the second argument (data argument is the first).</p></li>
 <li><p>Use that argument to either subset the rows of the data or variable(s) in the body of the function.</p></li>
 </ol><p>Examples below will illustrate this procedure.</p>
-<p>I also recommend including <code>set.seed</code> in the statistical function ('stat_fun') to ensure reproducibility. I've used <code>do.call</code> in get_boot_ci, and I couldn't get reproducible results unless I included <code>set.seed</code> inside of 'stat_fun'.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
