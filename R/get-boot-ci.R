@@ -32,8 +32,6 @@
 #'
 #' Examples below will illustrate this procedure.
 #'
-#' I also recommend including `set.seed` in the statistical function ('stat_fun') to ensure reproducibility. I've used `do.call` in [get_boot_ci], and I couldn't get reproducible results unless I included `set.seed` inside of 'stat_fun'.
-#'
 #' @references
 #' Canty A, Ripley BD (2022). boot: Bootstrap R (S-Plus) Functions. R package version 1.3-28.1.
 #'

@@ -4,16 +4,18 @@
 \alias{cles}
 \title{Calculates the Common Language Effect Size (CLES)}
 \usage{
-cles(data, variable, group, baseline)
+cles(data, group_variables, paired = FALSE, ci = FALSE, ...)
 }
 \arguments{
-\item{data}{dataframe; Data should be in long format}
+\item{data}{dataframe; Data should be in wide format}
 
-\item{variable}{numeric vector; Variable of interest}
+\item{group_variables}{character vector or list with quoted names of the variables to be compared.}
 
-\item{group}{string; The name of group variable}
+\item{paired}{boolean; Indicates whether variables are correlated as in a repeated measures design. Default is FALSE.}
 
-\item{baseline}{string; The name of the category of the group variable that's the control group or baseline in a repeated measure scenario.}
+\item{ci}{boolean; Indicates whether bootstrap confidence intervals should be calculated. Default is FALSE.}
+
+\item{...}{Additional arguments that should be passed to \link{get_boot_ci}}
 }
 \value{
 The function returns a scalar value.
@@ -29,13 +31,20 @@ Interpretation:
 \item Within-Subjects: The probability that an individual has a higher value on one measurement than the other.
 }
 
-Formula:
+Between-Subjects Formula:
 \deqn{\tilde d = \frac{|M_1 - M_2|}{\sqrt{p_1\text{SD}_1^2 + p_2\text{SD}_2^2}}\\ Z = \frac{\tilde d}{\sqrt{2}}}
 \itemize{
 \item \eqn{M_i}: The mean of the i\if{html}{\out{<sup>}}th\if{html}{\out{</sup>}} group
 \item \eqn{p_i}: The proportion of the sample size of the i\if{html}{\out{<sup>}}th\if{html}{\out{</sup>}} group
 \item \eqn{Z}: The z-score which is in turn used to produce the probability.
-\item Same formula is used for both within and between designs
+}
+
+Within-Subjects Formula:
+\deqn{Z = \frac{|M_1 - M_2|}{sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 \times r \times \operatorname{SD}_1 \times \operatorname{SD}_2}}}
+\itemize{
+\item \eqn{M_i}: The mean of the i\if{html}{\out{<sup>}}th\if{html}{\out{</sup>}} group
+\item \eqn{r}: Pearson correlation between the two variables
+\item \eqn{Z}: The z-score which is in turn used to produce the probability.
 }
 }
 \examples{
@@ -45,11 +54,17 @@ movie_dat <- dplyr::tibble(
    movie2 = c(9.00, 6.00, 7.00, 8.00, 7.00, 9.00, 8.00, 8.00, 8.00, 7.00)
 )
 
-movie_dat |>
- tidyr::pivot_longer(cols = c(movie1, movie2),
-                     names_to = "movies",
-                     values_to ="ratings") |>
- cles("ratings", "movies", "movie1")
+# between-subjects design
+cles(data = movie_dat,
+    group_variables = list("movie1", "movie2"))
+
+# within-subjects design and bootstrap CIs
+cles(data = movie_dat,
+     group_variables = list("movie1", "movie2"),
+     paired = TRUE,
+     ci = TRUE,
+     R = 10000,
+     type = c("bca", "perc"))
 }
 \references{
 McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. Psychological Bulletin, 111(2), 361–365. \url{https://doi.org/10.1037/0033-2909.111.2.361}

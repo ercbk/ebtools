@@ -59,8 +59,6 @@ The user must adapt the function they're using to calculate the statistic of int
 }
 
 Examples below will illustrate this procedure.
-
-I also recommend including \code{set.seed} in the statistical function ('stat_fun') to ensure reproducibility. I've used \code{do.call} in \link{get_boot_ci}, and I couldn't get reproducible results unless I included \code{set.seed} inside of 'stat_fun'.
 }
 \examples{
 
