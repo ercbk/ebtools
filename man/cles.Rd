@@ -15,10 +15,18 @@ cles(data, group_variables, paired = FALSE, ci = FALSE, ...)
 
 \item{ci}{boolean; Indicates whether bootstrap confidence intervals should be calculated. Default is FALSE.}
 
-\item{...}{Additional arguments that should be passed to \link{get_boot_ci}}
+\item{...}{Additional arguments that should be passed to \code{\link[=get_boot_ci]{get_boot_ci()}}}
 }
 \value{
-The function returns a scalar value.
+When 'ci = FALSE', this function returns a scalar value estimate of the CLES.
+When 'ci = TRUE', this function returns a dataframe with the following columns:
+\itemize{
+\item ci_type: The method of calculating the bootstrap confidence intervals.
+\item conf: The confidence level for the bootstrap confidence intervals,
+\item .lower: The lower value of the bootstrap confidence interval.
+\item .estimate: The CLES point estimate.
+\item .upper: The upper value of the bootstrap confidence interval.
+}
 }
 \description{
 Calculates the Common Language Effect Size (CLES) for two variables. The CLES function converts the effect size to a probability that a unit/subject will have a larger measurement than another unit/subject. See \href{https://ercbk.github.io/Data-Science-Notebook/qmd/post-hoc-analysis-multilevel.html#common-language-effect-size}{notebook} for further details.

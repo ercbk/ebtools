@@ -7,10 +7,16 @@
 #' @param group_variables character vector or list with quoted names of the variables to be compared.
 #' @param paired boolean; Indicates whether variables are correlated as in a repeated measures design. Default is FALSE.
 #' @param ci boolean; Indicates whether bootstrap confidence intervals should be calculated. Default is FALSE.
-#' @param ... Additional arguments that should be passed to [get_boot_ci]
+#' @param ... Additional arguments that should be passed to [get_boot_ci()]
 #'
 #' @return
-#' The function returns a scalar value.
+#' When 'ci = FALSE', this function returns a scalar value estimate of the CLES.
+#' When 'ci = TRUE', this function returns a dataframe with the following columns:
+#' - ci_type: The method of calculating the bootstrap confidence intervals.
+#' - conf: The confidence level for the bootstrap confidence intervals,
+#' - .lower: The lower value of the bootstrap confidence interval.
+#' - .estimate: The CLES point estimate.
+#' - .upper: The upper value of the bootstrap confidence interval.
 #'
 #' @details
 #' This measure is also referred to as the _Probability of Superiority_. The conversion of effect size to a probability or percentage is supposed to be easier for the laymen to interpret.
