@@ -98,7 +98,7 @@ $$\tilde d = \frac{|M_1 - M_2|}{\sqrt{p_1\text{SD}_1^2 + p_2\text{SD}_2^2}}\\ Z 
 <li><p>\(p_i\): The proportion of the sample size of the i<sup>th</sup> group</p></li>
 <li><p>\(Z\): The z-score which is in turn used to produce the probability.</p></li>
 </ul><p>Within-Subjects Formula:
-$$Z = \frac{|M_1 - M_2|}{sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 \times r \times \operatorname{SD}_1 \times \operatorname{SD}_2}}$$</p><ul><li><p>\(M_i\): The mean of the i<sup>th</sup> group</p></li>
+$$Z = \frac{|M_1 - M_2|}{\sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 \times r \times \operatorname{SD}_1 \times \operatorname{SD}_2}}$$</p><ul><li><p>\(M_i\): The mean of the i<sup>th</sup> group</p></li>
 <li><p>\(r\): Pearson correlation between the two variables</p></li>
 <li><p>\(Z\): The z-score which is in turn used to produce the probability.</p></li>
 </ul></div>
@@ -117,7 +117,7 @@ $$Z = \frac{|M_1 - M_2|}{sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># between-subjects design</span></span></span>
 <span class="r-in"><span><span class="fu">cles</span><span class="op">(</span>data <span class="op">=</span> <span class="va">movie_dat</span>,</span></span>
-<span class="r-in"><span>    group_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"movie1"</span>, <span class="st">"movie2"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>     group_variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"movie1"</span>, <span class="st">"movie2"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7870181</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># within-subjects design and bootstrap CIs</span></span></span>
@@ -127,7 +127,9 @@ $$Z = \frac{|M_1 - M_2|}{sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 
 <span class="r-in"><span>     ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>     R <span class="op">=</span> <span class="fl">10000</span>,</span></span>
 <span class="r-in"><span>     type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bca"</span>, <span class="st">"perc"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in statistic(data, original, ...):</span> object 'movie_dat' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ci_type conf .lower .estimate .upper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 percent 0.95 0.8080 0.9331928 0.9997</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     bca 0.95 0.7602 0.9331928 0.9964</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
