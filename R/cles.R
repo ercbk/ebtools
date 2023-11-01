@@ -26,7 +26,7 @@
 #'    - \eqn{Z}: The z-score which is in turn used to produce the probability.
 #'
 #' Within-Subjects Formula:
-#' \deqn{Z = \frac{|M_1 - M_2|}{sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 \times r \times \operatorname{SD}_1 \times \operatorname{SD}_2}}}
+#' \deqn{Z = \frac{|M_1 - M_2|}{\sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 \times r \times \operatorname{SD}_1 \times \operatorname{SD}_2}}}
 #'
 #'    - \eqn{M_i}: The mean of the i<sup>th</sup> group
 #'    - \eqn{r}: Pearson correlation between the two variables
@@ -46,7 +46,7 @@
 #'
 #' # between-subjects design
 #' cles(data = movie_dat,
-#'     group_variables = list("movie1", "movie2"))
+#'      group_variables = list("movie1", "movie2"))
 #'
 #' # within-subjects design and bootstrap CIs
 #' cles(data = movie_dat,
@@ -71,7 +71,7 @@ cles <- function(data,
     if (chk::vld_used(...)) {
       dots <- list(...)
       init_boot_args <-
-        list(data = data,
+        list(data = dynGet("data"),
              stat_fun = cles_boot, # internal function
              group_variables = group_variables,
              paired = paired)
@@ -80,7 +80,7 @@ cles <- function(data,
                dots)
     } else {
       get_boot_args <-
-        list(data = data,
+        list(data = dynGet("data"),
              stat_fun = cles_boot,
              group_variables = group_variables,
              paired = paired)
@@ -117,20 +117,20 @@ cles <- function(data,
   diff <- abs(mean(x) - mean(y))
 
   # Standard deviation of difference
-  standardizer <- sqrt((p1*sd(x)^2 + p2*sd(y)^2))
+  standardizer <- sqrt((p1*stats::sd(x)^2 + p2*stats::sd(y)^2))
 
   if (paired == FALSE) {
     z_score <- (diff/standardizer)/sqrt(2)
   } else {
-    r <- cor(movie_dat)[[1,2]]
-    s_diff <- sqrt((sd(x)^2 + sd(y)^2)-(2 * r * sd(x) * sd(y)))
+    r <- stats::cor(x, y)
+    s_diff <- sqrt((stats::sd(x)^2 + stats::sd(y)^2)-(2 * r * stats::sd(x) * stats::sd(y)))
     z_score <- diff/s_diff
   }
 
   # Probability derived from normal distribution
   # that random x is higher than random y -
   # or in other words, that diff is larger than 0.
-  prob_norm <- pnorm(z_score)
+  prob_norm <- stats::pnorm(z_score)
 
   # Return result
   return(prob_norm)

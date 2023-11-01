@@ -28,20 +28,20 @@ cles_boot <- function(data, ind, group_variables, paired = FALSE) {
   diff <- abs(mean(x) - mean(y))
 
   # Standard deviation of difference
-  standardizer <- sqrt((p1*sd(x)^2 + p2*sd(y)^2))
+  standardizer <- sqrt((p1*stats::sd(x)^2 + p2*stats::sd(y)^2))
 
   if (paired == FALSE) {
     z_score <- (diff/standardizer)/sqrt(2)
   } else {
-    r <- cor(movie_dat)[[1,2]]
-    s_diff <- sqrt((sd(x)^2 + sd(y)^2)-(2 * r * sd(x) * sd(y)))
+    r <- suppressWarnings(stats::cor(x, y))
+    s_diff <- sqrt((stats::sd(x)^2 + stats::sd(y)^2)-(2 * r * stats::sd(x) * stats::sd(y)))
     z_score <- diff/s_diff
   }
 
   # Probability derived from normal distribution
   # that random x is higher than random y -
   # or in other words, that diff is larger than 0.
-  prob_norm <- pnorm(z_score)
+  prob_norm <- stats::pnorm(z_score)
 
   # Return result
   return(prob_norm)

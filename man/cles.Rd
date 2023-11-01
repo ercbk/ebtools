@@ -40,7 +40,7 @@ Between-Subjects Formula:
 }
 
 Within-Subjects Formula:
-\deqn{Z = \frac{|M_1 - M_2|}{sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 \times r \times \operatorname{SD}_1 \times \operatorname{SD}_2}}}
+\deqn{Z = \frac{|M_1 - M_2|}{\sqrt{\operatorname{SD}_1^2 + \operatorname{SD}_2^2 - 2 \times r \times \operatorname{SD}_1 \times \operatorname{SD}_2}}}
 \itemize{
 \item \eqn{M_i}: The mean of the i\if{html}{\out{<sup>}}th\if{html}{\out{</sup>}} group
 \item \eqn{r}: Pearson correlation between the two variables
@@ -56,7 +56,7 @@ movie_dat <- dplyr::tibble(
 
 # between-subjects design
 cles(data = movie_dat,
-    group_variables = list("movie1", "movie2"))
+     group_variables = list("movie1", "movie2"))
 
 # within-subjects design and bootstrap CIs
 cles(data = movie_dat,
