@@ -2,10 +2,9 @@
 #'
 #' @description
 #' Computes spatial lags for a given numeric variable in a dataset using
-#' a neighborhood list from the spdep package. It supports inverse distance weighting, exponential, and
-#' double power decay weighting methods along with various normalization procedures.
+#' a neighborhood list from the [spdep](https://r-spatial.github.io/spdep/) package. It supports inverse distance weighting, exponential, and double power decay weighting methods along with various normalization procedures.
 #'
-#' @param nblist An object of class `"nb"` from the spdep package which represents the neighborhood structure.
+#' @param nblist An object of class "nb" from the spdep package which represents the neighborhood structure.
 #' @param y A character string indicating the name of the numeric variable in `.data`
 #'   for which spatial lags will be computed.
 #' @param .data A data frame of class "sf" containing the variable specified by `y`.
@@ -40,7 +39,7 @@
 #'
 #' @examples
 #'
-#' library(spdep)
+#' library(spdep, quietly = TRUE)
 #'
 #' ny8_sf <-
 #'   st_read(system.file(
@@ -123,7 +122,7 @@ add_spatial_lags <- function(nblist, y, .data, lags, type = NULL, ...) {
     }
 
     # get weights summary
-    summ_wts <- capture.output(spdep:::print.listw(ls_wts))
+    summ_wts <- utils::capture.output(spdep:::print.listw(ls_wts))
 
     # create spatial lag of vector
     vec_lag <-

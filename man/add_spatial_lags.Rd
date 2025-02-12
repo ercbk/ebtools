@@ -7,7 +7,7 @@
 add_spatial_lags(nblist, y, .data, lags, type = NULL, ...)
 }
 \arguments{
-\item{nblist}{An object of class \code{"nb"} from the spdep package which represents the neighborhood structure.}
+\item{nblist}{An object of class "nb" from the spdep package which represents the neighborhood structure.}
 
 \item{y}{A character string indicating the name of the numeric variable in \code{.data}
 for which spatial lags will be computed.}
@@ -31,14 +31,13 @@ The output also includes weight summary attributes named \code{"summ_wgts_spatla
 }
 \description{
 Computes spatial lags for a given numeric variable in a dataset using
-a neighborhood list from the spdep package. It supports inverse distance weighting, exponential, and
-double power decay weighting methods along with various normalization procedures.
+a neighborhood list from the \href{https://r-spatial.github.io/spdep/}{spdep} package. It supports inverse distance weighting, exponential, and double power decay weighting methods along with various normalization procedures.
 }
 \details{
 To obtain a neighborhood list of class "nb," first, a neighborhood algorithm is fit to the geometry of sf dataset. Then, that object is coerced into a neighborhood list. For a workflow, see the Misc section in the \href{https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-misc}{Geospatial, Spatial Weights} note of my Data Science notebook.
 \itemize{
-\item Valid types (\code{"idw"}, \code{"exp"}, \code{"dpd"}).
-\item Valid styles (\code{"W"}, \code{"B"}, \code{"C"}, \code{"S"}, \code{"U"}, \code{"minmax"}, \code{"raw"}).
+\item Valid Types: (\code{"idw"}, \code{"exp"}, \code{"dpd"}).
+\item Valid Styles: (\code{"W"}, \code{"B"}, \code{"C"}, \code{"S"}, \code{"U"}, \code{"minmax"}, \code{"raw"}).
 \item See the Spatial Weights section in the \href{https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-swts}{Geospatial, Spatial Weights} note of my Data Science notebook for details
 }
 
@@ -46,7 +45,7 @@ The spatial weights summary is extracted from the output of printing the \code{s
 }
 \examples{
 
-library(spdep)
+library(spdep, quietly = TRUE)
 
 ny8_sf <-
   st_read(system.file(
