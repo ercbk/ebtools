@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-02-12T16:30Z
+last_built: 2025-02-12T19:30Z
 urls:
   reference: https://ercbk.github.io/ebtools/reference
   article: https://ercbk.github.io/ebtools/articles
