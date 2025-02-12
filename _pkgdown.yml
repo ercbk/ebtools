@@ -16,6 +16,19 @@ template:
     ganalytics: G-CG72G9JY1V
 
 reference:
+  - title: Geospatial
+    contents:
+    - add_spatial_lags
+
+  - title: Preprocessing
+    contents:
+    - to_js_array
+
+  - title: Statistics
+    contents:
+    - cles
+    - get_boot_ci
+
   - title: Time Series
     contents:
     - add_mase_scale_feat
@@ -27,15 +40,6 @@ reference:
     - scale_by_mase
     - test_fable_resids
     - test_lm_resids
-
-  - title: Preprocessing
-    contents:
-    - to_js_array
-
-  - title: Statistics
-    contents:
-    - cles
-    - get_boot_ci
 
   - title: Data
     contents:

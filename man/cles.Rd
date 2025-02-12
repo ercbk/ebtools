@@ -29,7 +29,7 @@ When 'ci = TRUE', this function returns a dataframe with the following columns:
 }
 }
 \description{
-Calculates the Common Language Effect Size (CLES) for two variables. The CLES function converts the effect size to a probability that a unit/subject will have a larger measurement than another unit/subject. See \href{https://ercbk.github.io/Data-Science-Notebook/qmd/post-hoc-analysis-multilevel.html#common-language-effect-size}{notebook} for further details.
+Calculates the Common Language Effect Size (CLES) for two variables. The CLES function converts the effect size to a probability that a unit/subject will have a larger measurement than another unit/subject. See my \href{https://ercbk.github.io/Data-Science-Notebook/qmd/post-hoc-analysis-multilevel.html#common-language-effect-size}{Post-Hoc Analysis, Multilevel} note in my Data Science notebook for further details.
 }
 \details{
 This measure is also referred to as the \emph{Probability of Superiority}. The conversion of effect size to a probability or percentage is supposed to be easier for the laymen to interpret.

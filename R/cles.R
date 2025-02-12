@@ -1,7 +1,7 @@
 #' Calculates the Common Language Effect Size (CLES)
 #'
 #' @description
-#' Calculates the Common Language Effect Size (CLES) for two variables. The CLES function converts the effect size to a probability that a unit/subject will have a larger measurement than another unit/subject. See [notebook](https://ercbk.github.io/Data-Science-Notebook/qmd/post-hoc-analysis-multilevel.html#common-language-effect-size) for further details.
+#' Calculates the Common Language Effect Size (CLES) for two variables. The CLES function converts the effect size to a probability that a unit/subject will have a larger measurement than another unit/subject. See my [Post-Hoc Analysis, Multilevel](https://ercbk.github.io/Data-Science-Notebook/qmd/post-hoc-analysis-multilevel.html#common-language-effect-size) note in my Data Science notebook for further details.
 #'
 #' @param data dataframe; Data should be in wide format
 #' @param group_variables character vector or list with quoted names of the variables to be compared.
