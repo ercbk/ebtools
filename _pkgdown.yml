@@ -3,6 +3,7 @@ url: https://ercbk.github.io/ebtools/
 template:
   bootstrap: 5
   bootswatch: simplex
+  math-rendering: mathjax
   bslib:
     bg: "#ffffff"
     body-bg: "#ffffff"

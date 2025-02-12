@@ -6,9 +6,9 @@
 #' double power decay weighting methods along with various normalization procedures.
 #'
 #' @param nblist An object of class `"nb"` from the spdep package which represents the neighborhood structure.
-#' @param y A character string indicating the name of the numeric variable in `dat`
+#' @param y A character string indicating the name of the numeric variable in `.data`
 #'   for which spatial lags will be computed.
-#' @param dat A data frame of class "sf" containing the variable specified by `y`.
+#' @param .data A data frame of class "sf" containing the variable specified by `y`.
 #' @param lags A numeric value specifying the number of spatial lags to compute.
 #' @param type A character string indicating the type of spatial weights to use.
 #'   Accepted values are `"idw"` (inverse distance weighting), `"exp"` (exponential),
@@ -22,10 +22,10 @@
 #'   The output also includes weight summary attributes named `"summ_wgts_spatlag_<lag>"`.
 #'
 #' @details
-#' To obtain a neighborhood list of class "nb," first, a neighborhood algorithm is fit to the geometry of sf dataset. Then, that object is coerced into a neighborhood list. For a workflow, see the Misc section in the [Geospatial, Spatial Weights](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-misc) section of my Data Science Notebook.
-#' - If `type` is provided, it matches one of the accepted types (`"idw"`, `"exp"`, `"dpd"`).
-#' - If a `style` argument is passed in `...`, it matches one of the valid styles
-#'   (`"W"`, `"B"`, `"C"`, `"S"`, `"U"`, `"minmax"`, `"raw"`).
+#' To obtain a neighborhood list of class "nb," first, a neighborhood algorithm is fit to the geometry of sf dataset. Then, that object is coerced into a neighborhood list. For a workflow, see the Misc section in the [Geospatial, Spatial Weights](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-misc) note of my Data Science notebook.
+#' - Valid Types: (`"idw"`, `"exp"`, `"dpd"`).
+#' - Valid Styles: (`"W"`, `"B"`, `"C"`, `"S"`, `"U"`, `"minmax"`, `"raw"`).
+#' - See the Spatial Weights section in the [Geospatial, Spatial Weights](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-swts) note of my Data Science notebook for details
 #'
 #' The spatial weights summary is extracted from the output of printing the `spdep::nb2listw` or `spdep::nb2listwdist` object. It contains characteristics such as the number of regions, number of nonzero links, percentage of nonzero weights, average number of links.
 #'
@@ -36,8 +36,10 @@
 #' @importFrom dplyr bind_cols relocate
 #' @importFrom rlang list2
 #'
+#' @export
+#'
 #' @examples
-#' \dontrun{
+#'
 #' library(spdep)
 #'
 #' ny8_sf <-
@@ -46,31 +48,40 @@
 #'     package = "spData"),
 #'     quiet = TRUE)
 #'
-#' Nny8_ct_sf <-
-#'   st_centroid(st_geometry(NY8_sf),
+#' dplyr::glimpse(ny8_sf)
+#'
+#' ny8_ct_sf <-
+#'   st_centroid(st_geometry(ny8_sf),
 #'               of_largest_polygon = TRUE)
 #'
 #'
 #' ny88_nb_sf <-
-#'   knn2nb(knearneigh(NY8_ct_sf,
+#'   knn2nb(knearneigh(ny8_ct_sf,
 #'                     k = 4))
 #'
 #' # Compute spatial lags
 #' tib_spat_lags <-
 #'   add_spatial_lags(
-#'     nblist = NY88_nb_sf,
+#'     nblist = ny88_nb_sf,
 #'     y = "PCTOWNHOME",
-#'     dat = ny8_sf,
+#'     .data = ny8_sf,
 #'     lags = 2,
 #'     type = "dpd",
 #'     dmax = 25000,
-#'     style = "W"
+#'     style = "W",
 #'     zero.policy = TRUE
 #'   )
-#'}
 #'
-#' @export
-add_spatial_lags <- function(nblist, y, dat, lags, type = NULL, ...) {
+#' tib_spat_lags |>
+#'   dplyr::select(PCTOWNHOME,
+#'                 spatlag_1_PCTOWNHOME,
+#'                 spatlag_2_PCTOWNHOME) |>
+#'   dplyr::glimpse()
+#'
+#' cat(attributes(tib_spat_lags)$summ_wgts_spatlag_1, sep = "\n")
+
+
+add_spatial_lags <- function(nblist, y, .data, lags, type = NULL, ...) {
 
   # ---------------- tests ------------------
   # Check if nblist is of class "nb"
@@ -78,11 +89,11 @@ add_spatial_lags <- function(nblist, y, dat, lags, type = NULL, ...) {
 
   # Check if y is a character
   chk::chk_character(y)
-  accepted_y <- colnames(dat)
+  accepted_y <- colnames(.data)
   # Check that y is in the data
   chk::chk_subset(y, accepted_y, x_name = "y")
-  # Check if y in dat and lags is numeric
-  chk::chk_numeric(dat[[y]])
+  # Check if y in .data and lags is numeric
+  chk::chk_numeric(.data[[y]])
   chk::chk_numeric(lags)
 
   # Define accepted values for type and style
@@ -100,7 +111,7 @@ add_spatial_lags <- function(nblist, y, dat, lags, type = NULL, ...) {
   }
   # -----------------------------------------
 
-  get_vec_lags <- function(lag_nb, vec_num, dat, lag, type, ...) {
+  get_vec_lags <- function(lag_nb, vec_num, .data, lag, type, ...) {
 
     # add weights to nb list
     if (is.null(type)) {
@@ -108,7 +119,7 @@ add_spatial_lags <- function(nblist, y, dat, lags, type = NULL, ...) {
         spdep::nb2listw(lag_nb, ...)
     } else {
       ls_wts <-
-        spdep::nb2listwdist(lag_nb, dat, type, ...)
+        spdep::nb2listwdist(lag_nb, .data, type, ...)
     }
 
     # get weights summary
@@ -136,7 +147,7 @@ add_spatial_lags <- function(nblist, y, dat, lags, type = NULL, ...) {
   }
 
   # subset variable
-  vec_num <- dat[[y]]
+  vec_num <- .data[[y]]
   # neighbor lags
   lags_nb <- spdep::nblag(nblist, maxlag = lags)
 
@@ -146,7 +157,7 @@ add_spatial_lags <- function(nblist, y, dat, lags, type = NULL, ...) {
       lags_nb,
       1:lags,
       \(x1, x2) {
-        get_vec_lags(x1, vec_num, dat, x2, type, ...)
+        get_vec_lags(x1, vec_num, .data, x2, type, ...)
       }
     )
 
@@ -154,7 +165,7 @@ add_spatial_lags <- function(nblist, y, dat, lags, type = NULL, ...) {
   tib_lags <-
     purrr::map(ls_lags_summ, \(x) purrr::pluck(x, 2)) |>
     purrr::list_cbind() |>
-    dplyr::bind_cols(dat) |>
+    dplyr::bind_cols(.data) |>
     dplyr::relocate({{y}})
 
   # pull weight summaries

@@ -52,7 +52,7 @@ scale_by_mase <- function(.tbl, .value, ...) {
   # calculate scale factor
   calc_mase_scal = function(grp_val) {
 
-    x <- dplyr::select(grp_val,{{.value}}) %>% pull(1)
+    x <- dplyr::select(grp_val,{{.value}}) %>% dplyr::pull(1)
     frq = floor(stats::frequency(x))
 
     if (length(x) < frq) {

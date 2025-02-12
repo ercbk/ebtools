@@ -24,7 +24,7 @@
 #' The point estimate of the statistic is included in the attributes of the dataframe.
 #'
 #' @details
-#' The `boot` and `boot.ci` functions from the {boot} package have a large number of options (together), and it can be a bit overwhelming when you just want some bootstrap CIs quickly. I've tried to simplify the choices with this function while also maintaining flexibility to add options for more complex cases.
+#' The \code{boot} and \code{boot.ci} functions from the {boot} package have a large number of options (together), and it can be a bit overwhelming when you just want some bootstrap CIs quickly. I've tried to simplify the choices with this function while also maintaining flexibility to add options for more complex cases.
 #'
 #' The user must adapt the function they're using to calculate the statistic of interest ('stat_fun') to include the necessary argument according the chosen resampling option. The default resampling option is "indices" ('stype = "i"'), and it's the only one I'm going to elaborate on (See examples for "weights" option. See [{boot}](https://cran.r-project.org/web/packages/boot/index.html) package documentation for details on the "frequency" option). In order to use this option, the user must:
 #' 1. Include a index argument in their statistic function, and it must be the second argument (data argument is the first).

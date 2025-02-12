@@ -75,7 +75,7 @@ test_fable_resids <- function(mod_tbl, grp_col, mod_col) {
 
     freq <- fabletools::augment(mod[[1]]) %>%
       dplyr::pull(.innov) %>%
-      forecast::findfrequency(.)
+      forecast::findfrequency()
 
   }
 

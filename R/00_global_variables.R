@@ -4,6 +4,7 @@ utils::globalVariables(names = c(
   "algorithm",
   "ccf",
   "coef",
+  "data",
   "distance",
   "estimate",
   ".innov",
@@ -18,6 +19,7 @@ utils::globalVariables(names = c(
   "mod_obj",
   "query",
   "resid_freq",
+  "scale_factor",
   "signif_thresh",
   "signif_type",
   "term"))

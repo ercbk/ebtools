@@ -6,13 +6,13 @@ Authors@R:
            family = "Book",
            role = c("aut", "cre"),
            email = "ercbkax0@gmail.com")
-Description: A collection of miscellaneous data science functions
+Description: This is a collection of miscellaneous data science functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-URL: https://github.com/ercbk/ebtools
+URL: https://ercbk.github.io/ebtools
 BugReports: https://github.com/ercbk/ebtools/issues
 Imports: 
     boot,

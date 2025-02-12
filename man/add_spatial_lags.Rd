@@ -4,15 +4,15 @@
 \alias{add_spatial_lags}
 \title{Add Spatial Lags of a Variable to a Dataset}
 \usage{
-add_spatial_lags(nblist, y, dat, lags, type = NULL, ...)
+add_spatial_lags(nblist, y, .data, lags, type = NULL, ...)
 }
 \arguments{
 \item{nblist}{An object of class \code{"nb"} from the spdep package which represents the neighborhood structure.}
 
-\item{y}{A character string indicating the name of the numeric variable in \code{dat}
+\item{y}{A character string indicating the name of the numeric variable in \code{.data}
 for which spatial lags will be computed.}
 
-\item{dat}{A data frame of class "sf" containing the variable specified by \code{y}.}
+\item{.data}{A data frame of class "sf" containing the variable specified by \code{y}.}
 
 \item{lags}{A numeric value specifying the number of spatial lags to compute.}
 
@@ -35,17 +35,17 @@ a neighborhood list from the spdep package. It supports inverse distance weighti
 double power decay weighting methods along with various normalization procedures.
 }
 \details{
-To obtain a neighborhood list of class "nb," first, a neighborhood algorithm is fit to the geometry of sf dataset. Then, that object is coerced into a neighborhood list. For a workflow, see the Misc section in the \href{https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-misc}{Geospatial, Spatial Weights} section of my Data Science Notebook.
+To obtain a neighborhood list of class "nb," first, a neighborhood algorithm is fit to the geometry of sf dataset. Then, that object is coerced into a neighborhood list. For a workflow, see the Misc section in the \href{https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-misc}{Geospatial, Spatial Weights} note of my Data Science notebook.
 \itemize{
-\item If \code{type} is provided, it matches one of the accepted types (\code{"idw"}, \code{"exp"}, \code{"dpd"}).
-\item If a \code{style} argument is passed in \code{...}, it matches one of the valid styles
-(\code{"W"}, \code{"B"}, \code{"C"}, \code{"S"}, \code{"U"}, \code{"minmax"}, \code{"raw"}).
+\item Valid types (\code{"idw"}, \code{"exp"}, \code{"dpd"}).
+\item Valid styles (\code{"W"}, \code{"B"}, \code{"C"}, \code{"S"}, \code{"U"}, \code{"minmax"}, \code{"raw"}).
+\item See the Spatial Weights section in the \href{https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-swts}{Geospatial, Spatial Weights} note of my Data Science notebook for details
 }
 
 The spatial weights summary is extracted from the output of printing the \code{spdep::nb2listw} or \code{spdep::nb2listwdist} object. It contains characteristics such as the number of regions, number of nonzero links, percentage of nonzero weights, average number of links.
 }
 \examples{
-\dontrun{
+
 library(spdep)
 
 ny8_sf <-
@@ -54,27 +54,35 @@ ny8_sf <-
     package = "spData"),
     quiet = TRUE)
 
-Nny8_ct_sf <-
-  st_centroid(st_geometry(NY8_sf),
+dplyr::glimpse(ny8_sf)
+
+ny8_ct_sf <-
+  st_centroid(st_geometry(ny8_sf),
               of_largest_polygon = TRUE)
 
 
 ny88_nb_sf <-
-  knn2nb(knearneigh(NY8_ct_sf,
+  knn2nb(knearneigh(ny8_ct_sf,
                     k = 4))
 
 # Compute spatial lags
 tib_spat_lags <-
   add_spatial_lags(
-    nblist = NY88_nb_sf,
+    nblist = ny88_nb_sf,
     y = "PCTOWNHOME",
-    dat = ny8_sf,
+    .data = ny8_sf,
     lags = 2,
     type = "dpd",
     dmax = 25000,
-    style = "W"
+    style = "W",
     zero.policy = TRUE
   )
-}
 
+tib_spat_lags |>
+  dplyr::select(PCTOWNHOME,
+                spatlag_1_PCTOWNHOME,
+                spatlag_2_PCTOWNHOME) |>
+  dplyr::glimpse()
+
+cat(attributes(tib_spat_lags)$summ_wgts_spatlag_1, sep = "\n")
 }

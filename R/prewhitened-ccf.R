@@ -189,10 +189,10 @@ prewhitened_ccf <- function(input,
 
   # linearly filter both series with input AR coefs
   input_fil <- input %>%
-    dplyr::mutate(dplyr::across(where(is.numeric), ~stats::filter(.x, filter = c(1, -input_ar),
+    dplyr::mutate(dplyr::across(tidyselect::where(is.numeric), ~stats::filter(.x, filter = c(1, -input_ar),
                                                                   method = 'convolution', sides = 1)))
   output_fil <- output %>%
-    dplyr::mutate(dplyr::across(where(is.numeric), ~stats::filter(.x, filter = c(1, -input_ar),
+    dplyr::mutate(dplyr::across(tidyselect::where(is.numeric), ~stats::filter(.x, filter = c(1, -input_ar),
                                                            method = 'convolution', sides = 1)))
   # ccf fun needs a tsb
   whitened_tsb <- input_fil %>%
