@@ -88,6 +88,16 @@ tib_spat_lags |>
 
 cat(attributes(tib_spat_lags)$summ_wgts_spatlag_1, sep = "\n")
 
+rlang::check_installed(
+  "mirai",
+  action = function(...) {
+    remotes::install_version('mirai',
+                             version = ">= 2.1.0.9000",
+                             repos = c('https://shikokuchuo.r-universe.dev',
+                                       'https://cloud.r-project.org'))
+  }
+)
+
 library(mirai)
 
 daemons(2)

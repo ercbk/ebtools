@@ -14,9 +14,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 URL: https://ercbk.github.io/ebtools
 BugReports: https://github.com/ercbk/ebtools/issues
+Additional_repositories: https://shikokuchuo.r-universe.dev
 Imports: 
     boot,
     chk,
+    carrier,
     DescTools,
     dplyr,
     dtw,
@@ -35,17 +37,16 @@ Imports:
     tidyselect,
     tsibble,
     tsbox,
-    tsfeatures,
-    carrier
+    tsfeatures
 Suggests: 
-    roxygen2,
-    furrr,
     dtwclust,
-    gt,
     fpp2,
-    mirai (>= 2.1.0.9000)
+    furrr,
+    gt,
+    mirai (>= 2.1.0.9000),
+    remotes,
+    roxygen2
 Depends: 
     R (>= 2.10)
 Remotes: 
-    tidyverse/purrr,
-    url::https://shikokuchuo.r-universe.dev
+    tidyverse/purrr
