@@ -82,7 +82,7 @@
 #' cat(attributes(tib_spat_lags)$summ_wgts_spatlag_1, sep = "\n")
 #'
 #' rlang::check_installed(
-#'   "mirai",
+#'   "mirai (>= 2.1.0.9000)",
 #'   action = function(...) {
 #'     remotes::install_version('mirai',
 #'                              version = ">= 2.1.0.9000",
