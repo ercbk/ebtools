@@ -13,6 +13,8 @@
 #'   Accepted values are `"idw"` (inverse distance weighting), `"exp"` (exponential),
 #'   `"dpd"` (double power decay), or `NULL` (default), which applies standard
 #'   adjacency-based weighting.
+#' @param parallel (default: FALSE) Logical indicating whether to use parallel processing.
+#'   Requires having purrr (>= 1.0.4.9000) installed, [mirai (>= 2.1.0.9000)](https://shikokuchuo.net/mirai/) package installed and loaded, and setting `mirai::daemons()` to the number of desired processes. (See Examples)
 #' @param ... Additional arguments passed to `spdep::nb2listw()` or `spdep::nb2listwdist()`,
 #'   such as the `style` argument specifying the normalization method or `zero-policy` which indicates whether or not to permit the weights list to be formed with zero-length weights vectors.
 #'
@@ -78,9 +80,32 @@
 #'   dplyr::glimpse()
 #'
 #' cat(attributes(tib_spat_lags)$summ_wgts_spatlag_1, sep = "\n")
+#'
+#' library(mirai)
+#'
+#' daemons(2)
+#'
+#' tib_spat_lags_para <-
+#'   add_spatial_lags(
+#'     nblist = ny88_nb_sf,
+#'     y = "PCTOWNHOME",
+#'     .data = ny8_sf,
+#'     lags = 2,
+#'     type = "exp",
+#'     zero.policy = TRUE,
+#'     parallel = TRUE
+#'   )
+#'
+#' daemons(0)
 
 
-add_spatial_lags <- function(nblist, y, .data, lags, type = NULL, ...) {
+add_spatial_lags <- function(nblist,
+                             y,
+                             .data,
+                             lags,
+                             type = NULL,
+                             parallel = FALSE,
+                             ...) {
 
   # ---------------- tests ------------------
   # Check if nblist is of class "nb"
@@ -151,14 +176,49 @@ add_spatial_lags <- function(nblist, y, .data, lags, type = NULL, ...) {
   lags_nb <- spdep::nblag(nblist, maxlag = lags)
 
   # get spatial lags and weight summaries
-  ls_lags_summ <-
-    purrr::map2(
-      lags_nb,
-      1:lags,
-      \(x1, x2) {
-        get_vec_lags(x1, vec_num, .data, x2, type, ...)
-      }
-    )
+  if (parallel == TRUE) {
+
+    dots <- list(...)
+
+    ls_lags_summ <-
+      purrr::map2(
+        lags_nb,
+        1:lags,
+        carrier::crate(
+          \(x1, x2) {
+            get_vec_lags(
+              x1,
+              !!vec_num,
+              !!.data,
+              x2,
+              !!type,
+              !!!dots
+            )
+          },
+          get_vec_lags = get_vec_lags
+        ),
+        .parallel = TRUE
+      )
+
+  } else {
+
+    ls_lags_summ <-
+      purrr::map2(
+        lags_nb,
+        1:lags,
+        \(x1, x2) {
+          get_vec_lags(
+            x1,
+            vec_num,
+            .data,
+            x2,
+            type,
+            ...
+          )
+        }
+      )
+
+  }
 
   # pull spatial lags and bind to data
   tib_lags <-

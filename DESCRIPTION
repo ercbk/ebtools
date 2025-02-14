@@ -25,7 +25,7 @@ Imports:
     feasts,
     forecast,
     magrittr,
-    purrr,
+    purrr (>= 1.0.4.9000),
     rlang (>= 0.1.2),
     spdep,
     stats,
@@ -35,12 +35,17 @@ Imports:
     tidyselect,
     tsibble,
     tsbox,
-    tsfeatures
+    tsfeatures,
+    carrier
 Suggests: 
     roxygen2,
     furrr,
     dtwclust,
     gt,
-    fpp2
+    fpp2,
+    mirai (>= 2.1.0.9000)
 Depends: 
     R (>= 2.10)
+Remotes: 
+    tidyverse/purrr,
+    url::https://shikokuchuo.r-universe.dev

@@ -4,7 +4,7 @@
 \alias{add_spatial_lags}
 \title{Add Spatial Lags of a Variable to a Dataset}
 \usage{
-add_spatial_lags(nblist, y, .data, lags, type = NULL, ...)
+add_spatial_lags(nblist, y, .data, lags, type = NULL, parallel = FALSE, ...)
 }
 \arguments{
 \item{nblist}{An object of class "nb" from the spdep package which represents the neighborhood structure.}
@@ -20,6 +20,9 @@ for which spatial lags will be computed.}
 Accepted values are \code{"idw"} (inverse distance weighting), \code{"exp"} (exponential),
 \code{"dpd"} (double power decay), or \code{NULL} (default), which applies standard
 adjacency-based weighting.}
+
+\item{parallel}{(default: FALSE) Logical indicating whether to use parallel processing.
+Requires having purrr (>= 1.0.4.9000) installed, \href{https://shikokuchuo.net/mirai/}{mirai (>= 2.1.0.9000)} package installed and loaded, and setting \code{mirai::daemons()} to the number of desired processes. (See Examples)}
 
 \item{...}{Additional arguments passed to \code{spdep::nb2listw()} or \code{spdep::nb2listwdist()},
 such as the \code{style} argument specifying the normalization method or \code{zero-policy} which indicates whether or not to permit the weights list to be formed with zero-length weights vectors.}
@@ -84,4 +87,21 @@ tib_spat_lags |>
   dplyr::glimpse()
 
 cat(attributes(tib_spat_lags)$summ_wgts_spatlag_1, sep = "\n")
+
+library(mirai)
+
+daemons(2)
+
+tib_spat_lags_para <-
+  add_spatial_lags(
+    nblist = ny88_nb_sf,
+    y = "PCTOWNHOME",
+    .data = ny8_sf,
+    lags = 2,
+    type = "exp",
+    zero.policy = TRUE,
+    parallel = TRUE
+  )
+
+daemons(0)
 }
