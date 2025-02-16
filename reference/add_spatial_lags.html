@@ -98,8 +98,13 @@ The output also includes weight summary attributes named <code>"summ_wgts_spatla
     <p>To obtain a neighborhood list of class "nb," first, a neighborhood algorithm is fit to the geometry of sf dataset. Then, that object is coerced into a neighborhood list. For a workflow, see the Misc section in the <a href="https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-misc" class="external-link">Geospatial, Spatial Weights</a> note of my Data Science notebook.</p><ul><li><p>Valid Types: (<code>"idw"</code>, <code>"exp"</code>, <code>"dpd"</code>).</p></li>
 <li><p>Valid Styles: (<code>"W"</code>, <code>"B"</code>, <code>"C"</code>, <code>"S"</code>, <code>"U"</code>, <code>"minmax"</code>, <code>"raw"</code>).</p></li>
 <li><p>See the Spatial Weights section in the <a href="https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-swts" class="external-link">Geospatial, Spatial Weights</a> note of my Data Science notebook for details</p></li>
-</ul><p>The spatial weights summary is extracted from the output of printing the <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">spdep::nb2listw</a></code> or <code><a href="https://r-spatial.github.io/spdep/reference/nb2listwdist.html" class="external-link">spdep::nb2listwdist</a></code> object. It contains characteristics such as the number of regions, number of nonzero links, percentage of nonzero weights, average number of links.</p>
-    </div>
+</ul><p>The spatial weights summary is extracted from the output of printing the <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">spdep::nb2listw</a></code> or <code><a href="https://r-spatial.github.io/spdep/reference/nb2listwdist.html" class="external-link">spdep::nb2listwdist</a></code> object. It contains characteristics such as the number of regions, number of nonzero links, percentage of nonzero weights, average number of links.</p><ul><li><p>n: This refers to the number of regions (or spatial units) in your dataset.</p></li>
+<li><p>nn: This refers to the total number of possible pairwise relationships between the regions. It is calculated as n × n. This represents the total number of possible links if every region were connected to every other region, including itself.</p></li>
+<li><p>S0: This is the sum of all weights.</p></li>
+<li><p>S1: This is related to the sum of the squares of the weights.</p></li>
+<li><p>S2: This is related to the sum of the products of the weights for each pair of neighbors.</p></li>
+<li><p>S0, S1, S2 are constants used in inference for global spatial autocorrelation statistics</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
