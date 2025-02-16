@@ -29,6 +29,12 @@
 #' - See the Spatial Weights section in the [Geospatial, Spatial Weights](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spatial-weights.html#sec-geo-swgt-swts) note of my Data Science notebook for details
 #'
 #' The spatial weights summary is extracted from the output of printing the `spdep::nb2listw` or `spdep::nb2listwdist` object. It contains characteristics such as the number of regions, number of nonzero links, percentage of nonzero weights, average number of links.
+#' - n: This refers to the number of regions (or spatial units) in your dataset.
+#' - nn: This refers to the total number of possible pairwise relationships between the regions. It is calculated as n × n. This represents the total number of possible links if every region were connected to every other region, including itself.
+#' - S0: This is the sum of all weights.
+#' - S1: This is related to the sum of the squares of the weights.
+#' - S2: This is related to the sum of the products of the weights for each pair of neighbors.
+#' - S0, S1, S2 are constants used in inference for global spatial autocorrelation statistics
 #'
 #' @importFrom chk chk_s3_class chk_character chk_subset chk_numeric
 #' @importFrom spdep nb2listw nb2listwdist nblag lag.listw

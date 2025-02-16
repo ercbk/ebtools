@@ -45,6 +45,14 @@ To obtain a neighborhood list of class "nb," first, a neighborhood algorithm is 
 }
 
 The spatial weights summary is extracted from the output of printing the \code{spdep::nb2listw} or \code{spdep::nb2listwdist} object. It contains characteristics such as the number of regions, number of nonzero links, percentage of nonzero weights, average number of links.
+\itemize{
+\item n: This refers to the number of regions (or spatial units) in your dataset.
+\item nn: This refers to the total number of possible pairwise relationships between the regions. It is calculated as n × n. This represents the total number of possible links if every region were connected to every other region, including itself.
+\item S0: This is the sum of all weights.
+\item S1: This is related to the sum of the squares of the weights.
+\item S2: This is related to the sum of the products of the weights for each pair of neighbors.
+\item S0, S1, S2 are constants used in inference for global spatial autocorrelation statistics
+}
 }
 \examples{
 
