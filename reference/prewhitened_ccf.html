@@ -96,15 +96,15 @@
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>In a cross-correlation in which the direction of influence between two time-series is hypothesized or known,</p><ul><li><p>the influential time-series is called the "input" time-series</p></li>
-<li><p>the affected time-series is called the "output" time-series</p></li>
+    <p>In a cross-correlation in which the direction of influence between two time-series is hypothesized or known,</p><ul><li><p>The influential time-series is called the "input" time-series</p></li>
+<li><p>The affected time-series is called the "output" time-series</p></li>
 </ul><p>The cross-correlation function calculates correlation values between lags and leads of the input series and the output series. Sometimes only correlations between the leads or lags of the input series and the output series make theoretical sense, or only positive or negative correlations make theoretical sense.</p><ul><li><p>The "keep_input" argument specifies whether you want to keep only output CCF values involving leads or lags of the input series or both.</p></li>
 <li><p>The "keep_ccf" argument specifies whether you want to keep only output positive, negative, or both CCF values.</p></li>
 </ul><p><code>prewhitened_ccf</code> differences the series if it's needed, prewhitens, and outputs either statistically significant values of the CCF or the top non-statistically significant value if no statistically significant values are found. The prewhitening method that is used is from Cryer and Chan (2008, Chapter 11).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Cryer, D., Chan, K. (2008) Time Series Analysis, Springer Science+Business Media, LLC</p>
+    <p>Cryer, Jonathan, and Chan, Kung-Sik. 2008. Time Series Analysis With Applications in R. New York: Springer Science+Business Media (pp. 260-271)</p>
     </div>
 
     <div class="section level2">
