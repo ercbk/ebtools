@@ -45,8 +45,8 @@ A tibble with the following columns:
 \details{
 In a cross-correlation in which the direction of influence between two time-series is hypothesized or known,
 \itemize{
-\item the influential time-series is called the "input" time-series
-\item the affected time-series is called the "output" time-series
+\item The influential time-series is called the "input" time-series
+\item The affected time-series is called the "output" time-series
 }
 
 The cross-correlation function calculates correlation values between lags and leads of the input series and the output series. Sometimes only correlations between the leads or lags of the input series and the output series make theoretical sense, or only positive or negative correlations make theoretical sense.
@@ -109,5 +109,5 @@ reg_ccf_vals <- purrr::map2_dfr(reg_cases_tsb$data,
 head(reg_ccf_vals)
 }
 \references{
-Cryer, D., Chan, K. (2008) Time Series Analysis, Springer Science+Business Media, LLC
+Cryer, Jonathan, and Chan, Kung-Sik. 2008. Time Series Analysis With Applications in R. New York: Springer Science+Business Media (pp. 260-271)
 }

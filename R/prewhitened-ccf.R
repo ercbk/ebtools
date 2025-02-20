@@ -23,8 +23,8 @@
 #' @details
 #' In a cross-correlation in which the direction of influence between two time-series is hypothesized or known,
 #'
-#' - the influential time-series is called the "input" time-series
-#' - the affected time-series is called the "output" time-series
+#' - The influential time-series is called the "input" time-series
+#' - The affected time-series is called the "output" time-series
 #'
 #' The cross-correlation function calculates correlation values between lags and leads of the input series and the output series. Sometimes only correlations between the leads or lags of the input series and the output series make theoretical sense, or only positive or negative correlations make theoretical sense.
 #' - The "keep_input" argument specifies whether you want to keep only output CCF values involving leads or lags of the input series or both.
@@ -32,7 +32,7 @@
 #'
 #' `prewhitened_ccf` differences the series if it's needed, prewhitens, and outputs either statistically significant values of the CCF or the top non-statistically significant value if no statistically significant values are found. The prewhitening method that is used is from Cryer and Chan (2008, Chapter 11).
 #'
-#' @references Cryer, D., Chan, K. (2008) Time Series Analysis, Springer Science+Business Media, LLC
+#' @references Cryer, Jonathan, and Chan, Kung-Sik. 2008. Time Series Analysis With Applications in R. New York: Springer Science+Business Media (pp. 260-271)
 #'
 #'
 #' @export
