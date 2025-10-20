@@ -87,15 +87,6 @@
 #'
 #' cat(attributes(tib_spat_lags)$summ_wgts_spatlag_1, sep = "\n")
 #'
-#' rlang::check_installed(
-#'   "mirai (>= 2.1.0.9000)",
-#'   action = function(...) {
-#'     remotes::install_version('mirai',
-#'                              version = ">= 2.1.0.9000",
-#'                              repos = c('https://shikokuchuo.r-universe.dev',
-#'                                        'https://cloud.r-project.org'))
-#'   }
-#' )
 #'
 #' library(mirai)
 #'
@@ -116,12 +107,12 @@
 
 
 add_spatial_lags <- function(nblist,
-                             y,
-                             .data,
-                             lags,
-                             type = NULL,
-                             parallel = FALSE,
-                             ...) {
+                              y,
+                              .data,
+                              lags,
+                              type = NULL,
+                              parallel = FALSE,
+                              ...) {
 
   # ---------------- tests ------------------
   # Check if nblist is of class "nb"
@@ -151,15 +142,32 @@ add_spatial_lags <- function(nblist,
   }
   # -----------------------------------------
 
-  get_vec_lags <- function(lag_nb, vec_num, .data, lag, type, ...) {
+  get_vec_lags <- function(lag_nb, vec_num, .data, lag, type, dots) {
 
     # add weights to nb list
     if (is.null(type)) {
+      listw_args <- list(neighbours = lag_nb)
+      if (length(dots) != 0) {
+        listw_args <- append(listw_args, dots)
+      }
       ls_wts <-
-        spdep::nb2listw(lag_nb, ...)
+        do.call(
+          spdep::nb2listw,
+          listw_args
+        )
     } else {
+      listwdist_args <-
+        list(neighbours = lag_nb,
+             x = .data,
+             type = type)
+      if (length(dots) != 0) {
+        listwdist_args <- append(listwdist_args, dots)
+      }
       ls_wts <-
-        spdep::nb2listwdist(lag_nb, .data, type, ...)
+        do.call(
+          spdep::nb2listwdist,
+          listwdist_args
+        )
     }
 
     # get weights summary
@@ -200,20 +208,25 @@ add_spatial_lags <- function(nblist,
       purrr::map2(
         lags_nb,
         1:lags,
-        carrier::crate(
+        purrr::in_parallel(
           \(x1, x2) {
             get_vec_lags(
               x1,
-              !!vec_num,
-              !!.data,
+              vec_num,
+              .data,
               x2,
-              !!type,
-              !!!dots
+              type,
+              dots
             )
           },
-          get_vec_lags = get_vec_lags
+          get_vec_lags = get_vec_lags,
+          vec_num = vec_num,
+          .data = .data,
+          type = type,
+          dots = dots,
+          y = y # not a fun arg, but needed to add to env for glue variable naming
         ),
-        .parallel = TRUE
+        .progress = TRUE
       )
 
   } else {
@@ -229,7 +242,7 @@ add_spatial_lags <- function(nblist,
             .data,
             x2,
             type,
-            ...
+            dots
           )
         }
       )

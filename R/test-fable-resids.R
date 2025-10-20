@@ -18,14 +18,15 @@
 #'
 #' @examples
 #'
-#' library(dplyr, warn.conflicts = FALSE)
-#' library(fable, quietly = TRUE)
-#' library(furrr, quietly = TRUE)
-#' plan(multisession)
+#'  library(dplyr, warn.conflicts = FALSE)
+#'  library(fable, quietly = TRUE)
+#'  library(mirai)
 #'
-#' head(ohio_covid)[,1:6]
+#'  head(ohio_covid)[,1:6]
 #'
-#' models_dyn <- ohio_covid[ ,1:7] %>%
+#'  daemons(3)
+#'
+#'  models_dyn <- ohio_covid[ ,1:7] %>%
 #'   tidyr::pivot_longer(
 #'     cols = contains("lead"),
 #'     names_to = "lead",
@@ -37,21 +38,20 @@
 #'   tidyr::drop_na() %>%
 #'   tidyr::nest(data = c(date, cases, lead_deaths)) %>%
 #'   # Run a regression on lagged cases and date vs deaths
-#'   mutate(model = furrr::future_map(data, function(df) {
-#'     model(.data = df,
-#'           dyn_reg = ARIMA(lead_deaths ~ 1 + cases),
-#'           dyn_reg_trend = ARIMA(lead_deaths ~ 1 + cases + trend()),
-#'           dyn_reg_quad = ARIMA(lead_deaths ~ 1 + cases + poly(date, 2))
-#'     )
-#'   }
-#'   ))
-#' # shut down workers
-#' plan(sequential)
+#'   mutate(model = purrr::map(data, purrr::in_parallel(\(df) {
+#'     fabletools::model(
+#'       .data = df,
+#'       dyn_reg = fable::ARIMA(lead_deaths ~ 1 + cases),
+#'       dyn_reg_trend = fable::ARIMA(lead_deaths ~ 1 + cases + trend()),
+#'       dyn_reg_quad = fable::ARIMA(lead_deaths ~ 1 + cases + poly(date, 2))
+#'     )})))
 #'
-#' dyn_mod_tbl <- select(models_dyn, -data)
+#'  # shut down workers
+#'  daemons(0)
 #'
-#' fable_resid_res <- test_fable_resids(dyn_mod_tbl, grp_col = "lead", mod_col = "model")
-#' head(fable_resid_res)
+#'  dyn_mod_tbl <- select(models_dyn, -data)
+#'  fable_resid_res <- test_fable_resids(dyn_mod_tbl, grp_col = "lead", mod_col = "model")
+#'  head(fable_resid_res)
 
 
 

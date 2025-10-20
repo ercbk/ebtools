@@ -17,6 +17,10 @@ template:
     ganalytics: G-CG72G9JY1V
 
 reference:
+  - title: EDA
+    contents:
+    - skim_arrow
+
   - title: Geospatial
     contents:
     - add_spatial_lags
