@@ -1,5 +1,5 @@
 #' Statistical Functions for Bootstrapping
-#' Typically, the only change is the data <- data[ind, ] line and ind arg
+#' Typically, the only change is the `data` <- `data[ind, ]` line and ind arg
 #' @noRd
 
 #' @param data Dataframe in wide format

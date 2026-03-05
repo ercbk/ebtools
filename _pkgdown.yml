@@ -24,6 +24,7 @@ reference:
   - title: Geospatial
     contents:
     - add_spatial_lags
+    - pooled_temporal_variogram
 
   - title: Preprocessing
     contents:
