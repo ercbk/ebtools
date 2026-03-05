@@ -89,8 +89,6 @@
 #' )
 
 
-
-
 pooled_temporal_variogram <- function(
     Y,
     max_lag = NULL,
@@ -110,7 +108,7 @@ pooled_temporal_variogram <- function(
 
   unk_time <- colnames(Y)
 
-  # date or datetime
+  # date or datetime check, lag_unit check
   if (datetime) {
     time_index <- as.POSIXct(unk_time, tz = "UTC")
     if (any(is.na(time_index)))
@@ -125,21 +123,22 @@ pooled_temporal_variogram <- function(
       lag_unit <- "days"
   }
 
-  # order columns chronologically
+  # order columns chronologically (in case they aren't)
   ord <- order(time_index)
   Y <- Y[, ord, drop = FALSE]
   time_index <- time_index[ord]
 
-  # compute combinations
+  # compute time difference pairwise combinations
   combs <- utils::combn(ncol(Y), 2)
   i <- combs[1, ]
   j <- combs[2, ]
 
+  # compute time difference according to time units
   time_diff <- as.numeric(
     difftime(time_index[j], time_index[i], units = lag_unit)
   )
 
-  # apply lag constraints
+  # apply lag and max_time_diff constraints
   if (!is.null(max_lag)) {
     idx_lag <- (j - i) <= max_lag
   } else {
@@ -163,50 +162,60 @@ pooled_temporal_variogram <- function(
 
   # bins
   breaks <- seq(0, max(time_diff) + bin_width, by = bin_width)
+  # according to time difference (i.e. handles irregular time steps)
   bins <- cut(time_diff, breaks = breaks, include.lowest = TRUE, right = FALSE)
 
-  # squared time diffs
+
   sqdiff <- (Y[, i, drop = FALSE] - Y[, j, drop = FALSE])^2
 
-  # valid counts
+  # valid time difference pairs
   valid <- !is.na(sqdiff)
   n_pairs <- colSums(valid)
   sqdiff[!valid] <- 0
 
-  # time difference pair-level summary
+  # time difference pair-level summary (fixing space)
   pair_level_summary <- tibble::tibble(
     bin = bins,
-    sqsum = colSums(sqdiff),
+    sqsum = colSums(sqdiff), # by summing over locations; spatial is fixed
     np = n_pairs,
     time_diff = time_diff
   )
 
-  # aggregate by bin (pooling by time)
+  # aggregate by bin (for pooling by time)
   bin_level_summary <- pair_level_summary |>
     dplyr::filter(np > 0) |>
-    dplyr::group_by(bin) |>
+    dplyr::group_by(bin) |> # grouping by time difference; allowing time to vary
     dplyr::summarize(
       sqsum = sum(sqsum),
       np = sum(np),
-      avgDist = mean(time_diff),
       .groups = "drop"
     )
 
-  # all bin centers
+  # all bin centers (for labeling the bins)
   centers_all <- (breaks[-length(breaks)] + breaks[-1]) / 2
 
+  # dir.hor	- horizontal direction (0 for pooled)
+  # dir.ver	- vertical direction (0 for pooled)
   out <- tibble::tibble(
     np = bin_level_summary$np,
     dist = centers_all[match(bin_level_summary$bin, levels(bins))],
+    # semi-variance is calculated at the bin level (i.e. pooling across time)
+    # normalized by valid pairs (np) so NA values (non-valid) don't bias calc
     gamma = 0.5 * bin_level_summary$sqsum / bin_level_summary$np,
-    id = "lag0",
-    timelag = as.difftime(dist, units = lag_unit),
-    spacelag = 0,
-    avgDist = bin_level_summary$avgDist
+    dir.hor = 0,
+    dir.ver = 0,
+    id = factor("var1")
   )
 
-  class(out) <- c("StVariogram", "data.frame")
+  class(out) <- c("gstatVariogram", "data.frame")
+
+  attr(out, "direct") <- data.frame(
+    id = "var1",
+    is.direct = TRUE
+  )
   attr(out, "boundaries") <- breaks
+  attr(out, "pseudo") <- 0
+  attr(out, "what") <- "semivariance"
 
   return(out)
 }
