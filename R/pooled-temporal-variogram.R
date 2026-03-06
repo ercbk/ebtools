@@ -13,33 +13,39 @@
 #' @param datetime is TRUE or FALSE (Default), It indicates whether the column names are dates (default) or datetimes.
 #'
 #' @details
+#' The purpose of this function is to obtain starting values for the time portion of a few of the spatio-temporal variogram models. It's inspired by the pooled spatial variogram specification used in section 2.2 of the 'gstat' vignette, [Introduction to Spatio-Temporal Variography](https://cran.r-project.org/web/packages/gstat/vignettes/st.pdf). Unfortunately, there doesn't seem to be a way to use `gstat::variogram()` to fit a pooled temporal version of the variogram in that section.
+#'
+#' See [Geospatial, Spatio-Temporal >> Grid Layouts](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spat-temp.html#sec-geo-sptemp-grlay) in my notebook for details on regular (full) grids and irregular grids.
+#'
+#' See Example 2 in my notebook for a more in-depth example of using this function ([Geospatial, Spatio-Temporal >> EDA >> Temporal Dependence](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spat-temp.html#sec-geo-sptemp-eda-ac) >> Example 2).
 #'
 #' Let:
 #' \eqn{Y_{s,t}} denote the observation at location \eqn{s = 1,\dots,S}
 #' and time \eqn{t = 1,\dots,T}.
 #'
-#' For lag \eqn{u}, the unweighted pooled estimator (no missing values)
-#' is:
+#' The pooled estimator is:
 #'
 #' \deqn{
-#' \hat{\gamma}(u)
-#' =
-#' \frac{1}{2 S (T-u)}
-#' \sum_{s=1}^{S}
-#' \sum_{t=1}^{T-u}
+#' \hat{\gamma}(h_t) = \frac{1}{2 N_k(h_t)} \sum_{k=1}^{K} \sum_{s=1}^{S}
 #' \left( Y_{s,t} - Y_{s,t+u} \right)^2
 #' }
 #'
 #' where:
-#' \itemize{
-#'   \item \eqn{S} is number of spatial locations
-#'   \item \eqn{T} is number of time points
-#'   \item \eqn{u} is temporal separation
-#' }
+#' * \eqn{h_t} is a temporal bin
+#' * \eqn{N_k(h_t)} is the number of valid (not NA) time difference pairs in that temporal bin
+#' * \eqn{K} is the number of time difference pairs
+#' * \eqn{S} is number of spatial locations
+#' * \eqn{u} is temporal separation
 #'
 #'
-#' @return An object of class `StVariogram` and `data.frame`,
-#'   compatible with `gstat::fit.variogram()`.
+#' @return An object of class `gstatVariogram` and `data.frame` that's compatible with `gstat::fit.variogram()`.
+#' The dataframe contains the following variables:
+#'
+#' \item{np}{The number of valid (not NA) time difference pairs in that temporal bin.}
+#' \item{dist}{The center value of all time difference pairs represented in that temporal bin.}
+#' \item{gamma}{The semivariance value associated with that temporal bin.}
+#' \item{dir.hor, dir.ver, and id}{Given constant values, because they aren't used in this context.}
+#'
 #'
 #' @export
 #'
@@ -176,7 +182,7 @@ pooled_temporal_variogram <- function(
   # time difference pair-level summary (fixing space)
   pair_level_summary <- tibble::tibble(
     bin = bins,
-    sqsum = colSums(sqdiff), # by summing over locations; spatial is fixed
+    sqsum = colSums(sqdiff), # by summing over locations for each time point; spatial is fixed
     np = n_pairs,
     time_diff = time_diff
   )
