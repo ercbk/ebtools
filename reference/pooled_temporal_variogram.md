@@ -50,24 +50,66 @@ pooled_temporal_variogram(
 
 ## Value
 
-An object of class `StVariogram` and `data.frame`, compatible with
-`gstat::fit.variogram()`.
+An object of class `gstatVariogram` and `data.frame` that's compatible
+with `gstat::fit.variogram()`. The dataframe contains the following
+variables:
+
+- np:
+
+  The number of valid (not NA) time difference pairs in that temporal
+  bin.
+
+- dist:
+
+  The center value of all time difference pairs represented in that
+  temporal bin.
+
+- gamma:
+
+  The semivariance value associated with that temporal bin.
+
+- dir.hor, dir.ver, and id:
+
+  Given constant values, because they aren't used in this context.
 
 ## Details
+
+The purpose of this function is to obtain starting values for the time
+portion of a few of the spatio-temporal variogram models. It's inspired
+by the pooled spatial variogram specification used in section 2.2 of the
+'gstat' vignette, [Introduction to Spatio-Temporal
+Variography](https://cran.r-project.org/web/packages/gstat/vignettes/st.pdf).
+Unfortunately, there doesn't seem to be a way to use
+`gstat::variogram()` to fit a pooled temporal version of the variogram
+in that section.
+
+See [Geospatial, Spatio-Temporal \>\> Grid
+Layouts](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spat-temp.html#sec-geo-sptemp-grlay)
+in my notebook for details on regular (full) grids and irregular grids.
+
+See Example 2 in my notebook for a more in-depth example of using this
+function ([Geospatial, Spatio-Temporal \>\> EDA \>\> Temporal
+Dependence](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spat-temp.html#sec-geo-sptemp-eda-ac)
+\>\> Example 2).
 
 Let: \\Y\_{s,t}\\ denote the observation at location \\s = 1,\dots,S\\
 and time \\t = 1,\dots,T\\.
 
-For lag \\u\\, the unweighted pooled estimator (no missing values) is:
+The pooled estimator is:
 
-\$\$ \hat{\gamma}(u) = \frac{1}{2 S (T-u)} \sum\_{s=1}^{S}
-\sum\_{t=1}^{T-u} \left( Y\_{s,t} - Y\_{s,t+u} \right)^2 \$\$
+\$\$ \hat{\gamma}(h_t) = \frac{1}{2 N_k(h_t)} \sum\_{k=1}^{K}
+\sum\_{s=1}^{S} \left( Y\_{s,t} - Y\_{s,t+u} \right)^2 \$\$
 
 where:
 
-- \\S\\ is number of spatial locations
+- \\h_t\\ is a temporal bin
 
-- \\T\\ is number of time points
+- \\N_k(h_t)\\ is the number of valid (not NA) time difference pairs in
+  that temporal bin
+
+- \\K\\ is the number of time difference pairs
+
+- \\S\\ is number of spatial locations
 
 - \\u\\ is temporal separation
 
@@ -104,11 +146,11 @@ pooled_temporal_variogram(
   max_time_diff = 100, # days
   bin_width = 30,      # days
 )
-#>   np dist    gamma   id  timelag spacelag avgDist
-#> 1  3   15 4.833333 lag0  15 days        0      28
-#> 2 15   45 2.533333 lag0  45 days        0      42
-#> 3  6   75 1.916667 lag0  75 days        0      75
-#> 4  3  105 4.833333 lag0 105 days        0      90
+#>   np dist    gamma dir.hor dir.ver   id
+#> 1  3   15 4.833333       0       0 var1
+#> 2 15   45 2.533333       0       0 var1
+#> 3  6   75 1.916667       0       0 var1
+#> 4  3  105 4.833333       0       0 var1
 
 
 
@@ -126,8 +168,8 @@ pooled_temporal_variogram(
   lag_unit = "mins",
   datetime = TRUE
 )
-#>   np dist    gamma   id  timelag spacelag avgDist
-#> 1 12   30 1.708333 lag0  30 mins        0      30
-#> 2 15   90 3.866667 lag0  90 mins        0      72
-#> 3  3  150 4.833333 lag0 150 mins        0     120
+#>   np dist    gamma dir.hor dir.ver   id
+#> 1 12   30 1.708333       0       0 var1
+#> 2 15   90 3.866667       0       0 var1
+#> 3  3  150 4.833333       0       0 var1
 ```
