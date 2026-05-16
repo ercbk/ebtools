@@ -127,6 +127,7 @@ Cambridge University Press, Cambridge. ISBN 0-521-57391-2,
 ## Examples
 
 ``` r
+
 # weights resampling option, d is the data, w is the weight
 data(city, package = "boot")
 ratio <- function(d, w) sum(d$x * w)/sum(d$u * w)

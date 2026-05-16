@@ -97,6 +97,7 @@ statistic. Psychological Bulletin, 111(2), 361–365.
 ## Examples
 
 ``` r
+
 movie_dat <- dplyr::tibble(
    movie1 = c(9.00, 7.00, 8.00, 9.00, 8.00, 9.00, 9.00, 10.00, 9.00, 9.00),
    movie2 = c(9.00, 6.00, 7.00, 8.00, 7.00, 9.00, 8.00, 8.00, 8.00, 7.00)

@@ -27,7 +27,7 @@ pooled_temporal_variogram(
 
 - max_lag:
 
-  Maximum index-based lag (regular time grid case).
+  Maximum index-based lag (optionally for regular time grid case).
 
 - max_time_diff:
 

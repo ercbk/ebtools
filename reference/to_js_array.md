@@ -47,6 +47,7 @@ array like format.
 ## Examples
 
 ``` r
+
 head(indiana_pos_rate)
 #> # A tibble: 6 × 3
 #>   end_date   msa         pos_rate

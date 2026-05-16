@@ -56,6 +56,7 @@ Journal of Forecasting, 2021
 ## Examples
 
 ``` r
+
 library(dplyr, warn.conflicts = FALSE)
 
 group_ts_tbl <- tsbox::ts_tbl(fpp2::arrivals)

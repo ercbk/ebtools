@@ -100,6 +100,7 @@ Applications in R. New York: Springer Science+Business Media (pp.
 ## Examples
 
 ``` r
+
 oh_cases <- ohio_covid %>%
    dplyr::select(date, cases) %>%
    tsibble::as_tsibble(index = date)

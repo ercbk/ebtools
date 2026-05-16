@@ -7,6 +7,7 @@ A personal R package of miscellaneous data science functions
 Install from [GitHub](https://github.com/ercbk/ebtools) with:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("ercbk/ebtools")
 ```

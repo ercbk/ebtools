@@ -27,6 +27,7 @@ distance function.
 ## Examples
 
 ``` r
+
 params_ls_lg <- list(dtw_basic = list(window.size = 5:10,
                                       norm = c("L1", "L2"),
                                       step.pattern = list(dtw::symmetric1, dtw::symmetric2)),

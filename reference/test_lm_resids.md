@@ -42,6 +42,7 @@ p-values round to less than 0.000, then a single "0" will be returned.
 ## Examples
 
 ``` r
+
 library(dplyr, warn.conflicts = FALSE)
 
 head(ohio_covid)[ ,1:6]

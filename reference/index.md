@@ -9,6 +9,9 @@
 
 - [`add_spatial_lags()`](https://ercbk.github.io/ebtools/reference/add_spatial_lags.md)
   : Add Spatial Lags of a Variable to a Dataset
+- [`est_buffernmax()`](https://ercbk.github.io/ebtools/reference/est_buffernmax.md)
+  : Estimate bufferNmax for spatio-temporal kriging neighborhood
+  selection
 - [`pooled_temporal_variogram()`](https://ercbk.github.io/ebtools/reference/pooled_temporal_variogram.md)
   : Pooled Temporal Variogram
 

@@ -78,6 +78,7 @@ The distance algorithms currently supported are:
 ## Examples
 
 ``` r
+
 suppressPackageStartupMessages(library(dtwclust))
 
 head(ohio_covid)[,1:6]

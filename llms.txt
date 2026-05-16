@@ -7,6 +7,7 @@ A personal R package of miscellaneous data science functions
 Install from [GitHub](https://github.com/ercbk/ebtools) with:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("ercbk/ebtools")
 ```
@@ -26,6 +27,9 @@ remotes::install_github("ercbk/ebtools")
 
 - [`add_spatial_lags()`](https://ercbk.github.io/ebtools/reference/add_spatial_lags.md)
   : Add Spatial Lags of a Variable to a Dataset
+- [`est_buffernmax()`](https://ercbk.github.io/ebtools/reference/est_buffernmax.md)
+  : Estimate bufferNmax for spatio-temporal kriging neighborhood
+  selection
 - [`pooled_temporal_variogram()`](https://ercbk.github.io/ebtools/reference/pooled_temporal_variogram.md)
   : Pooled Temporal Variogram
 

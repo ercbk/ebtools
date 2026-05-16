@@ -112,6 +112,7 @@ of links.
 ## Examples
 
 ``` r
+
 library(spdep, quietly = TRUE)
 #> To access larger datasets in this package, install the spDataLarge
 #> package with: `install.packages('spDataLarge',
