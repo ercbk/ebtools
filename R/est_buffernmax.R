@@ -50,9 +50,9 @@
 #' from which those neighbors are selected). While `nmax` can be chosen based
 #' on domain knowledge and cross-validation without too much trouble, `bufferNmax` is harder to tune
 #' because its role in algorithm is not obvious without understanding the
-#' internal mechanics of [gstat::krigeST()]. Even then --- guessing a informative
-#' range of values to start your search is near impossible unless you have extensive experience
-#' with modeling data from that domain.
+#' internal mechanics of [gstat::krigeST()]. Even then --- guessing an informative
+#' range of values to start your search is nearly impossible unless you have extensive experience
+#' with modeling data from that domain (k's upper bound is number of dates × number of locations).
 #'
 #' Internally, `krigeST.local` uses [FNN::get.knnx()] to find
 #' `k = ceiling(bufferNmax * nmax)` nearest neighbors in the **combined**
@@ -68,7 +68,7 @@
 #'
 #' This function provides a principled estimate for `bufferNmax` so that an
 #' empirical grid search can start from a informative value which allows for a
-#' more efficient search. (k's upper bound is number of dates × number of locations)
+#' more efficient search.
 #'
 #' ## How the function works
 #'
