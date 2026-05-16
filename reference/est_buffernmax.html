@@ -153,9 +153,9 @@ and <code>bufferNmax</code> (a multiplier controlling the size of the candidate 
 from which those neighbors are selected). While <code>nmax</code> can be chosen based
 on domain knowledge and cross-validation without too much trouble, <code>bufferNmax</code> is harder to tune
 because its role in algorithm is not obvious without understanding the
-internal mechanics of <code>gstat::krigeST()</code>. Even then — guessing a informative
-range of values to start your search is near impossible unless you have extensive experience
-with modeling data from that domain.</p>
+internal mechanics of <code>gstat::krigeST()</code>. Even then — guessing an informative
+range of values to start your search is nearly impossible unless you have extensive experience
+with modeling data from that domain (k's upper bound is number of dates × number of locations).</p>
 <p>Internally, <code>krigeST.local</code> uses <code>FNN::get.knnx()</code> to find
 <code>k = ceiling(bufferNmax * nmax)</code> nearest neighbors in the <strong>combined</strong>
 spatio-temporal metric space (where time is rescaled by <code>stAni</code>). It then
@@ -168,7 +168,7 @@ or 3 for <code>bufferNmax</code> and select the best <code>nmax</code> according
 the lowest SSE. Then use that <code>nmax</code> value in this function.</p>
 <p>This function provides a principled estimate for <code>bufferNmax</code> so that an
 empirical grid search can start from a informative value which allows for a
-more efficient search. (k's upper bound is number of dates × number of locations)</p>
+more efficient search.</p>
 </div>
 
 <div class="section">
