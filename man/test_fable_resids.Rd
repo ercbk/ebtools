@@ -60,5 +60,5 @@ P-values less than 0.05 indicate autocorrelation is present. If all p-values rou
  head(fable_resid_res)
 }
 \seealso{
-\code{\link[feasts:portmanteau_tests]{feasts::ljung_box()}}
+\code{\link[feasts:ljung_box]{feasts::ljung_box()}}
 }

@@ -17,7 +17,7 @@ pooled_temporal_variogram(
 \item{Y}{A numeric space-time matrix. Rows are locations and columns are time points
 The column names must either be character strings of dates (YYYY-MM-DD) or datetimes (YYYY-MM-DD hh-mm-ss)}
 
-\item{max_lag}{Maximum index-based lag (regular time grid case).}
+\item{max_lag}{Maximum index-based lag (optionally for regular time grid case).}
 
 \item{max_time_diff}{Maximum time difference (irregular time grid case).}
 

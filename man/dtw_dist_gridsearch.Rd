@@ -95,5 +95,5 @@ head(search_res_sm)
 
 }
 \seealso{
-\code{\link[=create_dtw_grids]{create_dtw_grids()}} \code{\link[dtwclust:dtw_basic]{dtwclust::dtw_basic()}}, \code{\link[dtwclust:dtw2]{dtwclust::dtw2()}}, \code{\link[dtwclust:dtw_lb]{dtwclust::dtw_lb()}}, \code{\link[dtwclust:GAK]{dtwclust::gak()}}, \code{\link[dtwclust:SBD]{dtwclust::sbd()}}
+\code{\link[=create_dtw_grids]{create_dtw_grids()}} \code{\link[dtwclust:dtw_basic]{dtwclust::dtw_basic()}}, \code{\link[dtwclust:dtw2]{dtwclust::dtw2()}}, \code{\link[dtwclust:dtw_lb]{dtwclust::dtw_lb()}}, \code{\link[dtwclust:gak]{dtwclust::gak()}}, \code{\link[dtwclust:sbd]{dtwclust::sbd()}}
 }

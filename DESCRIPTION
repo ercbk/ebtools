@@ -11,7 +11,6 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 URL: https://ercbk.github.io/ebtools
 BugReports: https://github.com/ercbk/ebtools/issues
 Additional_repositories: https://shikokuchuo.r-universe.dev
@@ -50,3 +49,4 @@ Depends:
     R (>= 2.10)
 Remotes: 
     tidyverse/purrr
+Config/roxygen2/version: 8.0.0

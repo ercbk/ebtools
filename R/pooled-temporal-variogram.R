@@ -6,7 +6,7 @@
 #'
 #' @param Y A numeric space-time matrix. Rows are locations and columns are time points
 #' The column names must either be character strings of dates (YYYY-MM-DD) or datetimes (YYYY-MM-DD hh-mm-ss)
-#' @param max_lag Maximum index-based lag (regular time grid case).
+#' @param max_lag Maximum index-based lag (optionally for regular time grid case).
 #' @param max_time_diff Maximum time difference (irregular time grid case).
 #' @param lag_unit is "secs", "mins", "hours", "days", or "weeks". If the time points are dates, then the default is "days". If the time points are datetimes (w/datetime = TRUE), then the default is "secs".
 #' @param bin_width Width of temporal bins expressed in the same time units as lag_unit.
@@ -167,9 +167,18 @@ pooled_temporal_variogram <- function(
     stop("No valid time pairs under constraints.\nCheck the compatibility between units of max_time_diff and lag_unit")
 
   # bins
-  breaks <- seq(0, max(time_diff) + bin_width, by = bin_width)
+  breaks <- seq(
+    0,
+    max(time_diff) + bin_width,
+    by = bin_width
+  )
   # according to time difference (i.e. handles irregular time steps)
-  bins <- cut(time_diff, breaks = breaks, include.lowest = TRUE, right = FALSE)
+  bins <- cut(
+    time_diff,
+    breaks = breaks,
+    include.lowest = TRUE,
+    right = FALSE
+  )
 
 
   sqdiff <- (Y[, i, drop = FALSE] - Y[, j, drop = FALSE])^2
