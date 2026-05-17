@@ -189,36 +189,38 @@ est_buffernmax <- function(
 
   # --------- tests ---------
 
-  chk::chk_date(dates)
+
   chk::chk_matrix(coords)
   chk::chk_numeric(coords)
+
   chk::chk_is(vario_mod, "StVariogramModel")
+  vario_mod_comps <- names(vario_mod)
+  chk::chk_subset("joint", vario_mod_comps)
+
+  chk::chk_is(dates, "Date")
+
   chk::chk_matrix(dist_spatial)
   chk::chk_numeric(dist_spatial)
-  chk::chk_number(nmax)
+
   chk::chk_whole_number(nmax)
   chk::chk_gt(nmax, 0)
+
   chk::chk_number(stani)
   chk::chk_gt(stani, 0)
-  chk::chk_number(samp_size)
+
   chk::chk_whole_number(samp_size)
   chk::chk_gt(samp_size, 0)
+
   chk::chk_number(cor_level)
   chk::chk_range(cor_level, range = c(0, 1))
+
   if (!is.null(seed)) {
-    chk::chk_number(seed)
     chk::chk_whole_number(seed)
+    chk::chk_gt(seed, 0)
   }
   chk::chk_true(nrow(dist_spatial) == nrow(coords))
-  chk::chk_true(length(dates) == ncol(dist_spatial) || nrow(coords) == nrow(dist_spatial))
-
-  vario_mod_comps <- names(vario_mod)
-  if (!any("joint" %in% vario_mod_comps)) {
-    stop("vario_mod does not contain a joint component")
-  }
-  if (nrow(dist_spatial) != ncol(dist_spatial)) {
-    stop("dist_spatial must have the same number of rows and columns")
-  }
+  chk::chk_true(ncol(dist_spatial) == nrow(coords))
+  chk::chk_true(ncol(dist_spatial) == nrow(dist_spatial))
 
   # -------------------------
 
