@@ -171,7 +171,8 @@ add_spatial_lags <- function(nblist,
     }
 
     # get weights summary
-    summ_wts <- utils::capture.output(spdep:::print.listw(ls_wts))
+    # summ_wts <- utils::capture.output(spdep:::print.listw(ls_wts))
+    summ_wts <- utils::capture.output(print(ls_wts))
 
     # create spatial lag of vector
     vec_lag <-
@@ -204,6 +205,7 @@ add_spatial_lags <- function(nblist,
 
     dots <- list(...)
 
+    # carrier is required for in_parallel to work
     ls_lags_summ <-
       purrr::map2(
         lags_nb,

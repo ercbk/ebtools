@@ -27,8 +27,9 @@ reference:
     - est_buffernmax
     - pooled_temporal_variogram
 
-  - title: Preprocessing
+  - title: Processing
     contents:
+    - fmt_hl
     - to_js_array
 
   - title: Statistics

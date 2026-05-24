@@ -40,15 +40,16 @@ dtw_html <- gt::html(as.character(htmltools::a(href = "https://dynamictimewarpin
 
 
 pkg_tbl <- tibble::tibble(
-  Type = c("EDA", "Geospatial", "Geospatial", "Geospatial", "Preprocessing", "Statistics", "Statistics", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series"),
-  Function = c("skim_arrow", "add_spatial_lags", "est_buffernmax", "pooled_temporal_variogram", "to_js_array", "cles", "get_boot_ci", "add_mase_scale_feat", "add_tsfeatures", "create_dtw_grids", "descale_by_mase", "dtw_dist_gridsearch", "prewhitened_ccf", "scale_by_mase", "test_fable_resids", "test_lm_resids"),
+  Type = c("EDA", "Geospatial", "Geospatial", "Geospatial", "Processing", "Processing", "Statistics", "Statistics", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series"),
+  Function = c("skim_arrow", "add_spatial_lags", "est_buffernmax", "pooled_temporal_variogram", "fmt_hl", "to_js_array", "cles", "get_boot_ci", "add_mase_scale_feat", "add_tsfeatures", "create_dtw_grids", "descale_by_mase", "dtw_dist_gridsearch", "prewhitened_ccf", "scale_by_mase", "test_fable_resids", "test_lm_resids"),
   Description = c("Runs a {skimr::skim} type of analysis on an arrow object to get summary statistics",
-                  "Adds spatial lags of a numeric variable to a dataframe",
+                  "Adds separate orders of spatial lags of a numeric variable to a dataframe",
                   "Estimates a hyperparameter for krigeST",
                   "Computes a pooled temporal variogram",
-                  "Creates js array column.",
+                  "Smartly formats very small numbers (e.g. p values) with optional highlighting",
+                  "Creates js array column",
                   "Calculates the Common Language Effect Size (CLES)",
-                  "Calculates bootstrapped confidence intervals for a statistic.",
+                  "Simplifies calculation of bootstrapped confidence intervals for a statistic by wrapping multiple functions and using sensible defaults.",
                   "Adds a scale feature by using a factor derived from the MASE error function",
                   "Adds 20 time series features from the tsfeatures package",
                   "Creates a nested, parameter grid list.",
@@ -58,11 +59,12 @@ pkg_tbl <- tibble::tibble(
                   "Scales a group time series by using a factor derived from the MASE error function.",
                   "Checks residuals of multiple fable models for autocorrelation using the Ljung-Box test",
                   "Checks residuals of multiple lm models for autocorrelation using Breusch-Godfrey and Durbin-Watson tests."),
-  comp_pkgs = c("arrow", "spdep", "gstat", "gstat", "dataui", "", "", "", "", "dtwclust", "", "dtwclust", "", "", "fable", ""),
+  comp_pkgs = c("arrow", "spdep", "gstat", "gstat", "", "dataui", "", "", "", "", "dtwclust", "", "dtwclust", "", "", "fable", ""),
   function_urls = c("https://ercbk.github.io/ebtools/reference/skim_arrow.html",
                     "https://ercbk.github.io/ebtools/reference/add_spatial_lags.html",
                     "https://ercbk.github.io/ebtools/reference/est_buffernmax.html",
                     "https://ercbk.github.io/ebtools/reference/pooled_temporal_variogram.html",
+                    "https://ercbk.github.io/ebtools/reference/fmt_hl.html",
                     "https://ercbk.github.io/ebtools/reference/to_js_array.html",
                     "https://ercbk.github.io/ebtools/reference/cles.html",
                     "https://ercbk.github.io/ebtools/reference/get_boot_ci.html",
@@ -79,6 +81,7 @@ pkg_tbl <- tibble::tibble(
                    "https://r-spatial.github.io/spdep/",
                    "https://cran.r-project.org/web/packages/gstat/index.html",
                    "https://cran.r-project.org/web/packages/gstat/index.html",
+                   NA,
                    "https://timelyportfolio.github.io/dataui/",
                    NA, NA, NA, NA,
                    "https://github.com/asardaes/dtwclust",
@@ -92,7 +95,7 @@ pkg_tbl <- tibble::tibble(
          fun_url = purrr::map(fun_html, ~gt::html(as.character(.x))),
          pkg_html = purrr::map2(package_urls, comp_pkgs, ~htmltools::a(href = .x, .y)),
          pkg_url = purrr::map(pkg_html, ~gt::html(as.character(.x))),
-         dtw_url = list("","","","","","","", "", "", dtw_html, "", dtw_html, "",  "", "", "")) |> 
+         dtw_url = list("","","","","","","","","","", dtw_html, "", dtw_html,"", "","","")) |> 
   tidyr::unite("pkg_url", pkg_url, dtw_url, sep = " <br> ") |> # newly added b/c gt::col_merge error
   mutate(pkg_url = purrr::map(pkg_url, ~gt::html(.x))) |> # newly added b/c gt::col_merge error
   relocate(fun_url, .before = "Function") |> 
