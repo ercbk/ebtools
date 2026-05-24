@@ -81,19 +81,19 @@ smart_fmt_sci <- function(
 #'
 #' @param .data `data.frame()` A data frame or tibble.
 #' @param fmt_cols `character()` Columns to apply [smart_fmt_sci()] formatting
-#'   to. This can quoted name ("p_value") or unquoted (p_value) or a vector of quoted
+#'   to. This name can be quoted ("p_value") or unquoted (p_value) or a vector of quoted
 #'   or unquoted names. Also, supports tidy selection (e.g. `dplyr::starts_with("p_")`).
 #' @param emphatic `logical(1)` Whether to apply [emphatic::hl()] highlighting.
 #'   Defaults to `FALSE`.
 #' @param hl_spec `list()` or `NULL`. A list of lists where each list specifies
-#'   the highlighting parameters for one column. Each inner list must contain:
+#'   the [emphatic::hl()] highlighting parameters for one column. Each inner list must contain:
 #'   \describe{
 #'     \item{`col`}{`character(1)` Name of the column to highlight.}
 #'     \item{`palette`}{`character(1)` A string with the color name or a ggplot2 *discrete* scale *class* object to use
-#'       for highlighting. Can be a single colour string (e.g. `"red"`), a
-#'       vector of colour strings, or a ggplot2 scale object (e.g.
+#'       for highlighting. Can be a single color string (e.g. `"red"`), a
+#'       vector of color strings, or a ggplot2 scale object (e.g.
 #'       `ggplot2::scale_color_viridis_d()`, `scico::scale_color_scico_d()`, etc.).}
-#'     \item{`rows`}{`character(1)` A string expression evaluated against the
+#'     \item{`rows`}{`character(1)` A string logical expression evaluated against the
 #'       data frame to select rows to highlight (e.g. `"p_value < 0.05"`).}
 #'     \item{`elem`}{`character(1)` Whether to highlight `"fill"` (background)
 #'       or `"text"`. Overrides the top-level `elem` argument for this column.}
@@ -101,16 +101,10 @@ smart_fmt_sci <- function(
 #'   If `NULL` (the default), a default spec is generated from `fmt_cols` using
 #'   `palette = "red"`, `rows = "<col> < 0.05"`, and the top-level `elem`.
 #' @param elem `character(1)` Default highlight element for all columns, either
-#'   `"fill"` for background or `"text"` for text colour. Can be overridden
+#'   `"fill"` for background or `"text"` for text color. Can be overridden
 #'   per column in `hl_spec`. Defaults to `"text"`.
 #' @param ... Additional arguments passed to [smart_fmt_sci()], such as
 #'   `threshold`, `sci_digits`, and `num_digits`.
-#'
-#' @return If `emphatic = FALSE`, returns the input data frame or tibble with
-#'   the specified columns formatted as `character()` via [smart_fmt_sci()].
-#'   If `emphatic = TRUE`, returns an `emphatic` object with formatting and
-#'   highlighting applied, suitable for printing to the console or rendering in
-#'   a document.
 #'
 #' @details
 #' This function is useful when working with variables that span a wide range of
@@ -118,6 +112,12 @@ smart_fmt_sci <- function(
 #' and others do not. Formatting with [smart_fmt_sci()] ensures consistent,
 #' readable output. The optional [emphatic::hl()] highlighting makes it easy to
 #' visually flag values meeting a condition, such as p-values below 0.05.
+#'
+#' @return If `emphatic = FALSE`, the input data frame or tibble with
+#'   the specified columns formatted as `character()` via [smart_fmt_sci()] is returned.
+#'   If `emphatic = TRUE`, an `emphatic` object with formatting and
+#'   highlighting applied is returned --- suitable for printing to the console or rendering in
+#'   a document.
 #'
 #' @export
 #'
@@ -150,7 +150,7 @@ smart_fmt_sci <- function(
 #'     hl_spec = list(
 #'       list(
 #'         col = "p_value_adj",
-#'         palette = ggplot2::scale_colour_viridis_d(),
+#'         palette = ggplot2::scale_color_viridis_d(),
 #'         rows = "p_value_adj < 0.05 & p_value_adj > 0",
 #'         elem = "fill"
 #'       ),

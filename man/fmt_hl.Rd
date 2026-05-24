@@ -10,21 +10,21 @@ fmt_hl(.data, fmt_cols, emphatic = FALSE, hl_spec = NULL, elem = "text", ...)
 \item{.data}{\code{data.frame()} A data frame or tibble.}
 
 \item{fmt_cols}{\code{character()} Columns to apply \code{\link[=smart_fmt_sci]{smart_fmt_sci()}} formatting
-to. This can quoted name ("p_value") or unquoted (p_value) or a vector of quoted
+to. This name can be quoted ("p_value") or unquoted (p_value) or a vector of quoted
 or unquoted names. Also, supports tidy selection (e.g. \code{dplyr::starts_with("p_")}).}
 
 \item{emphatic}{\code{logical(1)} Whether to apply \code{\link[emphatic:hl]{emphatic::hl()}} highlighting.
 Defaults to \code{FALSE}.}
 
 \item{hl_spec}{\code{list()} or \code{NULL}. A list of lists where each list specifies
-the highlighting parameters for one column. Each inner list must contain:
+the \code{\link[emphatic:hl]{emphatic::hl()}} highlighting parameters for one column. Each inner list must contain:
 \describe{
 \item{\code{col}}{\code{character(1)} Name of the column to highlight.}
 \item{\code{palette}}{\code{character(1)} A string with the color name or a ggplot2 \emph{discrete} scale \emph{class} object to use
-for highlighting. Can be a single colour string (e.g. \code{"red"}), a
-vector of colour strings, or a ggplot2 scale object (e.g.
+for highlighting. Can be a single color string (e.g. \code{"red"}), a
+vector of color strings, or a ggplot2 scale object (e.g.
 \code{ggplot2::scale_color_viridis_d()}, \code{scico::scale_color_scico_d()}, etc.).}
-\item{\code{rows}}{\code{character(1)} A string expression evaluated against the
+\item{\code{rows}}{\code{character(1)} A string logical expression evaluated against the
 data frame to select rows to highlight (e.g. \code{"p_value < 0.05"}).}
 \item{\code{elem}}{\code{character(1)} Whether to highlight \code{"fill"} (background)
 or \code{"text"}. Overrides the top-level \code{elem} argument for this column.}
@@ -33,17 +33,17 @@ If \code{NULL} (the default), a default spec is generated from \code{fmt_cols} u
 \code{palette = "red"}, \code{rows = "<col> < 0.05"}, and the top-level \code{elem}.}
 
 \item{elem}{\code{character(1)} Default highlight element for all columns, either
-\code{"fill"} for background or \code{"text"} for text colour. Can be overridden
+\code{"fill"} for background or \code{"text"} for text color. Can be overridden
 per column in \code{hl_spec}. Defaults to \code{"text"}.}
 
 \item{...}{Additional arguments passed to \code{\link[=smart_fmt_sci]{smart_fmt_sci()}}, such as
 \code{threshold}, \code{sci_digits}, and \code{num_digits}.}
 }
 \value{
-If \code{emphatic = FALSE}, returns the input data frame or tibble with
-the specified columns formatted as \code{character()} via \code{\link[=smart_fmt_sci]{smart_fmt_sci()}}.
-If \code{emphatic = TRUE}, returns an \code{emphatic} object with formatting and
-highlighting applied, suitable for printing to the console or rendering in
+If \code{emphatic = FALSE}, the input data frame or tibble with
+the specified columns formatted as \code{character()} via \code{\link[=smart_fmt_sci]{smart_fmt_sci()}} is returned.
+If \code{emphatic = TRUE}, an \code{emphatic} object with formatting and
+highlighting applied is returned --- suitable for printing to the console or rendering in
 a document.
 }
 \description{
@@ -89,7 +89,7 @@ df |>
     hl_spec = list(
       list(
         col = "p_value_adj",
-        palette = ggplot2::scale_colour_viridis_d(),
+        palette = ggplot2::scale_color_viridis_d(),
         rows = "p_value_adj < 0.05 & p_value_adj > 0",
         elem = "fill"
       ),
