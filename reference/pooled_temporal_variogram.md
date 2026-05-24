@@ -51,8 +51,9 @@ pooled_temporal_variogram(
 ## Value
 
 An object of class `gstatVariogram` and `data.frame` that's compatible
-with `gstat::fit.variogram()`. The dataframe contains the following
-variables:
+with
+[`gstat::fit.variogram()`](https://r-spatial.github.io/gstat/reference/fit.variogram.html).
+The dataframe contains the following variables:
 
 - np:
 
@@ -80,8 +81,8 @@ by the pooled spatial variogram specification used in section 2.2 of the
 'gstat' vignette, [Introduction to Spatio-Temporal
 Variography](https://cran.r-project.org/web/packages/gstat/vignettes/st.pdf).
 Unfortunately, there doesn't seem to be a way to use
-`gstat::variogram()` to fit a pooled temporal version of the variogram
-in that section.
+[`gstat::variogram()`](https://r-spatial.github.io/gstat/reference/variogram.html)
+to fit a pooled temporal version of the variogram in that section.
 
 See [Geospatial, Spatio-Temporal \>\> Grid
 Layouts](https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spat-temp.html#sec-geo-sptemp-grlay)

@@ -15,8 +15,10 @@
 - [`pooled_temporal_variogram()`](https://ercbk.github.io/ebtools/reference/pooled_temporal_variogram.md)
   : Pooled Temporal Variogram
 
-## Preprocessing
+## Processing
 
+- [`fmt_hl()`](https://ercbk.github.io/ebtools/reference/fmt_hl.md) :
+  Format columns and optionally highlight values
 - [`to_js_array()`](https://ercbk.github.io/ebtools/reference/to_js_array.md)
   : Converts data columns to a js array
 

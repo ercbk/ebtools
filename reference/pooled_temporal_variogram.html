@@ -96,7 +96,7 @@ The column names must either be character strings of dates (YYYY-MM-DD) or datet
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>gstatVariogram</code> and <code>data.frame</code> that's compatible with <code>gstat::fit.variogram()</code>.
+    <p>An object of class <code>gstatVariogram</code> and <code>data.frame</code> that's compatible with <code><a href="https://r-spatial.github.io/gstat/reference/fit.variogram.html" class="external-link">gstat::fit.variogram()</a></code>.
 The dataframe contains the following variables:</p>
 <dl><dt>np</dt>
 <dd><p>The number of valid (not NA) time difference pairs in that temporal bin.</p></dd>
@@ -113,7 +113,7 @@ The dataframe contains the following variables:</p>
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The purpose of this function is to obtain starting values for the time portion of a few of the spatio-temporal variogram models. It's inspired by the pooled spatial variogram specification used in section 2.2 of the 'gstat' vignette, <a href="https://cran.r-project.org/web/packages/gstat/vignettes/st.pdf" class="external-link">Introduction to Spatio-Temporal Variography</a>. Unfortunately, there doesn't seem to be a way to use <code>gstat::variogram()</code> to fit a pooled temporal version of the variogram in that section.</p>
+    <p>The purpose of this function is to obtain starting values for the time portion of a few of the spatio-temporal variogram models. It's inspired by the pooled spatial variogram specification used in section 2.2 of the 'gstat' vignette, <a href="https://cran.r-project.org/web/packages/gstat/vignettes/st.pdf" class="external-link">Introduction to Spatio-Temporal Variography</a>. Unfortunately, there doesn't seem to be a way to use <code><a href="https://r-spatial.github.io/gstat/reference/variogram.html" class="external-link">gstat::variogram()</a></code> to fit a pooled temporal version of the variogram in that section.</p>
 <p>See <a href="https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spat-temp.html#sec-geo-sptemp-grlay" class="external-link">Geospatial, Spatio-Temporal &gt;&gt; Grid Layouts</a> in my notebook for details on regular (full) grids and irregular grids.</p>
 <p>See Example 2 in my notebook for a more in-depth example of using this function (<a href="https://ercbk.github.io/Data-Science-Notebook/qmd/geospatial-spat-temp.html#sec-geo-sptemp-eda-ac" class="external-link">Geospatial, Spatio-Temporal &gt;&gt; EDA &gt;&gt; Temporal Dependence</a> &gt;&gt; Example 2).</p>
 <p>Let:

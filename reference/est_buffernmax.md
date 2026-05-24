@@ -1,9 +1,10 @@
 # Estimate bufferNmax for spatio-temporal kriging neighborhood selection
 
 Calculates an estimate for `bufferNmax` parameter used in
-`gstat::krigeST()` local neighborhood selection. The estimate is based
-on the average number of spatio-temporal observations within the
-effective range of the joint variogram component, divided by `nmax`.
+[`gstat::krigeST()`](https://r-spatial.github.io/gstat/reference/krigeST.html)
+local neighborhood selection. The estimate is based on the average
+number of spatio-temporal observations within the effective range of the
+joint variogram component, divided by `nmax`.
 
 All parameters must have the same distance and time units (e.g.
 kilometers, days) or have been generated using the same units. For
@@ -45,7 +46,8 @@ est_buffernmax(
 - vario_mod:
 
   \[`StVariogramModel`\] A fitted spatio-temporal variogram model of
-  class `StVariogramModel` as returned by `gstat::fit.StVariogram()`.
+  class `StVariogramModel` as returned by
+  [`gstat::fit.StVariogram()`](https://r-spatial.github.io/gstat/reference/fit.StVariogram.html).
   Must contain a `joint` component (i.e. a sum-metric or simple
   sum-metric model).
 
@@ -58,12 +60,14 @@ est_buffernmax(
 
   \[`numeric(1)`\] The maximum number of nearest neighbors used for
   kriging prediction. Must match the `nmax` value will be passed to
-  `gstat::krigeST()` along with the `bufferNmax` estimate. See Details.
+  [`gstat::krigeST()`](https://r-spatial.github.io/gstat/reference/krigeST.html)
+  along with the `bufferNmax` estimate. See Details.
 
 - stani:
 
   \[`numeric(1)`\] The spatio-temporal anisotropy parameter typically
-  estimated using `gstat::estiStAni()`.
+  estimated using
+  [`gstat::estiStAni()`](https://r-spatial.github.io/gstat/reference/estiStAni.html).
 
 - samp_size:
 
@@ -89,25 +93,29 @@ est_buffernmax(
 ## Value
 
 \[`numeric(1)`\] An estimate for `bufferNmax` to use as a starting point
-for grid search hyperparameter tuning of `gstat::krigeST()`.
+for grid search hyperparameter tuning of
+[`gstat::krigeST()`](https://r-spatial.github.io/gstat/reference/krigeST.html).
 
 ## Details
 
 ### Why this function is useful
 
-`gstat::krigeST()` with local neighborhood selection requires two key
-hyperparameters: `nmax` (the number of neighbors used for each
-prediction) and `bufferNmax` (a multiplier controlling the size of the
-candidate pool from which those neighbors are selected). While `nmax`
-can be chosen based on domain knowledge and cross-validation without too
-much trouble, `bufferNmax` is harder to tune because its role in
-algorithm is not obvious without understanding the internal mechanics of
-`gstat::krigeST()`. Even then — guessing an informative range of values
-to start your search is nearly impossible unless you have extensive
-experience with modeling data from that domain (k's upper bound is
-number of dates × number of locations).
+[`gstat::krigeST()`](https://r-spatial.github.io/gstat/reference/krigeST.html)
+with local neighborhood selection requires two key hyperparameters:
+`nmax` (the number of neighbors used for each prediction) and
+`bufferNmax` (a multiplier controlling the size of the candidate pool
+from which those neighbors are selected). While `nmax` can be chosen
+based on domain knowledge and cross-validation without too much trouble,
+`bufferNmax` is harder to tune because its role in algorithm is not
+obvious without understanding the internal mechanics of
+[`gstat::krigeST()`](https://r-spatial.github.io/gstat/reference/krigeST.html).
+Even then — guessing an informative range of values to start your search
+is nearly impossible unless you have extensive experience with modeling
+data from that domain (k's upper bound is number of dates × number of
+locations).
 
-Internally, `krigeST.local` uses `FNN::get.knnx()` to find
+Internally, `krigeST.local` uses
+[`FNN::get.knnx()`](https://rdrr.io/pkg/FNN/man/get.knn.html) to find
 `k = ceiling(bufferNmax * nmax)` nearest neighbors in the **combined**
 spatio-temporal metric space (where time is rescaled by `stAni`). It
 then evaluates the actual covariance between all `k` candidates and the
@@ -160,13 +168,14 @@ at the center of the grid.
 
 ## See also
 
-- `gstat::krigeST()` for the kriging function this estimate is used with
+- [`gstat::krigeST()`](https://r-spatial.github.io/gstat/reference/krigeST.html)
+  for the kriging function this estimate is used with
 
-- `gstat::fit.StVariogram()` for fitting spatio-temporal variogram
-  models
+- [`gstat::fit.StVariogram()`](https://r-spatial.github.io/gstat/reference/fit.StVariogram.html)
+  for fitting spatio-temporal variogram models
 
-- `gstat::estiStAni()` for estimating the spatio-temporal anisotropy
-  parameter
+- [`gstat::estiStAni()`](https://r-spatial.github.io/gstat/reference/estiStAni.html)
+  for estimating the spatio-temporal anisotropy parameter
 
 - [Data Science Notebook \>\> Geospatial, Spatio-Temporal \>\> Kriging
   \>\>

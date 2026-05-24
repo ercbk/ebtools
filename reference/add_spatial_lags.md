@@ -204,7 +204,7 @@ tib_spat_lags_para <-
     zero.policy = TRUE,
     parallel = TRUE
   )
-#> ■■■■■■■■■■■■■■■■                  50% | ETA:  8s
+#> ■■■■■■■■■■■■■■■■                  50% | ETA:  7s
 #> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
 
 daemons(0)
