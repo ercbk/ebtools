@@ -140,19 +140,18 @@ visually flag values meeting a condition, such as p-values below 0.05.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>  p_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.532</span>, <span class="fl">0.00000012</span>, <span class="fl">0.041</span>, <span class="fl">0.00000000031</span>, <span class="fl">0.078</span>, <span class="fl">0.023</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  p_value_adj <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.532</span>, <span class="fl">0.00000072</span>, <span class="fl">0.123</span>, <span class="fl">0.00000000186</span>, <span class="fl">0.234</span>, <span class="fl">0.138</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  p_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5327432</span>, <span class="fl">0.00000012</span>, <span class="fl">0.041257890</span>, <span class="fl">0.00000000031</span>, <span class="fl">0.078</span>, <span class="fl">0.023000000</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  p_value_adj <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5326488</span>, <span class="fl">0.00000072</span>, <span class="fl">0.123452347</span>, <span class="fl">0.00000000186</span>, <span class="fl">0.234</span>, <span class="fl">0.13800000</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Format only, no highlighting</span></span></span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">|&gt;</span> <span class="fu">fmt_hl</span><span class="op">(</span>fmt_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">p_value</span>, <span class="va">p_value_adj</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co">#&gt;     type  p_value p_value_adj</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 1      a    0.532       0.532</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 2      b 1.20e-07    7.20e-07</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 3      c    0.041       0.123</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 4      d 3.10e-10    1.86e-09</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 5      e    0.078       0.234</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 6      f    0.023       0.138</span></span></span>
+<span class="r-in"><span><span class="co">#&gt;   type  p_value p_value_adj</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 1    a   0.5327      0.5326</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 2    b 1.20e-07    7.20e-07</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 3    c  0.04126      0.1235</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 4    d 3.10e-10    1.86e-09</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 5    e    0.078       0.234</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 6    f    0.023       0.138</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Format with default highlighting (red text where &lt; 0.05)</span></span></span>
 <span class="r-in"><span><span class="co"># df |&gt; fmt_hl(fmt_cols = c(p_value, p_value_adj), emphatic = TRUE)</span></span></span>
@@ -175,12 +174,13 @@ visually flag values meeting a condition, such as p-values below 0.05.</p>
 <span class="r-in"><span>        rows <span class="op">=</span> <span class="st">"p_value &lt; 0.05"</span>,</span></span>
 <span class="r-in"><span>        elem <span class="op">=</span> <span class="st">"text"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    num_digits <span class="op">=</span> <span class="fl">5</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co">#&gt;     type  p_value p_value_adj</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 1      a    0.532       0.532</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 1      a  0.53274     0.53265</span></span></span>
 <span class="r-in"><span><span class="co">#&gt; 2      b 1.20e-07    7.20e-07</span></span></span>
-<span class="r-in"><span><span class="co">#&gt; 3      c    0.041       0.123</span></span></span>
+<span class="r-in"><span><span class="co">#&gt; 3      c 0.041258     0.12345</span></span></span>
 <span class="r-in"><span><span class="co">#&gt; 4      d 3.10e-10    1.86e-09</span></span></span>
 <span class="r-in"><span><span class="co">#&gt; 5      e    0.078       0.234</span></span></span>
 <span class="r-in"><span><span class="co">#&gt; 6      f    0.023       0.138</span></span></span>

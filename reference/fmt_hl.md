@@ -110,19 +110,18 @@ such as p-values below 0.05.
 if (FALSE) { # \dontrun{
 df <- data.frame(
   type = letters[1:6],
-  p_value = c(0.532, 0.00000012, 0.041, 0.00000000031, 0.078, 0.023),
-  p_value_adj = c(0.532, 0.00000072, 0.123, 0.00000000186, 0.234, 0.138)
+  p_value = c(0.5327432, 0.00000012, 0.041257890, 0.00000000031, 0.078, 0.023000000),
+  p_value_adj = c(0.5326488, 0.00000072, 0.123452347, 0.00000000186, 0.234, 0.13800000)
 )
-
 # Format only, no highlighting
 df |> fmt_hl(fmt_cols = c(p_value, p_value_adj))
-#>     type  p_value p_value_adj
-#> 1      a    0.532       0.532
-#> 2      b 1.20e-07    7.20e-07
-#> 3      c    0.041       0.123
-#> 4      d 3.10e-10    1.86e-09
-#> 5      e    0.078       0.234
-#> 6      f    0.023       0.138
+#>   type  p_value p_value_adj
+#> 1    a   0.5327      0.5326
+#> 2    b 1.20e-07    7.20e-07
+#> 3    c  0.04126      0.1235
+#> 4    d 3.10e-10    1.86e-09
+#> 5    e    0.078       0.234
+#> 6    f    0.023       0.138
 
 # Format with default highlighting (red text where < 0.05)
 # df |> fmt_hl(fmt_cols = c(p_value, p_value_adj), emphatic = TRUE)
@@ -145,12 +144,13 @@ df |>
         rows = "p_value < 0.05",
         elem = "text"
       )
-    )
+    ),
+    num_digits = 5
   )
 #>     type  p_value p_value_adj
-#> 1      a    0.532       0.532
+#> 1      a  0.53274     0.53265
 #> 2      b 1.20e-07    7.20e-07
-#> 3      c    0.041       0.123
+#> 3      c 0.041258     0.12345
 #> 4      d 3.10e-10    1.86e-09
 #> 5      e    0.078       0.234
 #> 6      f    0.023       0.138
