@@ -27,9 +27,9 @@ fmt_hl(.data, fmt_cols, emphatic = FALSE, hl_spec = NULL, elem = "text", ...)
   [`character()`](https://rdrr.io/r/base/character.html) Columns to
   apply
   [`smart_fmt_sci()`](https://ercbk.github.io/ebtools/reference/smart_fmt_sci.md)
-  formatting to. This can quoted name ("p_value") or unquoted (p_value)
-  or a vector of quoted or unquoted names. Also, supports tidy selection
-  (e.g. `dplyr::starts_with("p_")`).
+  formatting to. This name can be quoted ("p_value") or unquoted
+  (p_value) or a vector of quoted or unquoted names. Also, supports tidy
+  selection (e.g. `dplyr::starts_with("p_")`).
 
 - emphatic:
 
@@ -40,8 +40,9 @@ fmt_hl(.data, fmt_cols, emphatic = FALSE, hl_spec = NULL, elem = "text", ...)
 - hl_spec:
 
   [`list()`](https://rdrr.io/r/base/list.html) or `NULL`. A list of
-  lists where each list specifies the highlighting parameters for one
-  column. Each inner list must contain:
+  lists where each list specifies the
+  [`emphatic::hl()`](https://coolbutuseless.github.io/package/emphatic/reference/hl.html)
+  highlighting parameters for one column. Each inner list must contain:
 
   `col`
 
@@ -51,15 +52,15 @@ fmt_hl(.data, fmt_cols, emphatic = FALSE, hl_spec = NULL, elem = "text", ...)
 
   :   `character(1)` A string with the color name or a ggplot2
       *discrete* scale *class* object to use for highlighting. Can be a
-      single colour string (e.g. `"red"`), a vector of colour strings,
-      or a ggplot2 scale object (e.g.
+      single color string (e.g. `"red"`), a vector of color strings, or
+      a ggplot2 scale object (e.g.
       [`ggplot2::scale_color_viridis_d()`](https://ggplot2.tidyverse.org/reference/scale_viridis.html),
       `scico::scale_color_scico_d()`, etc.).
 
   `rows`
 
-  :   `character(1)` A string expression evaluated against the data
-      frame to select rows to highlight (e.g. `"p_value < 0.05"`).
+  :   `character(1)` A string logical expression evaluated against the
+      data frame to select rows to highlight (e.g. `"p_value < 0.05"`).
 
   `elem`
 
@@ -73,7 +74,7 @@ fmt_hl(.data, fmt_cols, emphatic = FALSE, hl_spec = NULL, elem = "text", ...)
 - elem:
 
   `character(1)` Default highlight element for all columns, either
-  `"fill"` for background or `"text"` for text colour. Can be overridden
+  `"fill"` for background or `"text"` for text color. Can be overridden
   per column in `hl_spec`. Defaults to `"text"`.
 
 - ...:
@@ -84,13 +85,13 @@ fmt_hl(.data, fmt_cols, emphatic = FALSE, hl_spec = NULL, elem = "text", ...)
 
 ## Value
 
-If `emphatic = FALSE`, returns the input data frame or tibble with the
-specified columns formatted as
+If `emphatic = FALSE`, the input data frame or tibble with the specified
+columns formatted as
 [`character()`](https://rdrr.io/r/base/character.html) via
-[`smart_fmt_sci()`](https://ercbk.github.io/ebtools/reference/smart_fmt_sci.md).
-If `emphatic = TRUE`, returns an `emphatic` object with formatting and
-highlighting applied, suitable for printing to the console or rendering
-in a document.
+[`smart_fmt_sci()`](https://ercbk.github.io/ebtools/reference/smart_fmt_sci.md)
+is returned. If `emphatic = TRUE`, an `emphatic` object with formatting
+and highlighting applied is returned — suitable for printing to the
+console or rendering in a document.
 
 ## Details
 
@@ -134,7 +135,7 @@ df |>
     hl_spec = list(
       list(
         col = "p_value_adj",
-        palette = ggplot2::scale_colour_viridis_d(),
+        palette = ggplot2::scale_color_viridis_d(),
         rows = "p_value_adj < 0.05 & p_value_adj > 0",
         elem = "fill"
       ),

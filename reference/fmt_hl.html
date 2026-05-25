@@ -74,7 +74,7 @@ others do not, such as p-values. The defaults are designed for p-values.</p>
 
 <dt id="arg-fmt-cols">fmt_cols<a class="anchor" aria-label="anchor" href="#arg-fmt-cols"></a></dt>
 <dd><p><code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code> Columns to apply <code><a href="smart_fmt_sci.html">smart_fmt_sci()</a></code> formatting
-to. This can quoted name ("p_value") or unquoted (p_value) or a vector of quoted
+to. This name can be quoted ("p_value") or unquoted (p_value) or a vector of quoted
 or unquoted names. Also, supports tidy selection (e.g. <code>dplyr::starts_with("p_")</code>).</p></dd>
 
 
@@ -85,17 +85,17 @@ Defaults to <code>FALSE</code>.</p></dd>
 
 <dt id="arg-hl-spec">hl_spec<a class="anchor" aria-label="anchor" href="#arg-hl-spec"></a></dt>
 <dd><p><code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> or <code>NULL</code>. A list of lists where each list specifies
-the highlighting parameters for one column. Each inner list must contain:</p><dl><dt><code>col</code></dt>
+the <code><a href="https://coolbutuseless.github.io/package/emphatic/reference/hl.html" class="external-link">emphatic::hl()</a></code> highlighting parameters for one column. Each inner list must contain:</p><dl><dt><code>col</code></dt>
 <dd><p><code>character(1)</code> Name of the column to highlight.</p></dd>
 
 <dt><code>palette</code></dt>
 <dd><p><code>character(1)</code> A string with the color name or a ggplot2 <em>discrete</em> scale <em>class</em> object to use
-for highlighting. Can be a single colour string (e.g. <code>"red"</code>), a
-vector of colour strings, or a ggplot2 scale object (e.g.
+for highlighting. Can be a single color string (e.g. <code>"red"</code>), a
+vector of color strings, or a ggplot2 scale object (e.g.
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">ggplot2::scale_color_viridis_d()</a></code>, <code>scico::scale_color_scico_d()</code>, etc.).</p></dd>
 
 <dt><code>rows</code></dt>
-<dd><p><code>character(1)</code> A string expression evaluated against the
+<dd><p><code>character(1)</code> A string logical expression evaluated against the
 data frame to select rows to highlight (e.g. <code>"p_value &lt; 0.05"</code>).</p></dd>
 
 <dt><code>elem</code></dt>
@@ -109,7 +109,7 @@ or <code>"text"</code>. Overrides the top-level <code>elem</code> argument for t
 
 <dt id="arg-elem">elem<a class="anchor" aria-label="anchor" href="#arg-elem"></a></dt>
 <dd><p><code>character(1)</code> Default highlight element for all columns, either
-<code>"fill"</code> for background or <code>"text"</code> for text colour. Can be overridden
+<code>"fill"</code> for background or <code>"text"</code> for text color. Can be overridden
 per column in <code>hl_spec</code>. Defaults to <code>"text"</code>.</p></dd>
 
 
@@ -120,10 +120,10 @@ per column in <code>hl_spec</code>. Defaults to <code>"text"</code>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If <code>emphatic = FALSE</code>, returns the input data frame or tibble with
-the specified columns formatted as <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code> via <code><a href="smart_fmt_sci.html">smart_fmt_sci()</a></code>.
-If <code>emphatic = TRUE</code>, returns an <code>emphatic</code> object with formatting and
-highlighting applied, suitable for printing to the console or rendering in
+    <p>If <code>emphatic = FALSE</code>, the input data frame or tibble with
+the specified columns formatted as <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code> via <code><a href="smart_fmt_sci.html">smart_fmt_sci()</a></code> is returned.
+If <code>emphatic = TRUE</code>, an <code>emphatic</code> object with formatting and
+highlighting applied is returned — suitable for printing to the console or rendering in
 a document.</p>
     </div>
     <div class="section level2">
@@ -165,7 +165,7 @@ visually flag values meeting a condition, such as p-values below 0.05.</p>
 <span class="r-in"><span>    hl_spec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        col <span class="op">=</span> <span class="st">"p_value_adj"</span>,</span></span>
-<span class="r-in"><span>        palette <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        palette <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_viridis_d</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        rows <span class="op">=</span> <span class="st">"p_value_adj &lt; 0.05 &amp; p_value_adj &gt; 0"</span>,</span></span>
 <span class="r-in"><span>        elem <span class="op">=</span> <span class="st">"fill"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
