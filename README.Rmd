@@ -42,7 +42,7 @@ dtw_html <- gt::html(as.character(htmltools::a(href = "https://dynamictimewarpin
 pkg_tbl <- tibble::tibble(
   Type = c("EDA", "Geospatial", "Geospatial", "Geospatial", "Processing", "Processing", "Statistics", "Statistics", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series", "Time Series"),
   Function = c("skim_arrow", "add_spatial_lags", "est_buffernmax", "pooled_temporal_variogram", "fmt_hl", "to_js_array", "cles", "get_boot_ci", "add_mase_scale_feat", "add_tsfeatures", "create_dtw_grids", "descale_by_mase", "dtw_dist_gridsearch", "prewhitened_ccf", "scale_by_mase", "test_fable_resids", "test_lm_resids"),
-  Description = c("Runs a {skimr::skim} type of analysis on an arrow object to get summary statistics",
+  Description = c("Runs a {skimr::skim} type of analysis on an arrow object to get summary statistics with minimal memory usage",
                   "Adds separate orders of spatial lags of a numeric variable to a dataframe",
                   "Estimates the bufferNmax hyperparameter for krigeST",
                   "Computes a pooled temporal variogram",
